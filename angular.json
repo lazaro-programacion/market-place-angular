@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "service-marketplace-jedi"
+    }
+  },
+  "defaultProject": "service-marketplace-jedi",
+  "cli": {
+    "analytics": "b39e99e5-f3b9-40eb-9c93-5f6c993f39e4"
+  }
 }
