@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { ServicesListComponent } from './components/services-list/services-list.component';
 import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
+import { HomeComponent } from './components/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
@@ -19,14 +20,17 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import {SidebarModule} from 'primeng/sidebar';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { SearchComponent } from './components/search/search.component';
+import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServicesListComponent,
     SuppliersListComponent,
+    SearchComponent,
+    HomeComponent,
     NavbarComponent,
-    SearchComponent
+    NotFoundComponentComponent
   ],
   imports: [
     BrowserModule,
