@@ -22,6 +22,8 @@ import {PanelMenuModule} from 'primeng/panelmenu';
 import { SearchComponent } from './components/search/search.component';
 import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 
+import {ListboxModule} from 'primeng/listbox'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +48,7 @@ import { NotFoundComponentComponent } from './components/not-found-component/not
     ContextMenuModule,
     TabMenuModule,
     SidebarModule,
+    ListboxModule,
     PanelMenuModule
   ],
   providers: [],

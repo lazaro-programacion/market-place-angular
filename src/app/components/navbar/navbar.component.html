@@ -129,9 +129,11 @@
   <div
     style="margin: 5px;"
   >
+  
     <p-tabMenu [model]="items4" [activeItem]="activeItem">
-      <ng-template pTemplate="item" let-item let-i="index">
-        <div style="position: relative; text-align: center; min-width: 10em;">
+      <ng-template pTemplate="item" let-item let-i="index" >
+        <div style="position: relative; text-align: center; min-width: 10em;" routerLink="/{{ item.label | lowercase}}"
+        [routerLinkActive]="['active']" >
           <div
             class="ui-menuitem-icon"
             [ngClass]="item.icon"

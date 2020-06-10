@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { PrbService } from 'src/app/models/prb-service';
 import { ServicesService } from 'src/app/services/services.service';
 import { Router, ActivatedRoute, Params } from "@angular/router";
@@ -12,7 +12,7 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./navbar.component.css' ],
   providers: [ServicesService]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, DoCheck {
  
   visibleSidebar1;
   public items1: any[];
@@ -138,14 +138,14 @@ export class NavbarComponent implements OnInit {
 
 this.items4 = [
   {label: 'Home', icon: 'pi pi-fw pi-home'},
-  {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', url: 'http://www.primefaces.org/primeng'},
+  {label: 'Servicios', icon: 'pi pi-fw pi-microsoft'},
   {label: 'Proveedores', icon: 'pi pi-fw pi-users', command: (event) => {
     //event.originalEvent: Browser event
     //event.item: menuitem metadata
     console.log('menu event', event.item.label, event.originalEvent)
 }} ,
   {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
-  {label: 'Usuarios Settings', icon: 'pi pi-fw pi-user'},
+  {label: 'Usuarios', icon: 'pi pi-fw pi-user'},
   {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'}
  // {label: 'Login', icon: 'pi pi-sign-in'},
  // {label: 'Logout', icon: 'pi pi-power-off'}
