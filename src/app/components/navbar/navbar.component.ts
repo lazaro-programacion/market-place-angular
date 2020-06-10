@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrbService } from 'src/app/models/prb-service';
 import { ServicesService } from 'src/app/services/services.service';
-
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import {MenuItem} from 'primeng/api';
 
@@ -33,7 +33,9 @@ export class NavbarComponent implements OnInit {
  
 
   constructor(
-    private serviceService: ServicesService
+    private serviceService: ServicesService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     
    }
@@ -163,8 +165,10 @@ this.activeItem = this.items4[0];
   }
 
 buscador(){
-  console.log(this.search)
-  this.search=''
+
+    console.log('go busqueda', this.search)
+    this.router.navigate(['/buscar', this.search])
+    this.search=''
 }
 
 handleClick(event) {
@@ -178,7 +182,6 @@ handleClick(event) {
 showBasicDialog() {
   this.displayBasic = true;
 }
-
 
 
 

@@ -36,12 +36,14 @@
 
 
   <div class="p-col-8 p-md-8 p-lg-8 p-offset-0 p-md-offset-0 p-lg-offset-0">
-    <div class="ui-inputgroup">
+    <div class="ui-inputgroup" >
+     
       <button
         class="p-col-0 p-md-col-1 p-lg-col-1"
         pButton
-        type="button"
+        type="submit"
         label="Buscar"
+        (click)='buscador()'
       ></button>
       <input
         class="p-col-10 p-md-10 p-lg-12"
@@ -52,7 +54,8 @@
         [(ngModel)]="search"
         (keyup.enter)="buscador()"
       />
-    </div>
+     
+  </div>
   </div>
 
   <div class="p-col-2 p-md-col-2 p-lg-col-2 p-lg-offset-1" id="btnLogin">
