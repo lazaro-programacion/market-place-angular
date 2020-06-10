@@ -20,6 +20,7 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import {SidebarModule} from 'primeng/sidebar';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NotFoundComponentComponent } from './components/not-found-component/not
     ContextMenuModule,
     TabMenuModule,
     SidebarModule,
-    PanelMenuModule
+    PanelMenuModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

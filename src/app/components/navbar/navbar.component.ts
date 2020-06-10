@@ -13,11 +13,11 @@ import {MenuItem} from 'primeng/api';
   providers: [ServicesService]
 })
 export class NavbarComponent implements OnInit {
- 
+
   visibleSidebar1;
   public items1: any[];
   items2: MenuItem[];
-  
+
   items4: MenuItem[];
   items5: MenuItem[];
   activeItem: MenuItem;
@@ -29,18 +29,18 @@ export class NavbarComponent implements OnInit {
   public login : boolean;
   public search: string;
   public services: PrbService[];
-  
- 
+
+
 
   constructor(
     private serviceService: ServicesService
   ) {
-    
+
    }
 
 
   ngOnInit() {
-   
+
     this.login = false
     this.search= ''
     this.items1=[]
@@ -53,9 +53,9 @@ export class NavbarComponent implements OnInit {
             icon: 'pi pi-android'
         })
     });
- 
+
    console.log('array', this.items1)
-   
+
      this.items5 = [
         {
             label: 'SERVICIOS',
@@ -79,11 +79,11 @@ export class NavbarComponent implements OnInit {
                     icon: 'pi pi-pi pi-bars'
                 },
                 {
-                    label: 'Search', 
-                    icon: 'pi pi-pi pi-search', 
+                    label: 'Search',
+                    icon: 'pi pi-pi pi-search',
                     items: [
                         {
-                            label: 'Text', 
+                            label: 'Text',
                             items: [
                                 {
                                     label: 'Workspace'
@@ -135,8 +135,8 @@ export class NavbarComponent implements OnInit {
 
 
 this.items4 = [
-  {label: 'Home', icon: 'pi pi-fw pi-home'},
-  {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', url: 'http://www.primefaces.org/primeng'},
+  {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: "/home" },
+  {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: "/service"},
   {label: 'Proveedores', icon: 'pi pi-fw pi-users', command: (event) => {
     //event.originalEvent: Browser event
     //event.item: menuitem metadata
@@ -154,25 +154,23 @@ this.items4 = [
 this.activeItem = this.items4[0];
 
 
-
   }
-
 
   ngDoCheck(): void {
     this.services = this.serviceService.getServices();
   }
 
 buscador(){
-  console.log(this.search)
-  this.search=''
+  console.log(this.search);
+  this.search = '';
 }
 
 handleClick(event) {
   //execute action
   event.preventDefault();
-  
-  this.login= !this.login
-  console.log('has hecho click', this.login)
+
+  this.login = !this.login;
+  console.log('has hecho click', this.login);
 }
 
 showBasicDialog() {
