@@ -31,14 +31,17 @@
       (click)="visibleSidebar1 = true"
       icon="pi pi-align-justify"
     ></button>
+    
   </div>
+
+
   <div class="p-col-8 p-md-8 p-lg-8 p-offset-0 p-md-offset-0 p-lg-offset-0">
     <div class="ui-inputgroup">
       <button
         class="p-col-0 p-md-col-1 p-lg-col-1"
         pButton
         type="button"
-        label="Search"
+        label="Buscar"
       ></button>
       <input
         class="p-col-10 p-md-10 p-lg-12"
@@ -147,10 +150,10 @@
   [style]="{ width: '31.5vw' }"
   [baseZIndex]="10000"
 >
-  <h1 style="font-weight: normal;">JEDI Market</h1>
-  <p-panelMenu
-    [model]="items5"
-    [transitionOptions]="'500ms'"
-    [style]="{ width: '25vw' }"
-  ></p-panelMenu>
+<h1 style="font-weight: normal;">JEDI Market</h1>
+<p-panelMenu
+  [model]="items5"
+  [transitionOptions]="'500ms'"
+  [style]="{ width: '25vw' }"
+></p-panelMenu>
 </p-sidebar>

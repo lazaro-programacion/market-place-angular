@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PrbService } from 'src/app/models/prb-service';
+import { ServicesService } from 'src/app/services/services.service';
 
 
 import {MenuItem} from 'primeng/api';
@@ -7,28 +9,32 @@ import {MenuItem} from 'primeng/api';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css' ]
+  styleUrls: ['./navbar.component.css' ],
+  providers: [ServicesService]
 })
 export class NavbarComponent implements OnInit {
  
   visibleSidebar1;
-  items1: MenuItem[];
+  public items1: any[];
   items2: MenuItem[];
   
   items4: MenuItem[];
   items5: MenuItem[];
   activeItem: MenuItem;
 
-  public login : boolean;
-  public search: string;
-
   displayBasic: boolean;
   displayPosition: boolean;
-
   position: string;
+
+  public login : boolean;
+  public search: string;
+  public services: PrbService[];
+  
  
 
-  constructor() {
+  constructor(
+    private serviceService: ServicesService
+  ) {
     
    }
 
@@ -37,171 +43,94 @@ export class NavbarComponent implements OnInit {
    
     this.login = false
     this.search= ''
-    this.items5 = [
-      {
-          label: 'File',
-          icon: 'pi pi-pw pi-file',
-          items: [{
-                  label: 'New', 
-                  icon: 'pi pi-fw pi-plus',
-                  items: [
-                      {label: 'User', icon: 'pi pi-fw pi-user-plus'},
-                      {label: 'Filter', icon: 'pi pi-fw pi-filter'}
-                  ]
-              },
-              {label: 'Open', icon: 'pi pi-fw pi-external-link'},
-              {separator: true},
-              {label: 'Quit', icon: 'pi pi-fw pi-times'}
-          ]
-      },
-      {
-          label: 'Edit',
-          icon: 'pi pi-fw pi-pencil',
-          items: [
-              {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-              {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
-          ]
-      },
-      {
-          label: 'Help',
-          icon: 'pi pi-fw pi-question',
-          items: [
-              {
-                  label: 'Contents',
-                  icon: 'pi pi-pi pi-bars'
-              },
-              {
-                  label: 'Search', 
-                  icon: 'pi pi-pi pi-search', 
-                  items: [
-                      {
-                          label: 'Text', 
-                          items: [
-                              {
-                                  label: 'Workspace'
-                              }
-                          ]
-                      },
-                      {
-                          label: 'User',
-                          icon: 'pi pi-fw pi-file',
-                      }
-              ]}
-          ]
-      },
-      {
-          label: 'Actions',
-          icon: 'pi pi-fw pi-cog',
-          items: [
-              {
-                  label: 'Edit',
-                  icon: 'pi pi-fw pi-pencil',
-                  items: [
-                      {label: 'Save', icon: 'pi pi-fw pi-save'},
-                      {label: 'Update', icon: 'pi pi-fw pi-save'},
-                  ]
-              },
-              {
-                  label: 'Other',
-                  icon: 'pi pi-fw pi-tags',
-                  items: [
-                      {label: 'Delete', icon: 'pi pi-fw pi-minus'}
-                  ]
-              }
-          ]
-      }
-  ];
-  
+    this.items1=[]
+    this.services = this.serviceService.getServices()
+        console.log('los servicios', this.services)
+
+    this.services.forEach(element => {
+        this.items1.push({
+            label: element.description,
+            icon: 'pi pi-android'
+        })
+    });
+ 
+   console.log('array', this.items1)
+   
+     this.items5 = [
+        {
+            label: 'SERVICIOS',
+            icon: 'pi pi-tags',
+            items: this.items1
+        },
+        {
+            label: 'PROVEEDORES',
+            icon: 'pi pi-fw pi-users',
+            items: [
+                {label: 'Delete', icon: 'pi pi-fw pi-trash'},
+                {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+            ]
+        },
+        {
+            label: 'Usuarios Settings',
+            icon: 'pi pi-cog',
+            items: [
+                {
+                    label: 'Contents',
+                    icon: 'pi pi-pi pi-bars'
+                },
+                {
+                    label: 'Search', 
+                    icon: 'pi pi-pi pi-search', 
+                    items: [
+                        {
+                            label: 'Text', 
+                            items: [
+                                {
+                                    label: 'Workspace'
+                                }
+                            ]
+                        },
+                        {
+                            label: 'User',
+                            icon: 'pi pi-fw pi-file',
+                        }
+                ]}
+            ]
+        },
+        {
+            label: 'CARRITO',
+            icon: 'pi pi-shopping-cart',
+            items: [
+                {
+                    label: 'Edit',
+                    icon: 'pi pi-fw pi-pencil',
+                    items: [
+                        {label: 'Save', icon: 'pi pi-fw pi-save'},
+                        {label: 'Update', icon: 'pi pi-fw pi-save'},
+                    ]
+                },
+                {
+                    label: 'Other',
+                    icon: 'pi pi-fw pi-tags',
+                    items: [
+                        {label: 'Delete', icon: 'pi pi-fw pi-minus'}
+                    ]
+                }
+            ]
+        }
+    ];
 
 
-this.items1 = [
-  {
-      label: 'File',
-      icon: 'pi pi-fw pi-file',
-      items: [{
-              label: 'New', 
-              icon: 'pi pi-fw pi-plus',
-              items: [
-                  {label: 'Project'},
-                  {label: 'Other'},
-              ]
-          },
-          {label: 'Open'},
-          {separator:true},
-          {label: 'Quit'}
-      ]
-  },
-  {
-      label: 'Edit',
-      icon: 'pi pi-fw pi-pencil',
-      items: [
-          {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-          {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
-      ]
-  },
-  {
-      label: 'Help',
-      icon: 'pi pi-fw pi-question',
-      items: [
-          {
-              label: 'Contents'
-          },
-          {
-              label: 'Search', 
-              icon: 'pi pi-fw pi-search', 
-              items: [
-                  {
-                      label: 'Text', 
-                      items: [
-                          {
-                              label: 'Workspace'
-                          }
-                      ]
-                  },
-                  {
-                      label: 'File'
-                  }
-          ]}
-      ]
-  },
-  {
-      label: 'Actions',
-      icon: 'pi pi-fw pi-cog',
-      items: [
-          {
-              label: 'Edit',
-              icon: 'pi pi-fw pi-pencil',
-              items: [
-                  {label: 'Save', icon: 'pi pi-fw pi-save'},
-                  {label: 'Update', icon: 'pi pi-fw pi-save'},
-              ]
-          },
-          {
-              label: 'Other',
-              icon: 'pi pi-fw pi-tags',
-              items: [
-                  {label: 'Delete', icon: 'pi pi-fw pi-minus'}
-              ]
-          }
-      ]
-  },
-  {separator:true},
-  {
-      label: 'Quit', icon: 'pi pi-fw pi-times'
-  }
-];
-
-this.items2 = [
-  {
-      label: 'About',
-      icon: 'pi pi-fw pi-users'
-  },
-  {
-      label: 'Business',
-      icon: 'pi pi-fw pi-briefcase'
-  }
-];
-
+    this.items2 = [
+        {
+            label: 'About',
+            icon: 'pi pi-fw pi-users'
+        },
+        {
+            label: 'Business',
+            icon: 'pi pi-fw pi-briefcase'
+        }
+      ];
 
 
 
@@ -225,6 +154,12 @@ this.items4 = [
 this.activeItem = this.items4[0];
 
 
+
+  }
+
+
+  ngDoCheck(): void {
+    this.services = this.serviceService.getServices();
   }
 
 buscador(){

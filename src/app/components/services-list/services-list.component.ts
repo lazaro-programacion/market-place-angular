@@ -6,7 +6,8 @@ import { SelectItem } from 'primeng/api';
 @Component({
   selector: 'app-services-list',
   templateUrl: './services-list.component.html',
-  styleUrls: ['./services-list.component.css']
+  styleUrls: ['./services-list.component.css'],
+  providers: [ServicesService]
 })
 export class ServicesListComponent implements OnInit, DoCheck {
 
