@@ -1,0 +1,156 @@
+<div
+  #div
+  style="background-image: url(../assets/images/banner.png); width: 100%;"
+>
+  <img #img src="assets/images/LOGO.png" alt="Logo" height="100vh" />
+  <!--
+<p-contextMenu [global]="true" [model]="items1"></p-contextMenu>
+
+
+ 
+-->
+  <p-contextMenu [target]="div" [model]="items2"></p-contextMenu>
+</div>
+
+<div
+  class="p-grid"
+  style="
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(52, 59, 186, 1) 35%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  "
+>
+  <div class="p-col-1 p-md-col-1 p-lg-col-1">
+    <button
+      pButton
+      type="button"
+      (click)="visibleSidebar1 = true"
+      icon="pi pi-align-justify"
+    ></button>
+  </div>
+  <div class="p-col-8 p-md-8 p-lg-8 p-offset-0 p-md-offset-0 p-lg-offset-0">
+    <div class="ui-inputgroup">
+      <button
+        class="p-col-0 p-md-col-1 p-lg-col-1"
+        pButton
+        type="button"
+        label="Search"
+      ></button>
+      <input
+        class="p-col-10 p-md-10 p-lg-12"
+        pInputText
+        type="text"
+        placeholder="Search..."
+        pInputText
+        [(ngModel)]="search"
+        (keyup.enter)="buscador()"
+      />
+    </div>
+  </div>
+
+  <div class="p-col-2 p-md-col-2 p-lg-col-2 p-lg-offset-1" id="btnLogin">
+    <div *ngIf="login === false">
+      <button
+        type="button"
+        style="float: right;"
+        (click)="showBasicDialog()"
+        pButton
+        icon="pi pi-external-link"
+        label="Login"
+      ></button>
+      <p-dialog
+        header="Login o registro ? "
+        [(visible)]="displayBasic"
+        [style]="{ width: '170px' }"
+        [baseZIndex]="10000"
+        styleClass="mydialog"
+      >
+        <p></p>
+        <p-footer>
+          <button
+            type="button"
+            pButton
+            icon="pi pi-sign-in"
+            (click)="handleClick($event)"
+            label="Login"
+            class="ui-button-primary"
+          ></button>
+          <button
+            type="button"
+            pButton
+            icon="pi pi-user-edit"
+            (click)="handleClick($event)"
+            label="Registro"
+            class="ui-button-danger"
+          ></button>
+        </p-footer>
+      </p-dialog>
+    </div>
+    <div *ngIf="login === true">
+      <div class="p-grid p-dir-col">
+        <div class="p-col">
+          <button
+            type="button"
+            pButton
+            class="ui-button-warning"
+            label="Logout"
+            icon="pi pi-power-off"
+            style="float: right;"
+            (click)="handleClick($event)"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="p-grid "
+  style="
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(52, 59, 186, 1) 35%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  "
+>
+  <div
+    style="margin: 5px;"
+  >
+    <p-tabMenu [model]="items4" [activeItem]="activeItem">
+      <ng-template pTemplate="item" let-item let-i="index">
+        <div style="position: relative; text-align: center; min-width: 10em;">
+          <div
+            class="ui-menuitem-icon"
+            [ngClass]="item.icon"
+            *ngIf="item.icon"
+            style="font-size: 2em;"
+          ></div>
+          <div class="ui-menuitem-text">
+            {{ item.label }}
+          </div>
+        </div>
+      </ng-template>
+    </p-tabMenu>
+  </div>
+</div>
+<hr />
+
+<p-sidebar
+  [(visible)]="visibleSidebar1"
+  [style]="{ width: '31.5vw' }"
+  [baseZIndex]="10000"
+>
+  <h1 style="font-weight: normal;">JEDI Market</h1>
+  <p-panelMenu
+    [model]="items5"
+    [transitionOptions]="'500ms'"
+    [style]="{ width: '25vw' }"
+  ></p-panelMenu>
+</p-sidebar>
