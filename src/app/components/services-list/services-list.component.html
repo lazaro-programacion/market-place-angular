@@ -1,4 +1,3 @@
-<p>services-list works!</p>
 
 <p-dataView #dv [value]="services" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="name"
     [sortField]="sortField" [sortOrder]="sortOrder">
@@ -9,10 +8,10 @@
                 </div>
                 <div class="p-col-6 p-md-4 filter-container">
                     <div style="position:relative">
-                        <input type="search" pInputText placeholder="Search by name" (input)="dv.filter($event.target.value)">
+                        <input type="search" pInputText placeholder="Búsqueda por nombre" (input)="dv.filter($event.target.value)">
                     </div>
                 </div>
-                <div class="p-col-6 p-md-4" style="text-align:right">
+                <div class="p-col-6 p-md-" style="text-align:right">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                 </div>
             </div>
@@ -45,7 +44,7 @@
 </p-dataView>
 
 <p-dialog header="Car Details" [(visible)]="displayDialog" [minY]="70" showEffect="fade" [modal]="true" 
-    [style]="{width: '225px'}" (onAfterHide)="onDialogHide()" [contentStyle]="{padding: '2em', textAlign: 'center'}">
+    [style]="{width: '400px'}" (onAfterHide)="onDialogHide()" [contentStyle]="{padding: '2em', textAlign: 'center'}">
     <div *ngIf="selectedService">
         <img src="assets/images/sample.jpg">
         <strong>{{selectedService.id}} - {{selectedService.name}}</strong>
