@@ -5,13 +5,18 @@
 npm i primeng -s
 npm i primeicons -s
 ```
-
-### base de datos
-´´´
-npm i -s json-server 
-npm i -s pluralize
-npm i -s minimist  
-
+Para que funcionen algunos componenetes también hay que instalar Angular Material:
+```
+ng add @angular/material
 ```
 
-
+para poder usar el grid de prime instalar primero
+```
+npm install primeflex --save
+```
+luego en el angular.json poner en styles
+```
+"styles": [
+  "node_modules/primeflex/primeflex.css"
+],
+```
