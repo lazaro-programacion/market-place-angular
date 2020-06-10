@@ -19,6 +19,7 @@ import {ContextMenuModule} from 'primeng/contextmenu';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {SidebarModule} from 'primeng/sidebar';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     ServicesListComponent,
     SuppliersListComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    NotFoundComponentComponent
   ],
   imports: [
     BrowserModule,
