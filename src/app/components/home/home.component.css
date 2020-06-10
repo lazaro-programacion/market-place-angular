@@ -34,3 +34,8 @@
   height: 23vh;
   width: 100%;
 }
+
+.titulo-header{
+  text-align: center;
+  padding-top: 25%;
+}

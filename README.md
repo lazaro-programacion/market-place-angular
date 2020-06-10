@@ -29,3 +29,7 @@ acceso mongodb
 Teneis que añadir vuestra ip para poder acceder 
 user: admin password: admin
  
+ ´´´
+ istalar el bostrap
+ ng add @ng-bootstrap/ng-bootstrap
+ ```

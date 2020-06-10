@@ -1,7 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { PrbService } from 'src/app/models/prb-service';
 import { ServicesService } from 'src/app/services/services.service';
-import { Router, ActivatedRoute, Params } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 
 import {MenuItem} from 'primeng/api';
 
@@ -12,9 +12,9 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./navbar.component.css' ],
   providers: [ServicesService]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, DoCheck {
 
-  visibleSidebar1;
+  visibleSidebar1: any;
   public items1: any[];
   items2: MenuItem[];
 
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   displayPosition: boolean;
   position: string;
 
-  public login : boolean;
+  public login: boolean;
   public search: string;
   public services: PrbService[];
 
@@ -43,22 +43,22 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.login = false
-    this.search= ''
-    this.items1=[]
-    this.services = this.serviceService.getServices()
-        console.log('los servicios', this.services)
+    this.login = false;
+    this.search = '';
+    this.items1 = [];
+    this.services = this.serviceService.getServices();
+    console.log('los servicios', this.services);
 
     this.services.forEach(element => {
         this.items1.push({
             label: element.description,
             icon: 'pi pi-android'
-        })
+        });
     });
 
-   console.log('array', this.items1)
+    console.log('array', this.items1);
 
-     this.items5 = [
+    this.items5 = [
         {
             label: 'SERVICIOS',
             icon: 'pi pi-tags',
@@ -136,15 +136,15 @@ export class NavbarComponent implements OnInit {
 
 
 
-this.items4 = [
-  {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: "/home" },
-  {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: "/service"},
+    this.items4 = [
+  {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
+  {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service'},
   {label: 'Proveedores', icon: 'pi pi-fw pi-users', command: (event) => {
-    //event.originalEvent: Browser event
-    //event.item: menuitem metadata
-    console.log('menu event', event.item.label, event.originalEvent)
+    // event.originalEvent: Browser event
+    // event.item: menuitem metadata
+    console.log('menu event', event.item.label, event.originalEvent);
 }} ,
-  {label: 'Buscar', icon: 'pi pi-fw pi-search-minus',},
+  {label: 'Buscar', icon: 'pi pi-fw pi-search-minus', },
   {label: 'Usuarios', icon: 'pi pi-fw pi-user'},
   {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'}
  // {label: 'Login', icon: 'pi pi-sign-in'},
@@ -153,7 +153,7 @@ this.items4 = [
 
 
 
-this.activeItem = this.items4[0];
+    this.activeItem = this.items4[0];
 
 
   }
@@ -170,7 +170,7 @@ buscador(){
 }
 
 handleClick(event) {
-  //execute action
+  // execute action
   event.preventDefault();
 
   this.login = !this.login;
