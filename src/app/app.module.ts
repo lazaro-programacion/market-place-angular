@@ -19,14 +19,18 @@ import {ContextMenuModule} from 'primeng/contextmenu';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {SidebarModule} from 'primeng/sidebar';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { SearchComponent } from './components/search/search.component';
 import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import {ListboxModule} from 'primeng/listbox';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServicesListComponent,
     SuppliersListComponent,
+    SearchComponent,
     HomeComponent,
     NavbarComponent,
     NotFoundComponentComponent
@@ -46,7 +50,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TabMenuModule,
     SidebarModule,
     PanelMenuModule,
-    NgbModule
+    NgbModule,
+    ListboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

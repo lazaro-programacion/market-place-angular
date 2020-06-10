@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { PrbService } from 'src/app/models/prb-service';
 import { ServicesService } from 'src/app/services/services.service';
-
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import {MenuItem} from 'primeng/api';
 
@@ -33,7 +33,9 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(
-    private serviceService: ServicesService
+    private serviceService: ServicesService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
    }
@@ -142,8 +144,8 @@ this.items4 = [
     //event.item: menuitem metadata
     console.log('menu event', event.item.label, event.originalEvent)
 }} ,
-  {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
-  {label: 'Usuarios Settings', icon: 'pi pi-fw pi-user'},
+  {label: 'Buscar', icon: 'pi pi-fw pi-search-minus',},
+  {label: 'Usuarios', icon: 'pi pi-fw pi-user'},
   {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'}
  // {label: 'Login', icon: 'pi pi-sign-in'},
  // {label: 'Logout', icon: 'pi pi-power-off'}
@@ -161,8 +163,10 @@ this.activeItem = this.items4[0];
   }
 
 buscador(){
-  console.log(this.search);
-  this.search = '';
+
+    console.log('go busqueda', this.search);
+    this.router.navigate(['/buscar', this.search]);
+    this.search = '';
 }
 
 handleClick(event) {
