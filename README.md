@@ -20,3 +20,16 @@ luego en el angular.json poner en styles
   "node_modules/primeflex/primeflex.css"
 ],
 ```
+´´´
+acceso mongodb
+[
+  email: project.pizza.jedi@gmail.com
+  password: mongo1234 || mongodb1234
+ ]
+Teneis que añadir vuestra ip para poder acceder 
+user: admin password: admin
+ 
+ ´´´
+ istalar el bostrap
+ ng add @ng-bootstrap/ng-bootstrap
+ ```

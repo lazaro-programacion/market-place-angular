@@ -1,0 +1,114 @@
+{
+  "suppliers": [
+    {
+      "id": 1,
+      "nombre": "jose",
+      "apellido": "lazaro",
+      "nif": "48484848A",
+      "iban": "Es2300000000",
+      "imagen": "https://noticias.infocif.es/sites/default/files/styles/n1000x540/public/i/a/proveedor-errores.jpg",
+      "active": false
+    },
+    {
+      "id": 2,
+      "nombre": "jose",
+      "apellido": "navarro",
+      "nif": "48484848A",
+      "iban": "Es2300000000",
+      "imagen": "https://noticias.infocif.es/sites/default/files/styles/n1000x540/public/i/a/proveedor-errores.jpg",
+      "active": false
+    },
+    {
+      "id": 3,
+      "nombre": "paco",
+      "apellido": "monleon",
+      "nif": "48484848A",
+      "iban": "Es2300000000",
+      "imagen": "https://noticias.infocif.es/sites/default/files/styles/n1000x540/public/i/a/proveedor-errores.jpg",
+      "active": false
+    },
+    {
+      "id": 4,
+      "nombre": "carlos",
+      "apellido": "izquierdo",
+      "nif": "48484848A",
+      "iban": "Es2300000000",
+      "imagen": "https://noticias.infocif.es/sites/default/files/styles/n1000x540/public/i/a/proveedor-errores.jpg",
+      "active": false
+    }
+  ],
+
+  "services": [
+    {
+      "id": 1,
+      "description": "anti-virus",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRtm2X4bzoXMsCtqJxwix60udeQ8in1onyXAQKVI3wKhpNI80i_&usqp=CAU",
+      "active": false,
+      "price": 10.99
+    },
+    {
+      "id": 2,
+      "description": "repair-software",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRtm2X4bzoXMsCtqJxwix60udeQ8in1onyXAQKVI3wKhpNI80i_&usqp=CAU",
+      "active": false,
+      "price": 10.99
+    },
+    {
+      "id": 3,
+      "description": "anti-malware",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRtm2X4bzoXMsCtqJxwix60udeQ8in1onyXAQKVI3wKhpNI80i_&usqp=CAU",
+      "active": false,
+      "price": 10.99
+    }
+  ],
+
+  "suppliers_services": [
+    { "id": 0, "supplierId": 1, "serviceId": 1 },
+    { "id": 1, "supplierId": 1, "serviceId": 2 },
+    { "id": 2, "supplierId": 1, "serviceId": 3 },
+    { "id": 3, "supplierId": 2, "serviceId": 1 },
+    { "id": 4, "supplierId": 2, "serviceId": 3 },
+    { "id": 5, "supplierId": 3, "serviceId": 1 }
+
+  ],
+
+    "client": [
+      {
+        "id": 1,
+        "nombre": "jose",
+        "apellido": "lazaro",
+        "nif": "48484848A",
+        "active": "false"
+      },
+      {
+        "id": 2,
+        "nombre": "paco",
+        "apellido": "monleon",
+        "nif": "48484848A",
+        "active": "false"
+      },
+      {
+        "id": 3,
+        "nombre": "carlos",
+        "apellido": "izquierdo",
+        "nif": "48484848A",
+        "active": "false"
+      },
+      {
+        "id": 4,
+        "nombre": "jose",
+        "apellido": "navarro",
+        "nif": "48484848A",
+        "active": "false"
+      }
+    ],
+    "user": [
+      {
+        "usuario": "administrador",
+        "email": "project.pizza.jedi@gmail.com",
+        "rol": "admin",
+        "password": "1234"
+      }
+    ]
+
+}

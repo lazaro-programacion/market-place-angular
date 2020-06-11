@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { ServicesListComponent } from './components/services-list/services-list.component';
 import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
+import { HomeComponent } from './components/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
@@ -18,13 +19,21 @@ import {ContextMenuModule} from 'primeng/contextmenu';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {SidebarModule} from 'primeng/sidebar';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { SearchComponent } from './components/search/search.component';
+import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import {ListboxModule} from 'primeng/listbox';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServicesListComponent,
     SuppliersListComponent,
-    NavbarComponent
+    SearchComponent,
+    HomeComponent,
+    NavbarComponent,
+    NotFoundComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +49,9 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     ContextMenuModule,
     TabMenuModule,
     SidebarModule,
-    PanelMenuModule
+    PanelMenuModule,
+    NgbModule,
+    ListboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

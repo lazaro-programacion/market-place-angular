@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { PrbService } from 'src/app/models/prb-service';
 import { ServicesService } from 'src/app/services/services.service';
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 import {MenuItem} from 'primeng/api';
 
@@ -12,12 +12,12 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./navbar.component.css' ],
   providers: [ServicesService]
 })
-export class NavbarComponent implements OnInit {
- 
-  visibleSidebar1;
+export class NavbarComponent implements OnInit, DoCheck {
+
+  visibleSidebar1: any;
   public items1: any[];
   items2: MenuItem[];
-  
+
   items4: MenuItem[];
   items5: MenuItem[];
   activeItem: MenuItem;
@@ -26,37 +26,39 @@ export class NavbarComponent implements OnInit {
   displayPosition: boolean;
   position: string;
 
-  public login : boolean;
+  public login: boolean;
   public search: string;
   public services: PrbService[];
-  
- 
+
+
 
   constructor(
-    private serviceService: ServicesService
+    private serviceService: ServicesService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
-    
+
    }
 
 
   ngOnInit() {
-   
-    this.login = false
-    this.search= ''
-    this.items1=[]
-    this.services = this.serviceService.getServices()
-        console.log('los servicios', this.services)
+
+    this.login = false;
+    this.search = '';
+    this.items1 = [];
+    this.services = this.serviceService.getServices();
+    console.log('los servicios', this.services);
 
     this.services.forEach(element => {
         this.items1.push({
             label: element.description,
             icon: 'pi pi-android'
-        })
+        });
     });
- 
-   console.log('array', this.items1)
-   
-     this.items5 = [
+
+    console.log('array', this.items1);
+
+    this.items5 = [
         {
             label: 'SERVICIOS',
             icon: 'pi pi-tags',
@@ -79,11 +81,11 @@ export class NavbarComponent implements OnInit {
                     icon: 'pi pi-pi pi-bars'
                 },
                 {
-                    label: 'Search', 
-                    icon: 'pi pi-pi pi-search', 
+                    label: 'Search',
+                    icon: 'pi pi-pi pi-search',
                     items: [
                         {
-                            label: 'Text', 
+                            label: 'Text',
                             items: [
                                 {
                                     label: 'Workspace'
@@ -134,16 +136,16 @@ export class NavbarComponent implements OnInit {
 
 
 
-this.items4 = [
-  {label: 'Home', icon: 'pi pi-fw pi-home'},
-  {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', url: 'http://www.primefaces.org/primeng'},
+    this.items4 = [
+  {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
+  {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service'},
   {label: 'Proveedores', icon: 'pi pi-fw pi-users', command: (event) => {
-    //event.originalEvent: Browser event
-    //event.item: menuitem metadata
-    console.log('menu event', event.item.label, event.originalEvent)
+    // event.originalEvent: Browser event
+    // event.item: menuitem metadata
+    console.log('menu event', event.item.label, event.originalEvent);
 }} ,
-  {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
-  {label: 'Usuarios Settings', icon: 'pi pi-fw pi-user'},
+  {label: 'Buscar', icon: 'pi pi-fw pi-search-minus', },
+  {label: 'Usuarios', icon: 'pi pi-fw pi-user'},
   {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'}
  // {label: 'Login', icon: 'pi pi-sign-in'},
  // {label: 'Logout', icon: 'pi pi-power-off'}
@@ -151,28 +153,28 @@ this.items4 = [
 
 
 
-this.activeItem = this.items4[0];
-
+    this.activeItem = this.items4[0];
 
 
   }
-
 
   ngDoCheck(): void {
     this.services = this.serviceService.getServices();
   }
 
 buscador(){
-  console.log(this.search)
-  this.search=''
+
+    console.log('go busqueda', this.search);
+    this.router.navigate(['/buscar', this.search]);
+    this.search = '';
 }
 
 handleClick(event) {
-  //execute action
+  // execute action
   event.preventDefault();
-  
-  this.login= !this.login
-  console.log('has hecho click', this.login)
+
+  this.login = !this.login;
+  console.log('has hecho click', this.login);
 }
 
 showBasicDialog() {

@@ -1,0 +1,41 @@
+.landing{
+  height: 85vh;
+  background-image: url('../../../assets/images/shutterstock_744456904_xD.jpg');
+}
+
+.bg-img{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.tarjetas-servicios{
+  display: flex ;
+  flex-wrap: wrap ;
+  justify-content: space-evenly;
+
+}
+
+.groupss{
+  text-align: center;
+  color:white;
+  background-color: black;
+  margin-top: 15em;
+}
+
+.mat-display-1, .mat-typography .mat-display-1 {
+  font: 400 34px/40px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+  margin: 174px 0 174px;
+
+}
+
+.bannere-equipo{
+  height: 23vh;
+  width: 100%;
+}
+
+.titulo-header{
+  text-align: center;
+  padding-top: 25%;
+}
