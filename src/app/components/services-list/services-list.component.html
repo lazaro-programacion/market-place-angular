@@ -1,5 +1,4 @@
-
-<p-dataView #dv [value]="services" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="name"
+<p-dataView class="data-view" #dv [value]="services" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="name"
     [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
         <div class="ui-helper-clearfix">
@@ -8,45 +7,34 @@
                 </div>
                 <div class="p-col-6 p-md-4 filter-container">
                     <div style="position:relative">
-                        <input type="search" pInputText placeholder="Búsqueda por nombre" (input)="dv.filter($event.target.value)">
+                        <input type="search" pInputText placeholder="Búsqueda por nombre"
+                            (input)="dv.filter($event.target.value)">
                     </div>
-                </div>
-                <div class="p-col-6 p-md-" style="text-align:right">
-                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                 </div>
             </div>
         </div>
     </p-header>
     <ng-template let-service pTemplate="listItem">
         <div class="p-col-12">
-            <div class="car-details">
-                <div>
-                    <img src="assets/images/sample.jpg">
-                    <div class="p-grid">
-                        <div class="p-col-12">Id: <b>{{service.id}}</b></div>
-                        <div class="p-col-12">Name: <b>{{service.name}}</b></div>
-                        <div class="p-col-12">Description: <b>{{service.description}}</b></div>
+            <div class="service-details">
+                <div class="wrapper">
+                    <div class="product-img">
+                        <img src={{service.image}} height="420" width="327">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-text">
+                            <h1>{{service.name}}</h1>
+                            <h2>by studio and friends</h2>
+                            <p>{{service.description}}</p>
+                        </div>
+                        <div class="product-price-btn">
+                            <p><span>78€</span></p>
+                            <button type="button">¡Comprar!</button>
+                        </div>
                     </div>
                 </div>
-                <button pButton type="button" icon="pi pi-search" (click)="selectService($event, service)"></button>
+
             </div>
         </div>
     </ng-template>
-    <ng-template let-service pTemplate="gridItem">
-        <div style="padding:.5em" class="p-col-12 p-md-3">
-            <p-panel [header]="service.id" [style]="{'text-align':'center'}">
-                <img src="assets/images/sample.jpg" width="60">
-                <div class="car-detail">{{service.name}} - {{service.description}}</div>
-                <button pButton type="button" icon="pi pi-search" (click)="selectService($event, service)" style="margin-top:0"></button>
-            </p-panel>
-        </div>
-    </ng-template>
 </p-dataView>
-
-<p-dialog header="Car Details" [(visible)]="displayDialog" [minY]="70" showEffect="fade" [modal]="true" 
-    [style]="{width: '400px'}" (onAfterHide)="onDialogHide()" [contentStyle]="{padding: '2em', textAlign: 'center'}">
-    <div *ngIf="selectedService">
-        <img src="assets/images/sample.jpg">
-        <strong>{{selectedService.id}} - {{selectedService.name}}</strong>
-    </div>
-</p-dialog>
