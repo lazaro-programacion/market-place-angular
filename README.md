@@ -23,6 +23,10 @@ luego en el angular.json poner en styles
 ´´´
 acceso mongodb
 [
+  istalaros el mongodb compass
+  <ruta de aceso>
+  mongodb+srv://admin:admin@cluster0-rckpe.mongodb.net/market-store-jedi?retryWrites=true&w=majority
+
   email: project.pizza.jedi@gmail.com
   password: mongo1234 || mongodb1234
  ]
@@ -33,3 +37,14 @@ user: admin password: admin
  istalar el bostrap
  ng add @ng-bootstrap/ng-bootstrap
  ```
+```
+npm i -s express
+
+´´´
+```
+npm i -s nodemon
+´´´
+
+```
+npm i -s mongoose
+´´´
