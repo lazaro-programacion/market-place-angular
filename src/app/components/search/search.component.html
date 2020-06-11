@@ -1,5 +1,8 @@
 <p>search works!</p>
+
 <h3>LISTADO SERVICIOS</h3>
+<div style='display: flex; '>
+<div style='justify-content: start;'>
 <p-listbox [options]="cars" [(ngModel)]="selectedCar" [listStyle]="{'min-height':'250px'}">
   <ng-template let-car pTemplate="item">
     <div class="ui-helper-clearfix">
@@ -13,7 +16,14 @@
 </p-listbox>
 
 <button type="button" (click)="selectedCar=null" pButton icon="pi pi-times" label="Clear Selected Car"></button>
-
+</div>
+<div style='flex-wrap: wrap; justify-content: center;'>
+<app-ngbd-carousel-pause></app-ngbd-carousel-pause>
+</div>
+<div>
+ 
+</div>
+</div>
 <hr>
 
 <h3>LISTADO PROVEEDORES</h3>

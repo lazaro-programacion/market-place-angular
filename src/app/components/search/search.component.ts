@@ -19,6 +19,8 @@ export class SearchComponent implements OnInit, DoCheck {
   cars: SelectItem[];
   selectedCar: string;
 
+  
+  responsiveOptions;
   constructor(
     private serviceService: ServicesService,
     private route: ActivatedRoute,
@@ -36,6 +38,25 @@ export class SearchComponent implements OnInit, DoCheck {
       {label: 'VW', value: 'VW'},
       {label: 'Volvo', value: 'Volvo'}
   ];
+
+  this.responsiveOptions = [
+    {
+        breakpoint: '1024px',
+        numVisible: 3,
+        numScroll: 3
+    },
+    {
+        breakpoint: '768px',
+        numVisible: 2,
+        numScroll: 2
+    },
+    {
+        breakpoint: '560px',
+        numVisible: 1,
+        numScroll: 1
+    }
+];
+  
    }
 
   ngOnInit(): void {

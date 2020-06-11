@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
     this.services.forEach(element => {
         this.items1.push({
-            label: element.description,
+            label: element.name,
             icon: 'pi pi-android'
         });
     });

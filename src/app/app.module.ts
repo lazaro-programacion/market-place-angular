@@ -24,7 +24,8 @@ import { NotFoundComponentComponent } from './components/not-found-component/not
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {ListboxModule} from 'primeng/listbox';
-
+import { NgbdCarouselPauseComponent } from './components/ngbd-carousel-pause/ngbd-carousel-pause.component';
+import {CarouselModule} from 'primeng/carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import {ListboxModule} from 'primeng/listbox';
     SearchComponent,
     HomeComponent,
     NavbarComponent,
-    NotFoundComponentComponent
+    NotFoundComponentComponent,
+    NgbdCarouselPauseComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import {ListboxModule} from 'primeng/listbox';
     PanelMenuModule,
     NgbModule,
     ListboxModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
