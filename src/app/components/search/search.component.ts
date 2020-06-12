@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import {SelectItem} from 'primeng/api';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -15,9 +16,11 @@ import {SelectItem} from 'primeng/api';
 export class SearchComponent implements OnInit, DoCheck {
   public code = '';
   public prService: PrbService[];
+  public services: PrbService[];
+  //public items: any[]
   
-  cars: SelectItem[];
-  selectedCar: string;
+  items: SelectItem[];
+  selectedItem: string;
 
   
   responsiveOptions;
@@ -26,7 +29,8 @@ export class SearchComponent implements OnInit, DoCheck {
     private route: ActivatedRoute,
     private router: Router
   ) { 
-    this.cars = [
+    /**
+     *  this.cars = [
       {label: 'Audi', value: 'Audi'},
       {label: 'BMW', value: 'BMW'},
       {label: 'Fiat', value: 'Fiat'},
@@ -39,6 +43,9 @@ export class SearchComponent implements OnInit, DoCheck {
       {label: 'Volvo', value: 'Volvo'}
   ];
 
+     * 
+     */
+   
   this.responsiveOptions = [
     {
         breakpoint: '1024px',
@@ -57,16 +64,31 @@ export class SearchComponent implements OnInit, DoCheck {
     }
 ];
   
+this.items=[]
+
    }
 
   ngOnInit(): void {
     this.code = this.route.snapshot.paramMap.get('search');
-    console.log('params', this.code)
+   // console.log('params', this.code)
+    this.services = this.serviceService.getServices();
+   // console.log('los servicios', this.services);
+
+    this.services.forEach(element => {
+        this.items.push({
+            label: element.description,
+            value: element.name
+        });
+    });
+    console.log('los servicios', this.items);
   }
 
   ngDoCheck(): void {
     this.code = this.route.snapshot.paramMap.get('search');
-    console.log('params', this.code)
+   // console.log('params', this.code)
+    this.services = this.serviceService.getServices();
+   // console.log('los servicios', this.services);
+
   }
 
 }

@@ -1,47 +1,85 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { ServicesService } from 'src/app/services/services.service';
+import { PrbService } from 'src/app/models/prb-service';
 
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-ngbd-carousel-pause',
   templateUrl: './ngbd-carousel-pause.component.html',
-  styleUrls: ['./ngbd-carousel-pause.component.css']
+  styleUrls: ['./ngbd-carousel-pause.component.css'],
+  providers: [ServicesService]
 })
-export class NgbdCarouselPauseComponent implements OnInit {
-  images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
+export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
+  images: any[];
+  public services: PrbService[];
 
-  paused = false;
-  unpauseOnArrow = false;
-  pauseOnIndicator = false;
-  pauseOnHover = true;
-  constructor() { }
+  selectedImage: PrbService;
 
-  ngOnInit(): void {
-  }
+    displayDialog: boolean;
 
-  @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
+   sortOptions: SelectItem[];
 
-  togglePaused() {
-    if (this.paused) {
-      this.carousel.cycle();
-    } else {
-      this.carousel.pause();
-    }
-    this.paused = !this.paused;
-  }
+    sortKey: string;
 
-  onSlide(slideEvent: NgbSlideEvent) {
-    if (this.unpauseOnArrow && slideEvent.paused &&
-      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)) {
-      this.togglePaused();
-    }
-    if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
-      this.togglePaused();
-    }
-  }
+    sortField: string;
 
+    sortOrder: number;
+  
+
+constructor(
+  private serviceService: ServicesService
+) { 
+
+  this.images= []
+}
+
+ngOnInit() {
+   this.services = this.serviceService.getServices();
+
+  //  console.log('mis imagenes',this.services)
+
+    this.services.forEach(element => {
+      this.images.push(element.image);
+  });
+
+ // console.log('array', this.images);
+  this.sortOptions = [
+     {label: 'Mas barato', value: '!precio'},
+     {label: 'Mas caro', value: 'precio'},
+      {label: 'Name', value: 'name'}
+    ];
 
 
 }
+ngDoCheck(): void {
+ 
+  this.images = this.serviceService.getServices();
+
+ // console.log('mis imagenes',this.services)
 
 
+
+//console.log('array', this.images);
+
+}
+
+selectImage(event: Event, image: PrbService) {
+  this.selectedImage = image;
+  this.displayDialog = true;
+  event.preventDefault();
+}
+
+onSortChange(event) {
+  console.log('event', event.value)
+  
+
+
+ 
+}
+
+onDialogHide() {
+  this.selectedImage = null;
+}
+
+}

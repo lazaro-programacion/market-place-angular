@@ -22,10 +22,12 @@ import {PanelMenuModule} from 'primeng/panelmenu';
 import { SearchComponent } from './components/search/search.component';
 import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {GalleriaModule} from 'primeng/galleria';
 import {ListboxModule} from 'primeng/listbox';
 import { NgbdCarouselPauseComponent } from './components/ngbd-carousel-pause/ngbd-carousel-pause.component';
 import {CarouselModule} from 'primeng/carousel';
+import { GalleriaFullscreenDemoComponent } from './components/galleria-fullscreen-demo/galleria-fullscreen-demo.component';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,9 @@ import {CarouselModule} from 'primeng/carousel';
     HomeComponent,
     NavbarComponent,
     NotFoundComponentComponent,
-    NgbdCarouselPauseComponent
+    NgbdCarouselPauseComponent,
+    GalleriaFullscreenDemoComponent
+
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ import {CarouselModule} from 'primeng/carousel';
     PanelMenuModule,
     NgbModule,
     ListboxModule,
-    CarouselModule
+    CarouselModule,
+    GalleriaModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
