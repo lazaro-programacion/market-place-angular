@@ -24,6 +24,8 @@ import { NotFoundComponentComponent } from './components/not-found-component/not
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {ListboxModule} from 'primeng/listbox';
+import { FooterComponent } from './components/footer/footer.component';
+import { FormHomeComponent } from './components/form-home/form-home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {ListboxModule} from 'primeng/listbox';
     SearchComponent,
     HomeComponent,
     NavbarComponent,
-    NotFoundComponentComponent
+    NotFoundComponentComponent,
+    FooterComponent,
+    FormHomeComponent
   ],
   imports: [
     BrowserModule,
