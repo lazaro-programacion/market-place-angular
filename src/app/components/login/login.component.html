@@ -1,0 +1,58 @@
+
+
+
+<!-- Default form register -->
+<div class='p-grid p-justify-center'>
+    <div class="col-12 col-md-6 col-lg-4 ">
+<!-- Default form login -->
+<form class="text-center border border-light p-5">
+
+    <p class="h4 mb-4">Sign in</p>
+  
+    <!-- Email -->
+    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+  
+    <!-- Password -->
+    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+  
+    <div class="d-flex justify-content-around">
+      <div>
+        
+    </div>
+      <div>
+        <!-- Forgot password -->
+        <a href="">Forgot password?</a>
+      </div>
+    </div>
+  
+    <!-- Sign in button -->
+    <div class="col-12">
+        <p-button class='col-12' icon="pi pi-check" label="Login" (click)='logear()'> </p-button>
+    </div>
+  
+    <!-- Register -->
+    <p>Not a member?
+      <a [routerLink]="['/registro']" >Register</a>
+    </p>
+  
+    Social register 
+        <p>or sign in with:</p>
+      
+        <p-button  icon="pi pi-google"></p-button>
+ 
+  </form>
+  <!-- Default form login -->
+  </div>
+ </div> 
+
+
+
+
+
+
+
+
+
+
+
+

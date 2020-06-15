@@ -19,5 +19,3 @@ export class UsersListComponent implements OnInit {
   }
 
 }
-console.log('usersss', );
-console.log(Users);

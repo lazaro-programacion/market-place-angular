@@ -51,8 +51,9 @@ export class NavbarComponent implements OnInit, DoCheck {
 
     this.services.forEach(element => {
         this.items1.push({
-            label: element.description,
-            icon: 'pi pi-android'
+            label: element.name,
+            icon: 'pi pi-android',
+            routerLink: '/service'
         });
     });
 
@@ -62,7 +63,7 @@ export class NavbarComponent implements OnInit, DoCheck {
         {
             label: 'SERVICIOS',
             icon: 'pi pi-tags',
-            items: this.items1
+            items:  this.items1
         },
         {
             label: 'PROVEEDORES',
@@ -162,10 +163,11 @@ export class NavbarComponent implements OnInit, DoCheck {
     this.services = this.serviceService.getServices();
   }
 
+
 buscador(){
 
-    console.log('go busqueda', this.search);
-    this.router.navigate(['/buscar', this.search]);
+   // console.log('go busqueda', this.search);
+    this.router.navigate(['/buscador', this.search]);
     this.search = '';
 }
 
@@ -176,6 +178,12 @@ handleClick(event) {
   this.login = !this.login;
   console.log('has hecho click', this.login);
 }
+
+logear() {
+    this.router.navigate(['login']);
+    this.login = !this.login;
+    console.log('has hecho click', this.login);
+  }
 
 showBasicDialog() {
   this.displayBasic = true;

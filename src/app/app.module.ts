@@ -25,11 +25,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
 
+import {GalleriaModule} from 'primeng/galleria';
 import {ListboxModule} from 'primeng/listbox';
+import { NgbdCarouselPauseComponent } from './components/ngbd-carousel-pause/ngbd-carousel-pause.component';
+import {CarouselModule} from 'primeng/carousel';
+import {DropdownModule} from 'primeng/dropdown';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormHomeComponent } from './components/form-home/form-home.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +45,9 @@ import { UsersListComponent } from './components/users-list/users-list.component
     HomeComponent,
     NavbarComponent,
     NotFoundComponentComponent,
+    NgbdCarouselPauseComponent,
+    LoginComponent,
+    RegisterComponent,
     FooterComponent,
     FormHomeComponent,
     UsersListComponent
@@ -60,7 +69,11 @@ import { UsersListComponent } from './components/users-list/users-list.component
     PanelMenuModule,
     NgbModule,
     ListboxModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule,
+    GalleriaModule,
+    DropdownModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
