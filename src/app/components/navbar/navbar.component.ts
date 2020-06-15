@@ -52,7 +52,8 @@ export class NavbarComponent implements OnInit, DoCheck {
     this.services.forEach(element => {
         this.items1.push({
             label: element.name,
-            icon: 'pi pi-android'
+            icon: 'pi pi-android',
+            routerLink: "/service"
         });
     });
 
@@ -62,7 +63,8 @@ export class NavbarComponent implements OnInit, DoCheck {
         {
             label: 'SERVICIOS',
             icon: 'pi pi-tags',
-            items: this.items1
+            items:  this.items1
+           
         },
         {
             label: 'PROVEEDORES',
@@ -144,7 +146,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     // event.item: menuitem metadata
     console.log('menu event', event.item.label, event.originalEvent);
 }} ,
-  {label: 'Buscar', icon: 'pi pi-fw pi-search-minus', },
+  {label: 'Buscar', icon: 'pi pi-fw pi-search-minus' },
   {label: 'Usuarios', icon: 'pi pi-fw pi-user'},
   {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'}
  // {label: 'Login', icon: 'pi pi-sign-in'},
@@ -162,10 +164,11 @@ export class NavbarComponent implements OnInit, DoCheck {
     this.services = this.serviceService.getServices();
   }
 
+
 buscador(){
 
-    console.log('go busqueda', this.search);
-    this.router.navigate(['/buscar', this.search]);
+   // console.log('go busqueda', this.search);
+    this.router.navigate(['/buscador', this.search]);
     this.search = '';
 }
 
@@ -173,9 +176,17 @@ handleClick(event) {
   // execute action
   event.preventDefault();
 
+ 
   this.login = !this.login;
   console.log('has hecho click', this.login);
 }
+
+logear() {
+  
+    this.router.navigate(['login'])
+    this.login = !this.login;
+    console.log('has hecho click', this.login);
+  }
 
 showBasicDialog() {
   this.displayBasic = true;

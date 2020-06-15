@@ -20,10 +20,10 @@ const patientController  = {
         suplier.email = req.body.email
 
         suplier.save(
-            (err, newSuppliers) =>
+            (err, suplier) =>
                 err ?
                 res.status(500).send("Error guardando : " + err.message):
-                res.status(201).jsonp(newSuppliers)
+                res.status(201).jsonp(suplier)
         );
     },
     getSuppliers: (req, res)  => {
@@ -33,12 +33,12 @@ const patientController  = {
     },
 
     getSuppliersID: (req, res)  => {
-      Suppliers.findById(req.params.id, (err, suppliers) =>
-            err ? res.status(500).send("error") : res.status(200).jsonp(suppliers)
+      Suppliers.findById(req.params.id, (err, supplier) =>
+            err ? res.status(500).send("error") : res.status(200).jsonp(supplier)
         )
     },
     getDelete: (req, res)  => {
-      Suppliers.findByIdAndDelete({_id: req.params.id}, (err, suppliers) =>
+      Suppliers.findByIdAndDelete({_id: req.params.id}, (err, supplier) =>
       err ? res.status(500).send("error") : res.status(200).send('borrado correctamente')
         )
     },

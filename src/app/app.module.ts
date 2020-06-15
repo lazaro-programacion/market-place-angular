@@ -26,8 +26,10 @@ import {GalleriaModule} from 'primeng/galleria';
 import {ListboxModule} from 'primeng/listbox';
 import { NgbdCarouselPauseComponent } from './components/ngbd-carousel-pause/ngbd-carousel-pause.component';
 import {CarouselModule} from 'primeng/carousel';
-import { GalleriaFullscreenDemoComponent } from './components/galleria-fullscreen-demo/galleria-fullscreen-demo.component';
 import {DropdownModule} from 'primeng/dropdown';
+
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +40,11 @@ import {DropdownModule} from 'primeng/dropdown';
     NavbarComponent,
     NotFoundComponentComponent,
     NgbdCarouselPauseComponent,
-    GalleriaFullscreenDemoComponent
-
-  ],
+    LoginComponent,
+    RegisterComponent
+   
+    
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -60,7 +64,10 @@ import {DropdownModule} from 'primeng/dropdown';
     ListboxModule,
     CarouselModule,
     GalleriaModule,
-    DropdownModule
+    DropdownModule,
+
+  
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

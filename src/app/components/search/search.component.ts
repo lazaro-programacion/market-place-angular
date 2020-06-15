@@ -17,34 +17,22 @@ export class SearchComponent implements OnInit, DoCheck {
   public code = '';
   public prService: PrbService[];
   public services: PrbService[];
+  public servFiltrados: any[]
   //public items: any[]
   
   items: SelectItem[];
+  
   selectedItem: string;
 
-  
   responsiveOptions;
+
+
   constructor(
     private serviceService: ServicesService,
     private route: ActivatedRoute,
     private router: Router
   ) { 
-    /**
-     *  this.cars = [
-      {label: 'Audi', value: 'Audi'},
-      {label: 'BMW', value: 'BMW'},
-      {label: 'Fiat', value: 'Fiat'},
-      {label: 'Ford', value: 'Ford'},
-      {label: 'Honda', value: 'Honda'},
-      {label: 'Jaguar', value: 'Jaguar'},
-      {label: 'Mercedes', value: 'Mercedes'},
-      {label: 'Renault', value: 'Renault'},
-      {label: 'VW', value: 'VW'},
-      {label: 'Volvo', value: 'Volvo'}
-  ];
-
-     * 
-     */
+    
    
   this.responsiveOptions = [
     {
@@ -64,13 +52,14 @@ export class SearchComponent implements OnInit, DoCheck {
     }
 ];
   
-this.items=[]
-
+this.selectedItem=''
+this.items= []
+this.servFiltrados= []
    }
 
   ngOnInit(): void {
     this.code = this.route.snapshot.paramMap.get('search');
-   // console.log('params', this.code)
+   // console.log('code', this.code)
     this.services = this.serviceService.getServices();
    // console.log('los servicios', this.services);
 
@@ -80,15 +69,42 @@ this.items=[]
             value: element.name
         });
     });
-    console.log('los servicios', this.items);
+  //  console.log('los servicios', this.items);
+    this.servicesFilter(this.code)
+
+  
+
+
   }
 
   ngDoCheck(): void {
     this.code = this.route.snapshot.paramMap.get('search');
-   // console.log('params', this.code)
+    console.log('params', this.code)
     this.services = this.serviceService.getServices();
+  
    // console.log('los servicios', this.services);
+   this.servicesFilter(this.code)
+
+  
+
+  
 
   }
 
+  servicesFilter(search){
+
+  //  console.log('mi busqueda', search)
+
+    this.servFiltrados = this.services.filter(
+
+   e => (e.name.toUpperCase().includes(search.toUpperCase() ) ) )
+          
+  
+ console.log('servicios filtrados', this.servFiltrados)
+  
+   }
 }
+
+
+
+

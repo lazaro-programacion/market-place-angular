@@ -1,58 +1,59 @@
 <p>search works!</p>
 
-<h3>LISTADO SERVICIOS</h3>
-<div style='display: flex; '>
-<div style='justify-content: start;'>
-<p-listbox [options]="items" [(ngModel)]="selectedItem" [listStyle]="{'min-height':'250px', 'max-width':'100px'}">
-  <ng-template let-item pTemplate="item">
-    <div class="ui-helper-clearfix">
-      <!--
-      <img src='{{item.value}}'  style="display:inline-block;margin:5px 0 0 5px" width="48">
-      -->
-      <span style="float:right;">{{item.value}}</span>
-    </div>
-  </ng-template>
-  <p-footer>
-    Selected: {{selectedItem||'none'}}
-  </p-footer>
-</p-listbox>
-
-<button type="button" (click)="selectedItem=null" pButton icon="pi pi-times" label="Borrar"></button>
+<div *ngIf="servFiltrados.length === 0">
+  <h1>Tu busqueda: {{ code }}</h1>
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>Aviso!</strong> <h3> No hay resultados de tu busqueda. Intenta otra o selecciona un servicio de los de abajo </h3>
+    </ngb-alert>
+  </p>
 </div>
-<div style='flex-wrap: wrap; justify-content: center;'>
-  <app-ngbd-carousel-pause></app-ngbd-carousel-pause>
+
+<div style="display: flex;">
+  
   <!--
-     <app-galleria-fullscreen-demo></app-galleria-fullscreen-demo>
+<div style="justify-content: start;">
+<p-listbox
+      [options]="items"
+      [(ngModel)]="selectedItem"
+      class="listStyle"
+      [listStyle]="{ 'min-height': '250px', 'max-width': '100px' }"
+    >
+      
+      <ng-template let-item pTemplate="item">
+        <div class="ui-helper-clearfix">
+         
 
--->
-</div>
-<div>
- 
-</div>
-</div>
-<hr>
+      
+       <a [routerLink]="['/service']"><span  style="float: right;"> {{ item.value | uppercase }}</span> </a>
+        
+        </div>
+      </ng-template>
+      <p-footer styleClass="footer">
+        Servicios disponibles
+      </p-footer>
+    </p-listbox>
 
-<h3>LISTADO PROVEEDORES</h3>
-<div style='display: flex; '>
-<div style='justify-content: start; '>
-<p-listbox [options]="items" [(ngModel)]="selectedItem" class="listStyle" [listStyle]="{'min-height':'250px', 'max-width':'100px'}" >
-  <ng-template let-item pTemplate="item">
-    <div class="ui-helper-clearfix">
-      <!--
-      <img src='{{item.value}}'  style="display:inline-block;margin:5px 0 0 5px" width="48">
-      app-galleria-fullscreen-demo
-      -->
-      <span style="float:right;">{{item.value}}</span>
-    </div>
-  </ng-template>
-  <p-footer styleClass='footer'>
-    Selected: {{selectedItem||'none'}}
-  </p-footer>
-</p-listbox>
 
-<button type="button" (click)="selectedItem=null" pButton icon="pi pi-times" label="Borrar"></button>
+
+
+
 </div>
-<div style='flex-wrap: wrap; justify-content: center;'>
-  <app-galleria-fullscreen-demo></app-galleria-fullscreen-demo>
+  -->
+    
+    
+
+  
+  
+  <div style="flex-wrap: wrap; justify-content: center;">
+    
+    <app-ngbd-carousel-pause
+      [servicesFilter]=" servFiltrados.length !== 0  ? servFiltrados : services"
+     
+    
+    ></app-ngbd-carousel-pause>
   </div>
 </div>
+
+<hr />
+
