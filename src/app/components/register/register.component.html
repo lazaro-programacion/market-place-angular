@@ -3,31 +3,50 @@
 
 <div class='p-grid p-justify-center'>
     <div class="col-12 col-md-6 col-lg-4 ">
-    <form class="text-center border border-light p-5">
-    
+    <form class="text-center border border-light p-5" >
+     <!--  (ngSubmit)='registrar($event)'  -->
         <p class="h4 mb-4">Sign up</p>
     
         <div class="form-row mb-4">
           <div class="col">
             <!-- First name -->
-            <input type="text" id="defaultRegisterFormUser" class="form-control" placeholder="Usuario">
-          </div>
+            <input type="text" id="defaultRegisterFormUser"  [(ngModel)]='usuario' [ngModelOptions]="{standalone: true}" class="form-control"  placeholder="Usuario" required>
+           
           
+          </div>
+          <!--
+           
+          <small *ngIf="!nombre.valid && nombre.touched">
+            El nombre no es valido
+          </small>
+          -->
         </div>
     
         <!-- E-mail -->
-        <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-    
-        <!-- Password -->
-        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-          At least 8 characters and 1 digit
+        <input type="email" id="defaultRegisterFormEmail"   [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control mb-4" placeholder="E-mail" required>
+        <!--
+          name="email" #email='ngModel' [(ngModel)]="user.email"
+        <small *ngIf="!email.valid && email.touched">
+          El email no es valido
         </small>
-    
-        
+        -->
+        <!-- Password -->
+        <input type="password" id="defaultRegisterFormPassword"   [(ngModel)]="password" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required>
+        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          At least 6 characters or digit
+        </small>
+        <!--
+          name="password" #password='ngModel'  [(ngModel)]="user.password"
+        <small *ngIf="!password.valid && password.touched">
+          El password no es valido
+        </small>
+        -->
         <!-- Sign up button -->
         <div class="col-12">
-        <p-button class='col-12' icon="pi pi-check" label="Sign up"> </p-button>
+          <div class="col-12">
+            <button type="submit" class='btn btn-primary btn-block'  (click)= 'registrar()' > Register </button>
+        </div>
+      
         </div>
         <p>You are a member?
             <a [routerLink]="['/login']" >Login</a>
