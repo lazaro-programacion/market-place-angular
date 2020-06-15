@@ -27,6 +27,8 @@ import {ListboxModule} from 'primeng/listbox';
 import { NgbdCarouselPauseComponent } from './components/ngbd-carousel-pause/ngbd-carousel-pause.component';
 import {CarouselModule} from 'primeng/carousel';
 import {DropdownModule} from 'primeng/dropdown';
+import { FooterComponent } from './components/footer/footer.component';
+import { FormHomeComponent } from './components/form-home/form-home.component';
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -41,10 +43,13 @@ import { RegisterComponent } from './components/register/register.component';
     NotFoundComponentComponent,
     NgbdCarouselPauseComponent,
     LoginComponent,
-    RegisterComponent
-   
+    RegisterComponent,
+    FooterComponent,
+    FormHomeComponent
     
     ],
+   
+  
   imports: [
     BrowserModule,
     AppRoutingModule,

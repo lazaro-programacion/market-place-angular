@@ -1,0 +1,24 @@
+<form
+  #signupForm="ngForm"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="8px"
+>
+  <section>
+    <input matInput placeholder="Email"  name="email" type="email" />
+  </section>
+
+  <section>
+    <input matInput placeholder="Name" name="name" />
+  </section>
+
+  <section>
+    <select placeholder="and you are a/an?" name="role">
+      <select *ngFor="let item of ['organization', 'social worker']" [value]="item">
+        {{ item }}
+      </select>
+    </select>
+  </section>
+
+  <button mat-flat-button color="primary" class="text-white">Get in touch</button>
+</form>

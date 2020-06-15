@@ -1,9 +1,15 @@
 // Inicialización
-const mongoose = require("mongoose");
-const express = require("express");
+const mongoose = require("mongoose");  // mongoose para mongodb
+const express = require("express");    // Utilizamos express
 const app = express();
 
-// Configuracion
+
+	app.use(express.json()); // para entender json
+
+  app.use('/api/user' ,require('./routes/User'));
+  app.use('/api/rol' ,require('./routes/Rol'));   // donde coge las rutas estaaaaa
+  // Configuracion
+
 mongoose
   .connect(
     "mongodb+srv://admin:admin@cluster0-rckpe.mongodb.net/market-store-jedi?retryWrites=true&w=majority"
