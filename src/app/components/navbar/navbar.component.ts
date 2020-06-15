@@ -185,6 +185,13 @@ logear() {
     console.log('has hecho click', this.login);
   }
 
+  registrar() {
+    this.router.navigate(['registro']);
+    this.login = !this.login;
+    console.log('has hecho click', this.login);
+  }
+
+
 showBasicDialog() {
   this.displayBasic = true;
 }
