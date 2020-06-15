@@ -22,10 +22,13 @@ import {PanelMenuModule} from 'primeng/panelmenu';
 import { SearchComponent } from './components/search/search.component';
 import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import {ListboxModule} from 'primeng/listbox';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormHomeComponent } from './components/form-home/form-home.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { FormHomeComponent } from './components/form-home/form-home.component';
     NavbarComponent,
     NotFoundComponentComponent,
     FooterComponent,
-    FormHomeComponent
+    FormHomeComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,7 @@ import { FormHomeComponent } from './components/form-home/form-home.component';
     PanelMenuModule,
     NgbModule,
     ListboxModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
