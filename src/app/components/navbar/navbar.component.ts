@@ -176,19 +176,19 @@ handleClick(event) {
   event.preventDefault();
 
   this.login = !this.login;
-  console.log('has hecho click', this.login);
+ // console.log('has hecho click', this.login);
 }
 
 logear() {
     this.router.navigate(['login']);
     this.login = !this.login;
-    console.log('has hecho click', this.login);
+  //  console.log('has hecho click', this.login);
   }
 
   registrar() {
     this.router.navigate(['registro']);
     this.login = !this.login;
-    console.log('has hecho click', this.login);
+  //  console.log('has hecho click', this.login);
   }
 
 

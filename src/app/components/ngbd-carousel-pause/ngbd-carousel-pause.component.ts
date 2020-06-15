@@ -55,7 +55,7 @@ ngOnInit() {
  
 
   this.imagesFilter= this.servicesFilter
-  console.log('mi input', this.servicesFilter)
+ // console.log('mi input', this.servicesFilter)
 
  //  this.servicesFilter.forEach(element => {
    // this.imagesFilter.push(element.image);
@@ -86,7 +86,7 @@ ngDoCheck(): void {
 
   this.imagesFilter= this.servicesFilter
   // console.log('mis imagenes',this.services)
- console.log('array', this.images, this.servicesFilter);
+// console.log('array', this.images, this.servicesFilter);
 
  {/***
 
