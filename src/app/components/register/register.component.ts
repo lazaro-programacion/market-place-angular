@@ -16,8 +16,7 @@ export class RegisterComponent implements OnInit {
   registrar(){
 
 
-    console.log('registrado')
-   
+    console.log('registrado');
   }
 
 }
