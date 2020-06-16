@@ -24,7 +24,7 @@ import { NotFoundComponentComponent } from './components/not-found-component/not
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
-import { UsersService } from "./services/users.service";
+import { UsersService } from './services/users.service';
 
 import {GalleriaModule} from 'primeng/galleria';
 import {ListboxModule} from 'primeng/listbox';
