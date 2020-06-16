@@ -1,9 +1,9 @@
 const User = require('../models/User');
 
 const userController  = {
-
+    
     createUser :(req, res) => {
-        console.log(req.body);
+        console.log('la req ', req.body);
         const user = new User();
         user.usuario = req.body.usuario;
         user.email = req.body.email;

@@ -28,6 +28,7 @@ import { UsersService } from './services/users.service';
 
 import {GalleriaModule} from 'primeng/galleria';
 import {ListboxModule} from 'primeng/listbox';
+import { NgbdCarouselPauseComponent } from './components/ngbd-carousel-pause/ngbd-carousel-pause.component';
 import {CarouselModule} from 'primeng/carousel';
 import {DropdownModule} from 'primeng/dropdown';
 import { FooterComponent } from './components/footer/footer.component';
@@ -46,6 +47,7 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
     HomeComponent,
     NavbarComponent,
     NotFoundComponentComponent,
+    NgbdCarouselPauseComponent,
     LoginComponent,
     RegisterComponent,
     FooterComponent,
