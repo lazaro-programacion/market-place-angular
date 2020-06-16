@@ -1,0 +1,22 @@
+
+<table class="table m-2" style="width: 80%; margin: auto !important;">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Email</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Password</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of users">
+    <tr>
+      <th scope="row" >{{item._id}}</th>
+      <td>{{item.usuario}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.rol}}</td>
+      <td>{{item.password}}</td>
+    </tr>
+
+  </tbody>
+</table>

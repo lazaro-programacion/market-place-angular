@@ -1,8 +1,10 @@
 // Inicialización
 const mongoose = require("mongoose");  // mongoose para mongodb
 const express = require("express");    // Utilizamos express
+var cors = require('cors')
 const app = express();
 
+  app.use(cors());
 
 	app.use(express.json()); // para entender json
 

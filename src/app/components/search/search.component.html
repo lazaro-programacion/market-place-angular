@@ -1,32 +1,59 @@
 <p>search works!</p>
-<h3>LISTADO SERVICIOS</h3>
-<p-listbox [options]="cars" [(ngModel)]="selectedCar" [listStyle]="{'min-height':'250px'}">
-  <ng-template let-car pTemplate="item">
-    <div class="ui-helper-clearfix">
-      <img src="assets/showcase/images/demo/car/{{car.label}}.png" style="display:inline-block;margin:5px 0 0 5px" width="48">
-      <span style="float:right;margin:20px 10px 0 0">{{car.value}}</span>
-    </div>
-  </ng-template>
-  <p-footer>
-    Selected: {{selectedCar||'none'}}
-  </p-footer>
-</p-listbox>
 
-<button type="button" (click)="selectedCar=null" pButton icon="pi pi-times" label="Clear Selected Car"></button>
+<div *ngIf="servFiltrados.length === 0">
+  <h1>Tu busqueda: {{ code }}</h1>
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>Aviso!</strong> <h3> No hay resultados de tu busqueda. Intenta otra o selecciona un servicio de los de abajo </h3>
+    </ngb-alert>
+  </p>
+</div>
 
-<hr>
+<div style="display: flex;">
+  
+  <!--
+<div style="justify-content: start;">
+<p-listbox
+      [options]="items"
+      [(ngModel)]="selectedItem"
+      class="listStyle"
+      [listStyle]="{ 'min-height': '250px', 'max-width': '100px' }"
+    >
+      
+      <ng-template let-item pTemplate="item">
+        <div class="ui-helper-clearfix">
+         
 
-<h3>LISTADO PROVEEDORES</h3>
-<p-listbox [options]="cars" [(ngModel)]="selectedCar" class="listStyle" [listStyle]="{'min-height':'250px'}" >
-  <ng-template let-car pTemplate="item">
-    <div class="ui-helper-clearfix">
-      <img src="assets/showcase/images/demo/car/{{car.label}}.png" style="display:inline-block;margin:5px 0 0 5px" width="48">
-      <span style="float:right;margin:20px 10px 0 0">{{car.value}}</span>
-    </div>
-  </ng-template>
-  <p-footer styleClass='footer'>
-    Selected: {{selectedCar||'none'}}
-  </p-footer>
-</p-listbox>
+      
+       <a [routerLink]="['/service']"><span  style="float: right;"> {{ item.value | uppercase }}</span> </a>
+        
+        </div>
+      </ng-template>
+      <p-footer styleClass="footer">
+        Servicios disponibles
+      </p-footer>
+    </p-listbox>
 
-<button type="button" (click)="selectedCar=null" pButton icon="pi pi-times" label="Clear Selected Car"></button>
+
+
+
+
+</div>
+  -->
+    
+    
+
+  
+  
+  <div style="flex-wrap: wrap; justify-content: center;">
+    
+    <app-ngbd-carousel-pause
+      [servicesFilter]=" servFiltrados.length !== 0  ? servFiltrados : services"
+     
+    
+    ></app-ngbd-carousel-pause>
+  </div>
+</div>
+
+<hr />
+
