@@ -1,7 +1,13 @@
 // Inicialización
 const mongoose = require("mongoose");
 const express = require("express");
+const { json } = require("express");
+const serviceRoutes=require('./routes/service-routes')
 const app = express();
+
+app.use(json());
+
+app.use('/service',serviceRoutes);
 
 // Configuracion
 mongoose
