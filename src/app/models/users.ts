@@ -1,12 +1,11 @@
 export class Users {
 
-  constructor(
     // tslint:disable-next-line: variable-name
-    public _id: string,
-    public usuario: string,
-    public email: string,
-    public rol: string,
-    public password: boolean
-){}
+    public _id: string;
+    public usuario: string;
+    public email: string;
+    public rol: string;
+    public password: string;
+
 
 }

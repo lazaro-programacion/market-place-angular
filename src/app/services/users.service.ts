@@ -29,10 +29,10 @@ export class UsersService {
   }
 
   // tslint:disable-next-line: variable-name
-  saveUsers = (_users: Users): Observable<Users> => {
+  saveUsers = (users: Users): Observable<Users> => {
     console.log('saving patient', Users);
     return this.httpClient.post<Users>(
-      'http://localhost:4000/users/', Users, this.httpOptions)
+      'http://localhost:4000/api/user/', users, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
