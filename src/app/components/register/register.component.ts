@@ -11,6 +11,11 @@ export class RegisterComponent implements OnInit {
 
   public newUsuario: Users;
 
+  displayBasic2: boolean;
+
+  
+
+  
   public id = '';
   public usuario = '';
   public email = '';
@@ -28,6 +33,9 @@ export class RegisterComponent implements OnInit {
   }
 
 
+  showBasicDialog2() {
+    this.displayBasic2 = true;
+}
 
 
 onSubmit(form){

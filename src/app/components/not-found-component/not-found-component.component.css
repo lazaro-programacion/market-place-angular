@@ -1,0 +1,80 @@
+
+ 
+ h3{
+    position: relative;
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  
+  h3 a {
+    color: inherit;
+  }
+  
+ 
+  h3 {
+    font-size: 24px;
+  }
+  
+ 
+  
+  p {
+    font-size: 1.4rem;
+    line-height: 1.6em;
+    color: #666;
+  }
+  
+  
+  a {
+    position: relative;
+    color: blue;
+    text-decoration: none;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+  }
+  
+  a:hover {
+    color: #fcb800;
+  }
+  
+  a {
+    outline: none;
+  }
+  
+  a:hover,
+  h3:focus
+  {
+    text-decoration: none;
+  }
+  
+  a:focus,
+  {
+    outline: none;
+    text-decoration: none;
+  }
+  
+  img {
+    width: 100%;
+  }
+
+  img {
+    border-style: none;
+  }
+  
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+  
+  a:active,
+  a:hover {
+    outline-width: 0;
+  }
+
+ 
+p {
+    font-size: 1.4rem;
+    line-height: 1.6em;
+    color: #666;
+  }
