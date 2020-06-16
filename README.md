@@ -48,3 +48,6 @@ npm i -s nodemon
 ```
 npm i -s mongoose
 ´´´
+```
+npm i -s cors 
+```

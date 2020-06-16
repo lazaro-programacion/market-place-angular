@@ -1,15 +1,17 @@
 // Inicialización
-const mongoose = require("mongoose");
-const express = require("express");
-const { json } = require("express");
-const serviceRoutes=require('./routes/service-routes')
+const mongoose = require("mongoose");  // mongoose para mongodb
+const express = require("express");    // Utilizamos express
+var cors = require('cors')
 const app = express();
 
-app.use(json());
+  app.use(cors());
 
-app.use('/service',serviceRoutes);
+	app.use(express.json()); // para entender json
 
-// Configuracion
+  app.use('/api/user' ,require('./routes/User'));
+  app.use('/api/rol' ,require('./routes/Rol'));   // donde coge las rutas estaaaaa
+  // Configuracion
+
 mongoose
   .connect(
     "mongodb+srv://admin:admin@cluster0-rckpe.mongodb.net/market-store-jedi?retryWrites=true&w=majority"

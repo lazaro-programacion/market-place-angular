@@ -22,8 +22,7 @@ export class ServicesService {
       new PrbService('10', 'antivirus10', 'Sunt eiusmod eu incididunt nulla consequat sit velit consectetur occaecat sint nulla.', 'https://picsum.photos/150/200', true),
     ];
   }
-
-  public getServices(): PrbService[] {
+ public getServices(): PrbService[] {
     return this.services;
   }
 
