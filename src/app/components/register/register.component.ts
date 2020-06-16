@@ -28,27 +28,23 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  registrar(){
 
-    // tslint:disable-next-line: deprecation
-    event.preventDefault();
-    console.log('registrado', this.id, this.usuario, this.email, this.rol, this.password);
-    // tslint:disable-next-line: new-parens
-    const newUsuario: Users = new Users;  // (  this.usuario, this.email, this.rol, this.password)
 
-   // newUsuario._id = this.id;
-    newUsuario.usuario = this.usuario;
-    newUsuario.email = this.email;
-    newUsuario.rol = this.rol;
-    newUsuario.password = this.password;
+onSubmit(form){
+  // tslint:disable-next-line: deprecation
+  event.preventDefault();
+  console.log('form' , form,  this.usuario , this.email, this.password); // (  this.usuario, this.email, this.rol, this.password)
+  // tslint:disable-next-line: new-parens
+  const newUsuario: Users = new Users;
+  newUsuario.usuario = this.usuario;
+  newUsuario.email = this.email;
+  newUsuario.rol = this.rol;
+  newUsuario.password = this.password;
 
-    this.usersSErvice.saveUsers(newUsuario).subscribe(
+  this.usersSErvice.saveUsers(newUsuario).subscribe(
       () => {
         this.router.navigate(['/lista']);
-      }
-    );
-
-
-  }
+      });
+   }
 
 }

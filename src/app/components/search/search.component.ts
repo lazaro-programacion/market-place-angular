@@ -79,7 +79,7 @@ this.servFiltrados= []
 
   ngDoCheck(): void {
     this.code = this.route.snapshot.paramMap.get('search');
-    console.log('params', this.code)
+    //console.log('params', this.code)
     this.services = this.serviceService.getServices();
   
    // console.log('los servicios', this.services);
@@ -100,7 +100,7 @@ this.servFiltrados= []
    e => (e.name.toUpperCase().includes(search.toUpperCase() ) ) )
           
   
- console.log('servicios filtrados', this.servFiltrados)
+ // console.log('servicios filtrados', this.servFiltrados)
   
    }
 }
