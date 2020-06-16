@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegisterComponent},
   {path: 'buscador/:search', component: SearchComponent},
- 
+
   { path: ':page', component: NotFoundComponentComponent },
   {path: 'buscar/:search', component: SearchComponent},
 

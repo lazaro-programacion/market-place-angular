@@ -29,34 +29,14 @@ export class UsersService {
   }
 
   // tslint:disable-next-line: variable-name
-  saveUsers = (user: Users, id: string = null): Observable<Users> => {
-    console.log('saving users', user);
-    if (id) {
-      return this.httpClient.put<Users>(
-        'http://localhost:4000/api/user/' + id, user, this.httpOptions)
-        .pipe(
-          catchError(this.handleError)
-        );
-    } else {
+  saveUsers = (users: Users): Observable<Users> => {
+    console.log('saving patient', Users);
     return this.httpClient.post<Users>(
-      'http://localhost:4000/api/user/', user, this.httpOptions)
+      'http://localhost:4000/api/user/', users, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
-    }
   }
-
-  
-
-
-
-
-
-
-
-
-
-
 
       private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
