@@ -56,7 +56,6 @@ export class NavbarComponent implements OnInit {
                         routerLink: '/service/' + element._id
                     });
                 });
-        
             }
         );
         console.log('los servicios', this.services);
@@ -160,12 +159,23 @@ export class NavbarComponent implements OnInit {
             // {label: 'Logout', icon: 'pi pi-power-off'}
         ];
 
-
+        this.items4 = [
+            {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
+            {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service'},
+            {label: 'Proveedores', icon: 'pi pi-user-minus', command: (event) => {
+              console.log('menu event', event.item.label, event.originalEvent);
+          }} ,
+            {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
+            {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil '},
+            {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'},
+            {label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista'}
+           // {label: 'Logout', icon: 'pi pi-power-off'}
+          ];
 
         this.activeItem = this.items4[0];
 
+        }
 
-    }
 
     // ngDoCheck(): void {
     //     this.serviceService.getServices().subscribe(
