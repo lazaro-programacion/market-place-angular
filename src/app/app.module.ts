@@ -37,6 +37,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { RegisterComponent } from './components/register/register.component';
     RegisterComponent,
     FooterComponent,
     FormHomeComponent,
-    UsersListComponent
+    UsersListComponent,
+    EditarPerfilComponent
   ],
   imports: [
     BrowserModule,
