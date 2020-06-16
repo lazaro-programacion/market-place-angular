@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   public rol : string = 'usuario'
   
 
-
+  displayBasic2: boolean;
 
   
 
@@ -35,6 +35,9 @@ export class RegisterComponent implements OnInit {
   }
 
 
+  showBasicDialog2() {
+    this.displayBasic2 = true;
+}
 
 
 onSubmit(form){
