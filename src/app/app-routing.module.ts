@@ -5,6 +5,7 @@ import { ServicesListComponent } from './components/services-list/services-list.
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'service', component: ServicesListComponent },
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegisterComponent},
-  {path: 'buscador/:search', component: SearchComponent},
+  { path: 'buscador/:search', component: SearchComponent},
+  { path: 'editar-perfil', component: EditarPerfilComponent },
 
   { path: ':page', component: NotFoundComponentComponent },
   {path: 'buscar/:search', component: SearchComponent},
