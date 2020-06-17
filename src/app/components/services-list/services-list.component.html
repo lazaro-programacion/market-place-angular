@@ -19,16 +19,16 @@
             <div class="service-details">
                 <div class="wrapper">
                     <div class="product-img">
-                        <img src={{service.image}} height="420" width="327">
+                        <img [src]="service.imagen" height="420" width="327">
                     </div>
                     <div class="product-info">
                         <div class="product-text">
-                            <h1>{{service.name}}</h1>
-                            <h2>by studio and friends</h2>
-                            <p>{{service.description}}</p>
+                            <h1>{{service.nombre}}</h1>
+                            <h2>...Es >>></h2>
+                            <p>{{service.descripcion}}</p>
                         </div>
                         <div class="product-price-btn">
-                            <p><span>78€</span></p>
+                            <p><span>{{service.price}}</span></p>
                             <button type="button">¡Comprar!</button>
                         </div>
                     </div>

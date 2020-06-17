@@ -3,6 +3,7 @@ const mongoose = require("mongoose");  // mongoose para mongodb
 const express = require("express");    // Utilizamos express
 const cors = require('cors')
 const app = express();
+const SuppliersRoutes = require("./routes/Suppliers");
 
   app.use(cors());
 
@@ -11,6 +12,8 @@ const app = express();
   app.use('/api/user' ,require('./routes/User'));
   app.use('/api/rol' ,require('./routes/Rol'));   // donde coge las rutas estaaaaa
   // Configuracion
+ app.use('/api/service', require('./routes/service-routes'))
+ app.use("/api/supplier/", SuppliersRoutes);
 
 mongoose
   .connect(
