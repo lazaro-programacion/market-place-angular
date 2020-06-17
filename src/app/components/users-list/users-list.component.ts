@@ -9,6 +9,7 @@ import { Users } from 'src/app/models/users';
 })
 export class UsersListComponent implements OnInit {
   public users: Users[];
+  public search = '';
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
