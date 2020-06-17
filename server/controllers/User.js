@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const fs = require('fs');
+const path = require('path')
 
 const userController  = {
 
@@ -40,7 +42,44 @@ const userController  = {
         )
     },
 
+    upload: (req, res) => {
+      const user = new User();
+      console.log('esto es req',req.files)
+      if(!req.files){
+        return res.status(404).send("No se a subido ninguna imagen")
+      };
+      const file_path = req.files.file0.path;
+      const file_split = file_path.split('\\');
+      const file_name = file_split[4];
+      const extension_split = file_name.split('\.');
+      const file_ext = extension_split[1];
+      console.log('filenamee',file_name)
+      if(file_ext != 'jpg' && file_ext != 'png'){
+        fs.unlink(file_path, (err)=>{
+          return res.status(200).send("Solo se permite jpg y png")
+        })
+      } else{
+        const imagenId = req.params.id;
+console.log('imgid  file name',imagenId,file_name)
+        if(imagenId){
+          User.findByIdAndUpdate({_id: imagenId},{imagen: file_name},{new: true},(err, userUpload) => {
+            if(err || !userUpload){
+              return res.status(200).send("Error al guardar la imagen")
+            }
+             return res.status(200).send({
+               user: userUpload
+             })
+          })
+      } else {
+        return res.status(200).send({
+          imagen: file_name
+        })
+      }
 
+
+    }
+  }
 }
-
+   /*    console.log('object', req.files)
+      return res.status(200).send('enviado') */
 module.exports = userController

@@ -53,7 +53,7 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
     FooterComponent,
     FormHomeComponent,
     UsersListComponent,
-    EditarPerfilComponent
+    EditarPerfilComponent,
   ],
   imports: [
     BrowserModule,

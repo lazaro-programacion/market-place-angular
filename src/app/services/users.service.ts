@@ -22,9 +22,10 @@ export class UsersService {
       get<Users[]>('http://localhost:4000/api/user');
   }
 
-  getUser = (id: string): Observable<Users> => {
+  // tslint:disable-next-line: variable-name
+  getUser = (_id: string): Observable<Users> => {
     return this.httpClient.get<Users>(
-      `http://localhost:4000/api/user/${id}`
+      `http://localhost:4000/api/user/` + _id
     );
   }
 
@@ -37,6 +38,15 @@ export class UsersService {
         catchError(this.handleError)
       );
   }
+
+  // tslint:disable-next-line: variable-name
+  putUsers = (users: Users, _id: string): Observable<Users> => {
+      return this.httpClient.put<Users>(
+        'http://localhost:4000/api/user/' + _id, users, this.httpOptions)
+        .pipe(
+          catchError(this.handleError)
+        );
+        }
 
       private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

@@ -51,3 +51,6 @@ npm i -s mongoose
 ```
 npm i -s cors 
 ```
+```
+npm i -s multiparty
+´´´

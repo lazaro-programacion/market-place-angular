@@ -144,7 +144,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     console.log('menu event', event.item.label, event.originalEvent);
 }} ,
   {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
-  {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil '},
+  {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil'},
   {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'},
   {label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista'}
  // {label: 'Logout', icon: 'pi pi-power-off'}
