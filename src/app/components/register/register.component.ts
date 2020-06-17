@@ -13,9 +13,9 @@ export class RegisterComponent implements OnInit {
 
   displayBasic2: boolean;
 
-  
 
-  
+
+
   public id = '';
   public usuario = '';
   public email = '';
