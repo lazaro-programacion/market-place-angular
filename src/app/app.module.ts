@@ -60,7 +60,7 @@ import { UsersService } from './services/users.service';
     FooterComponent,
     FormHomeComponent,
     UsersListComponent,
-    EditarPerfilComponent
+    EditarPerfilComponent,
   ],
   imports: [
     BrowserModule,

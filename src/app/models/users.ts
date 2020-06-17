@@ -6,6 +6,7 @@ export class Users {
     public email: string;
     public rol: string;
     public password: string;
+    public imagen: string;
 
 
 }

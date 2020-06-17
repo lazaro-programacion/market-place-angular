@@ -1,4 +1,3 @@
-<div *ngFor="let item of services">{{item.id}}</div>
 <p-dataView class="data-view" #dv [value]="services" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="name"
     [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
@@ -25,7 +24,7 @@
                     <div class="product-info">
                         <div class="product-text">
                             <h1>{{service.nombre}}</h1>
-                            <h2>by studio and friends</h2>
+                            <h2>...Es >>></h2>
                             <p>{{service.descripcion}}</p>
                         </div>
                         <div class="product-price-btn">
