@@ -1,1 +1,17 @@
-<p>service-add works!</p>
+<h3>service-add works!</h3>
+    <div class="p-col-12 p-md-4">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input type="text" pInputText placeholder="Username"> 
+        </div>
+    </div>
+<div class="p-col-12 p-md-4">
+    <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon">€</span>
+        <input type="text" pInputText placeholder="Precio">   
+        <span class="ui-inputgroup-addon">.00</span>      
+    </div>
+</div>
+<div class="p-col-12 p-md-4">
+    <textarea pInputTextarea  [(ngModel)]='service.descripcion'></textarea>
+</div>
