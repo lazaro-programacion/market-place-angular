@@ -9,6 +9,7 @@
                     <div style="position:relative">
                         <input type="search" pInputText placeholder="Búsqueda por nombre"
                             (input)="dv.filter($event.target.value)">
+                            <button (click)='createService()'>Nuevo</button>
                     </div>
                 </div>
             </div>

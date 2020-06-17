@@ -25,8 +25,9 @@ export class ServicesService {
 
   }
 
-  createService = () => {
-
+  createService = (service: Service): Observable<Service> => {
+    console.log('Guardando servicio', service);
+    return null;
   }
 
   deleteService = () => {
