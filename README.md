@@ -52,5 +52,5 @@ npm i -s mongoose
 npm i -s cors 
 ```
 ```
-npm i -s multiparty
+npm i -s connect-multiparty
 ´´´
