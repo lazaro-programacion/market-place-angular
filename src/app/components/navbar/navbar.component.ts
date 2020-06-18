@@ -143,7 +143,7 @@ export class NavbarComponent implements OnInit {
         this.items4 = [
             {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
             {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service'},
-            {label: 'Proveedores', icon: 'pi pi-user-minus', command: (event) => {
+            {label: 'Proveedores', icon: 'pi pi-user-minus', routerLink: '/supplier', command: (event) => {
               console.log('menu event', event.item.label, event.originalEvent);
           }} ,
             {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
