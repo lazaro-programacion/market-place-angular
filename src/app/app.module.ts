@@ -3,77 +3,82 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
+import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FormHomeComponent } from './components/form-home/form-home.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NgbdCarouselPauseComponent } from 'src/app/components/ngbd-carousel-pause/ngbd-carousel-pause.component';
+import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SearchComponent } from './components/search/search.component';
+import { ServiceAddComponent } from './components/service-add/service-add.component';
 import { ServicesListComponent } from './components/services-list/services-list.component';
 import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
-import { HomeComponent } from './components/home/home.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CardModule} from 'primeng/card';
-import {ButtonModule} from 'primeng/button';
-import {DataViewModule} from 'primeng/dataview';
-import {PanelModule} from 'primeng/panel';
-import {DialogModule} from 'primeng/dialog';
-import {InputTextModule} from 'primeng/inputtext';
-import {ContextMenuModule} from 'primeng/contextmenu';
-import {TabMenuModule} from 'primeng/tabmenu';
-import {SidebarModule} from 'primeng/sidebar';
-import {PanelMenuModule} from 'primeng/panelmenu';
-import { SearchComponent } from './components/search/search.component';
-import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 import { UsersService } from './services/users.service';
 
-import {GalleriaModule} from 'primeng/galleria';
-import {ListboxModule} from 'primeng/listbox';
-import {CarouselModule} from 'primeng/carousel';
-import {DropdownModule} from 'primeng/dropdown';
-import { FooterComponent } from './components/footer/footer.component';
-import { FormHomeComponent } from './components/form-home/form-home.component';
-import { UsersListComponent } from './components/users-list/users-list.component';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { DataViewModule } from 'primeng/dataview';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { ListboxModule } from 'primeng/listbox';
+import { GalleriaModule } from 'primeng/galleria';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { PanelModule } from 'primeng/panel';
+import { SidebarModule } from 'primeng/sidebar';
+import { TabMenuModule } from 'primeng/tabmenu';
 
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    ServicesListComponent,
-    SuppliersListComponent,
-    SearchComponent,
-    HomeComponent,
-    NavbarComponent,
-    NotFoundComponentComponent,
-    LoginComponent,
-    RegisterComponent,
+    EditarPerfilComponent,
     FooterComponent,
     FormHomeComponent,
+    HomeComponent,
+    LoginComponent,
+    NavbarComponent,
+    NotFoundComponentComponent,
+    RegisterComponent,
+    SearchComponent,
+    ServicesListComponent,
+    ServiceAddComponent,
+    SuppliersListComponent,
     UsersListComponent,
-    EditarPerfilComponent,
+    NgbdCarouselPauseComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
-    CardModule,
+    BrowserModule,
     ButtonModule,
-    DataViewModule,
-    PanelModule,
-    DialogModule,
-    InputTextModule,
+    CardModule,
     ContextMenuModule,
+    DataViewModule,
+    DialogModule,
+    DropdownModule,
+    FormsModule,
+    GalleriaModule,
+    HttpClientModule,
+    InputTextModule,
+    NgbModule,
+    ListboxModule,
+    PanelModule,
     TabMenuModule,
     SidebarModule,
     PanelMenuModule,
-    NgbModule,
-    ListboxModule,
-    HttpClientModule,
-    CarouselModule,
-    GalleriaModule,
-    DropdownModule,
 
   ],
   providers: [UsersService],

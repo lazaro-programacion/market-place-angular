@@ -1,0 +1,77 @@
+
+
+    <p-dataView #dv [value]="imagesFilter" [paginator]="true" [rows]="6" paginatorPosition="both" filterBy="name"
+    [sortField]="sortField" [sortOrder]="sortOrder">
+    
+      <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="p-grid">
+              <div class="p-col-12 p-md-4">
+                <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+              </div>
+               
+                <div class="p-col-6 p-md-4" style="text-align:right">
+                
+              </div>
+            </div>
+        </div>
+    </p-header>
+    
+    <ng-template let-image pTemplate="listItem">
+        <div class="p-col-12 p-md-6">
+            <div class="image-details p-col-12 p-md-6 ">
+                <div>
+                    <!--
+                    <a  [routerLink]="['/service']" >
+                        ver
+                    </a>
+                    -->
+                    <div class="p-grid p-col-6">
+                   <img src={{image.imagen}}  width="200px" >
+                   </div>
+                    <div class="p-grid">
+                        <div class="p-col-10">Nombre: <b>{{image.nombre}}</b></div>
+                        <div class="p-col-10">Precio: <b></b></div>
+                        <div class="p-col-10">Popularidad: <b></b></div>
+                        <div class="p-col-10">Valorado: <b></b></div>
+                    </div>
+                    <div class="p-grid p-justify-end">
+                        <div class="p-col-8">
+                             <button pButton type="button"   class="ui-button-info"  icon="pi pi-search" (click)="selectImage($event, image)"  >   </button>
+                        </div>
+                        <div class="p-col-8">
+                            <button pButton type="button"   class="ui-button-danger"  icon="pi pi-shopping-cart" (click)="selectImage($event, image)">   </button>
+                        </div>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+    </ng-template>
+    <ng-template let-image pTemplate="gridItem">
+      <div style="padding:.5em" class="p-col-12 p-md-3">
+          <p-panel [header]="image.name" [style]="{'text-align':'center'}">
+             
+              <img src={{image.imagen}}  width="200px" >
+             
+              <div class="image-detail">{{image.descripcion}}</div>
+              <button pButton type="button" icon="pi pi-search" (click)="selectImage($event, image)" style="margin-top:0"></button>
+          </p-panel>
+      </div>
+   
+    </ng-template>
+    </p-dataView>
+
+    <p-dialog header="Detalles del servicio" [(visible)]="displayDialog" [minY]="70" showEffect="fade" [modal]="true" 
+    [style]="{width: '400px'}" (onAfterHide)="onDialogHide()" [contentStyle]="{padding: '2em', textAlign: 'center'}">
+    <div *ngIf="selectedImage">
+        <img src={{selectedImage.imagen}} width="175px">
+        <strong> {{selectedImage.nombre}}</strong><br>
+        <strong> {{selectedImage.descripcion}}</strong>
+    </div>
+    </p-dialog>
+
+
+
+
+
