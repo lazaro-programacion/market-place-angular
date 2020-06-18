@@ -1,12 +1,8 @@
-<div >
-
-  <input style="width: 100%;" type="text" [(ngModel)]= 'search'>
-  <div>  {{search}} </div>
-
+<div class="btn btn-toolbar">
+<div style="margin: auto;" >
+  <input class="btn btn-outline-dark" style="width: 100%;" type="text" [(ngModel)]= 'search'   (keyup.enter)="buscador()" placeholder="Buscar...">
 </div>
-
-
-
+</div>
 
 <table class="table m-2" style="width: 80%; margin: auto !important;">
 

@@ -10,7 +10,7 @@
 </div>
 
 <div style="display: flex;">
-  
+
   <!--
 <div style="justify-content: start;">
 <p-listbox
@@ -19,14 +19,14 @@
       class="listStyle"
       [listStyle]="{ 'min-height': '250px', 'max-width': '100px' }"
     >
-      
+
       <ng-template let-item pTemplate="item">
         <div class="ui-helper-clearfix">
-         
 
-      
+
+
        <a [routerLink]="['/service']"><span  style="float: right;"> {{ item.value | uppercase }}</span> </a>
-        
+
         </div>
       </ng-template>
       <p-footer styleClass="footer">
@@ -40,17 +40,17 @@
 
 </div>
   -->
-    
-    
 
-  
-  
+
+
+
+
   <div style="flex-wrap: wrap; justify-content: center;">
-    
+
     <app-ngbd-carousel-pause
       [servicesFilter]=" servFiltrados.length !== 0  ? servFiltrados : services"
-     
-    
+
+
     ></app-ngbd-carousel-pause>
   </div>
 </div>

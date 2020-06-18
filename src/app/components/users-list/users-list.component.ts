@@ -19,4 +19,29 @@ export class UsersListComponent implements OnInit {
     console.log('usersss', this.users);
   }
 
+  buscador(): void {
+    if (!this.search){
+      this.usersService.getUsers().subscribe(
+        users => this.users = users
+      );
+    } else{
+
+      this.usersService.searchUsers(this.search).subscribe(
+        users => {
+          if (users){
+            this.users = users;
+          }else{
+            console.log('vacio', users);
+
+            alert('No hay resultados para esta busqueda');
+          }
+        }
+
+        );
+
+      console.log('usersfilter', this.users);
+    }
+    this.search = '';
+}
+
 }
