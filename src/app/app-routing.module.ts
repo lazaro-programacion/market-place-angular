@@ -10,6 +10,7 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'lista', component: UsersListComponent },
   { path: 'service', component: ServicesListComponent },
+  { path: 'supplier', component: SuppliersListComponent },
   { path: 'service/add', component: ServiceAddComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegisterComponent },
