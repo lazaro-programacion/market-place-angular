@@ -43,4 +43,8 @@ export class ServicesListComponent implements OnInit {
     this.selectedService = null;
   }
 
+  createService(){
+    console.log('Nuevo servicio');
+  }
+
 }
