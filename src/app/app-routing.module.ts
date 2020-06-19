@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegisterComponent },
   { path: 'buscador/:search', component: SearchComponent },
+  { path: 'buscador/', component: SearchComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent },
   { path: 'editar-perfil/:id', component: EditarPerfilComponent },
 
