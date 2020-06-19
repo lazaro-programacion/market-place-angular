@@ -27,20 +27,20 @@
                     </a>
                     -->
                     <div class="p-grid p-col-6">
-                   <img src={{image.imagen}}  width="200px" >
+                        <img src={{image.imagen}}  width="175px" >
                    </div>
-                    <div class="p-grid">
+                    <div class="p-grid p-col-6 ">
                         <div class="p-col-10">Nombre: <b>{{image.nombre}}</b></div>
                         <div class="p-col-10">Precio: <b></b></div>
                         <div class="p-col-10">Popularidad: <b></b></div>
                         <div class="p-col-10">Valorado: <b></b></div>
                     </div>
                     <div class="p-grid p-justify-end">
-                        <div class="p-col-8">
-                             <button pButton type="button"   class="ui-button-info"  icon="pi pi-search" (click)="selectImage($event, image)"  >   </button>
+                        <div class="p-col-7">
+                             <button pButton type="button"  class="ui-button-info"  icon="pi pi-search" (click)="selectImage($event, image)"  >   </button>
                         </div>
-                        <div class="p-col-8">
-                            <button pButton type="button"   class="ui-button-danger"  icon="pi pi-shopping-cart" (click)="selectImage($event, image)">   </button>
+                        <div class="p-col-7">
+                            <button pButton type="button"  class="ui-button-danger"  icon="pi pi-shopping-cart" (click)="selectImage($event, image)">   </button>
                         </div>
                 </div>
                 </div>

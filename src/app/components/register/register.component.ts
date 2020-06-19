@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   public rol = 'usuario';
 
   constructor(
-    private usersSErvice: UsersService,
+    private usersService: UsersService,
     private router: Router,
     private route: ActivatedRoute
     ) { }

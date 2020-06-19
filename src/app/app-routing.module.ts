@@ -18,15 +18,17 @@ const routes: Routes = [
   { path: 'service', component: ServicesListComponent },
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegisterComponent},
+
+ 
   { path: 'buscador/:search', component: SearchComponent},
+  {path: 'buscador', component: SearchComponent},
   { path: 'editar-perfil', component: EditarPerfilComponent },
   { path: 'editar-perfil/:id', component: EditarPerfilComponent },
 
   { path: ':page', component: NotFoundComponentComponent },
-  {path: 'buscar/:search', component: SearchComponent},
+  
 
-/*   {path: 'buscar', component: SearchComponent},
- */  { path: '**', component: NotFoundComponentComponent }
+  { path: '**', component: NotFoundComponentComponent }
 ];
 
 @NgModule({
