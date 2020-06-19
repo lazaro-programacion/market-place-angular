@@ -48,12 +48,9 @@ export class UsersService {
         );
         }
 
-        searchUsers = (search: string, ): Observable<Users[]> => {
+        searchUsers = (search: string, ) => {
           return this.httpClient.get<Users[]>(
-            'http://localhost:4000/api/user/search/' + search, this.httpOptions)
-            .pipe(
-              catchError(this.handleErrorSearch)
-            );
+            'http://localhost:4000/api/user/search/' + search, this.httpOptions).toPromise();
         }
 
       private handleError(error: HttpErrorResponse) {
@@ -71,23 +68,6 @@ export class UsersService {
         return throwError(
           'Something bad happened; please try again later.');
       }
-
-      private handleErrorSearch(error: any) {
-        console.log(error);
-
-        if (error.error instanceof ErrorEvent) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.error('An error occurred:', error.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          alert('No hay resultados de tu busqueda pardillo administrado de mierda');
-        }
-        // return an observable with a user-facing error message
-        return throwError(
-          'Something bad happened; please try again later.');
-      }
-
 
 
 }
