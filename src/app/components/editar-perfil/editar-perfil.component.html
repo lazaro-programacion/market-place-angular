@@ -3,12 +3,20 @@
     <div class="col-md-12" style="display: flex; flex-wrap: wrap;">
       <div class="card" style="width: 18rem;">
         <img
-          src="https://www-s.mlo.me/upen/v/2018/201805/20180529/20180529130709202908.jpg"
+          src= "../../assets/images/upload_user/{{usuari.imagen}} "
           style="height: 273px; padding: 10px;"
           class="card-img-top"
           alt="..."
         />
-
+        {{usuari.imagen}}
+        <div>
+          <div>
+            <input type="file" >
+          </div>
+          <div>
+            <button class="btn btn-primary">Cambiar imagen</button>
+          </div>
+        </div>
       </div>
 
       <div class="well well-sm" style="flex: 0 0 60%;">

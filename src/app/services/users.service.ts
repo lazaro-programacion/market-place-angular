@@ -48,6 +48,11 @@ export class UsersService {
         );
         }
 
+        searchUsers = (search: string, ) => {
+          return this.httpClient.get<Users[]>(
+            'http://localhost:4000/api/user/search/' + search, this.httpOptions).toPromise();
+        }
+
       private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
           // A client-side or network error occurred. Handle it accordingly.
@@ -63,5 +68,7 @@ export class UsersService {
         return throwError(
           'Something bad happened; please try again later.');
       }
+
+
 }
 console.log('me traigo', Users);

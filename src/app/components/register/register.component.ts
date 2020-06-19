@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   public rol = 'usuario';
 
   constructor(
-    private usersSErvice: UsersService,
+    private usersService: UsersService,
     private router: Router,
     private route: ActivatedRoute
     ) { }
@@ -49,7 +49,7 @@ onSubmit(form){
   newUsuario.rol = this.rol;
   newUsuario.password = this.password;
 
-  this.usersSErvice.saveUsers(newUsuario).subscribe(
+  this.usersService.saveUsers(newUsuario).subscribe(
       () => {
         this.router.navigate(['/lista']);
       });

@@ -52,5 +52,8 @@ npm i -s mongoose
 npm i -s cors 
 ```
 ```
-npm i -s multiparty
+npm i -s connect-multiparty
 ´´´
+para usar el [(ngModel)]
+teneis que usarlos con el estalone 
+[(ngModel)]= 'search'   [ngModelOptions]="{ standalone: true }" 
