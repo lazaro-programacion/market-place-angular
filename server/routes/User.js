@@ -12,6 +12,8 @@ router.delete("/:id", userController.getDelete);
 router.put("/:id", userController.getUpdate);
 // router.get("/get-image/:image", userController.getImagen);
 router.post("/upload-image/:id?", mp_upload, userController.upload);
+router.get("/search/:search", userController.getSearch);
+
 
 
 module.exports = router;

@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
 
   usuario: String,
   email: String,
-  rol: String,
+  rol: String, // poner como lista
   password: String,
   imagen: String
 });

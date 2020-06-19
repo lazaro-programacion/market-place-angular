@@ -1,1 +1,39 @@
-<p>suppliers-list works!</p>
+<p-dataView class="data-view" #dv [value]="suppliers" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="name"
+    [sortField]="sortField" [sortOrder]="sortOrder">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="p-grid">
+                <div class="p-col-12 p-md-4">
+                </div>
+                <div class="p-col-6 p-md-4 filter-container">
+                    <div style="position:relative">
+                        <input type="search" pInputText placeholder="Búsqueda por nombre"
+                            (input)="dv.filter($event.target.value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-supplier pTemplate="listItem">
+        <div class="p-col-12">
+            <div class="service-details">
+                <div class="wrapper">
+                    <div class="product-img">
+                        <img [src]="supplier.imagen" height="420" width="327">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-text">
+                            <h1>{{supplier.nombre}} {{supplier.apellido}}</h1>
+                            <p>{{supplier.email}}</p>
+                        </div>
+                        <div class="product-price-btn">
+                            <p><span></span></p>
+                            <button type="button">Ver</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>

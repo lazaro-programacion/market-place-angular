@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 import { ServicesListComponent } from './components/services-list/services-list.component';
+import { ServiceAddComponent } from './components/service-add/service-add.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
@@ -9,6 +10,7 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
 
 
 const routes: Routes = [
@@ -16,12 +18,11 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'lista', component: UsersListComponent },
   { path: 'service', component: ServicesListComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'registro', component: RegisterComponent},
-
- 
-  { path: 'buscador/:search', component: SearchComponent},
-  {path: 'buscador', component: SearchComponent},
+  { path: 'supplier', component: SuppliersListComponent },
+  { path: 'service/add', component: ServiceAddComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegisterComponent },
+  { path: 'buscador/:search', component: SearchComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent },
   { path: 'editar-perfil/:id', component: EditarPerfilComponent },
 
