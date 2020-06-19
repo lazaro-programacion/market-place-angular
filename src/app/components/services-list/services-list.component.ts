@@ -21,6 +21,7 @@ export class ServicesListComponent implements OnInit {
 
 
   public services: Service[];
+  public administrador = false;
 
   constructor(private serviceService: ServicesService) { }
 
@@ -33,6 +34,11 @@ export class ServicesListComponent implements OnInit {
     console.log('services', this.services);
   }
 
+  toggleAdministrador() {
+    this.administrador = !this.administrador;
+    console.log('admin', this.administrador);
+  }
+
   selectService(event: Event, service: Service) {
     this.selectedService = service;
     this.displayDialog = true;
@@ -43,8 +49,9 @@ export class ServicesListComponent implements OnInit {
     this.selectedService = null;
   }
 
-  createService(){
+  serviceDetails(service: Service) {
     console.log('Nuevo servicio');
+
   }
 
 }

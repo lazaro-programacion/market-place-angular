@@ -21,7 +21,8 @@ export class ServicesService {
     return this.httpClient.get<Service[]>('http://localhost:4000/api/service');
   }
 
-  getService = () => {
+  getService = (id: string) => {
+    return this.httpClient.get<Service>('http://localhost:4000/api/service/' + id);
 
   }
 

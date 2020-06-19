@@ -5,4 +5,5 @@ export class Service {
     public descripcion: string;
     public imagen: string;
     public active: boolean;
+    public price: number;
 }

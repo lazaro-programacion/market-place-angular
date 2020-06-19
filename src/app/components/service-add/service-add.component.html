@@ -1,17 +1,68 @@
-<h3>service-add works!</h3>
-    <div class="p-col-12 p-md-4">
-        <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <input type="text" pInputText placeholder="Username"> 
+<div class="wrapper-admin" *ngIf="administrador">
+    <div class="servicio">
+        <div class="cabecera">
+            <h3>Servicio</h3>
         </div>
-    </div>
-<div class="p-col-12 p-md-4">
-    <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon">€</span>
-        <input type="text" pInputText placeholder="Precio">   
-        <span class="ui-inputgroup-addon">.00</span>      
+        <div class="grid-container">
+            <div class="product-img">
+                <img [src]="service.imagen" height="420" width="327" alt="Imagen producto">
+            </div>
+            <div class="product-info">
+                <div class="product-text">
+                    <h1>{{service.nombre}}</h1>
+                    <p>{{service.descripcion}}</p>
+                </div>
+                <div class="product-price-btn">
+                    <p><span>{{service.price}}</span>€</p>
+                </div>
+            </div>
+            <div class="editor">
+                <div>
+                    <button>Editar</button>
+                    <button>Desativar</button>
+                    <button>Nuevo</button>
+                    <button>Cancelar</button>
+                </div>
+                <div>
+                    <div class="ui-float-label">
+                        <input type='text' pInputText [(ngModel)]='service.nombre'>
+                        <label>Nombre</label>
+                    </div>
+                    <div class="ui-float-label">
+                        <input type='text' pInputText [(ngModel)]='service.descripcion'>
+                        <label>Descripción</label>
+                    </div>
+                    <div class="ui-float-label">
+                        <input type='text' pInputText [(ngModel)]='service.price'>
+                        <label>Precio</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </div>
-<div class="p-col-12 p-md-4">
-    <textarea pInputTextarea  [(ngModel)]='service.descripcion'></textarea>
+<div class="wrapper-user" *ngIf="!administrador">
+    <div class="servicio">
+        <div class="cabecera">
+            <h3>Servicio</h3>
+        </div>
+        <div class="wrapper">
+            <div class="product-img">
+                <img [src]="service.imagen" height="420" width="327" alt="Imagen producto">
+            </div>
+            <div class="product-info">
+                <div class="product-text">
+                    <h1>{{service.nombre}}</h1>
+                    <p>{{service.descripcion}}</p>
+                </div>
+                <div class="product-price-btn">
+                    <p><span>{{service.price}}</span>€</p>
+                </div>
+                <button type="button">¡Comprar!</button>
+            </div>
+        </div>
+
+    </div>
 </div>
