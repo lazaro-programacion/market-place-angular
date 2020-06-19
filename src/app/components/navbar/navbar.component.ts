@@ -1,6 +1,8 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Service } from 'src/app/models/service';
 import { ServicesService } from 'src/app/services/services.service';
+import { Supplier} from 'src/app/models/supplier';
+import { SupplierService} from 'src/app/services/supplier.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
@@ -10,12 +12,13 @@ import { MenuItem } from 'primeng/api';
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
-    providers: [ServicesService]
+    providers: [ServicesService, SupplierService]
 })
 export class NavbarComponent implements OnInit {
 
     visibleSidebar1: any;
-    public items1: any[];
+    public itemsService: any[];
+    public itemsSupplier: any[];
     items2: MenuItem[];
     items4: MenuItem[];
     items5: MenuItem[];
@@ -28,10 +31,11 @@ export class NavbarComponent implements OnInit {
     public login: boolean;
     public search: string;
     public services: Service[] = [];
-
+    public supplierServices: Supplier[] = [];
 
 
     constructor(
+        private supplierService: SupplierService,
         private serviceService: ServicesService,
         private router: Router,
         private route: ActivatedRoute
@@ -44,12 +48,13 @@ export class NavbarComponent implements OnInit {
 
         this.login = false;
         this.search = '';
-        this.items1 = [];
+        this.itemsService = [];
+        this.itemsSupplier= []
         this.serviceService.getServices().subscribe(
             serv => {
                 this.services = serv;
                 this.services.forEach(element => {
-                    this.items1.push({
+                    this.itemsService.push({
                         label: element.nombre,
                         icon: 'pi pi-android',
                         routerLink: '/service/' + element._id
@@ -59,22 +64,33 @@ export class NavbarComponent implements OnInit {
         );
         console.log('los servicios', this.services);
 
+        this.supplierService.getSuppliers().subscribe(
+            response =>{
+               this.supplierServices = response;
+               this.supplierServices.forEach(element =>{
+                   this.itemsSupplier.push({
+                    label: element.nombre,
+                    icon: 'pi pi-briefcase',
+                    routerLink: '/supplier/' + element._id
+                   })
+                   
+               })
+            }
+        )
 
-        console.log('array', this.items1);
+
+        console.log('array', this.itemsService, this.itemsSupplier);
 
         this.items5 = [
             {
                 label: 'SERVICIOS',
                 icon: 'pi pi-tags',
-                items: this.items1
+                items: this.itemsService
             },
             {
                 label: 'PROVEEDORES',
                 icon: 'pi pi-fw pi-users',
-                items: [
-                    { label: 'Delete', icon: 'pi pi-fw pi-trash' },
-                    { label: 'Refresh', icon: 'pi pi-fw pi-refresh' }
-                ]
+                items: this.itemsSupplier
             },
             {
                 label: 'Usuarios Settings',
