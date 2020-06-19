@@ -16,49 +16,44 @@ export class EditarPerfilComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   public usuario?: string = '';
   // tslint:disable-next-line: no-inferrable-types
-  public email?: string  = '';
+  public email?: string = '';
   // tslint:disable-next-line: no-inferrable-types
   public password?: string = '';
-  // tslint:disable-next-line: semicolon
-  // tslint:disable-next-line: variable-name
   public id = '';
   public code = '';
   public usuari: Users;
 
   constructor(
-    private usersSErvice: UsersService,
+    private usersService: UsersService,
     private router: Router,
     private route: ActivatedRoute
-    ) { this.usuari = new Users(); }
+  ) { this.usuari = new Users(); }
 
   ngOnInit(): void {
-
     this.code = this.route.snapshot.paramMap.get('id');
-    this.usersSErvice.getUser(this.code).subscribe(
-       serv => { this.usuari = serv, this.email = serv.email, this.usuario = serv.usuario, this.password = serv.password,
-        this.id = serv._id; }
-
-     );
+    this.usersService.getUser(this.code).subscribe(
+      serv => {
+        this.usuari = serv, this.email = serv.email, this.usuario = serv.usuario, this.password = serv.password,
+          this.id = serv._id;
+      }
+    );
   }
 
   showBasicDialog2() {
     this.displayBasic2 = true;
-}
+  }
 
 
-guardar(){
-  // tslint:disable-next-line: deprecation
-  event.preventDefault();
-  console.log('usuario', this.usuario , this.email, this.password); // (  this.usuario, this.email, this.rol, this.password)
-  // tslint:disable-next-line: new-parens
-  const newUsuario: Users = new Users;
-  newUsuario.usuario = this.usuario;
-  newUsuario.email = this.email;
-  newUsuario.password = this.password;
+  guardar() {
+    console.log('usuario', this.usuario, this.email, this.password); // (  this.usuario, this.email, this.rol, this.password)
+    const newUsuario: Users = new Users();
+    newUsuario.usuario = this.usuario;
+    newUsuario.email = this.email;
+    newUsuario.password = this.password;
 
-  this.usersSErvice.putUsers(newUsuario, this.code).subscribe(
+    this.usersService.putUsers(newUsuario, this.code).subscribe(
       () => {
         this.router.navigate(['/editar-perfil']);
       });
-   }
+  }
 }

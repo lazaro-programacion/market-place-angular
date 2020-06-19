@@ -12,8 +12,7 @@ export class NotFoundComponentComponent implements OnInit {
 
   constructor(public route: ActivatedRoute) {
     this.page = route.snapshot.paramMap.get('page');
-
-   }
+  }
 
   ngOnInit(): void {
   }

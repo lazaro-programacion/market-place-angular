@@ -13,28 +13,20 @@ import { SelectItem } from 'primeng/api';
 export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
   images: any[];
   imagesFilter: any[];
-  // imagesCategoria: any[]
   public services: Service[];
   @Input() servicesFilter: Service[];
-  // @Input() seleccionado: any;
   @Input() busqueda: string;
 
-  selectedImage: Service;
-
-  displayDialog: boolean;
-
-  sortOptions: SelectItem[];
-
-  sortKey: string;
-
-  sortField: string;
-
-  sortOrder: number;
+  public selectedImage: Service;
+  public displayDialog: boolean;
+  public sortOptions: SelectItem[];
+  public sortKey: string;
+  public sortField: string;
+  public sortOrder: number;
 
   constructor(private serviceService: ServicesService) {
     this.images = [];
     this.imagesFilter = [];
-    // this.imagesCategoria = []
   }
 
   ngOnInit() {
@@ -54,10 +46,10 @@ export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
       { label: 'Name', value: 'name' },
     ];
   }
+
   ngDoCheck(): void {
     console.log('servicesFilter', this.servicesFilter);
     this.imagesFilter = this.servicesFilter;
-
   }
 
   selectImage(event: Event, image: Service) {
@@ -66,7 +58,7 @@ export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
     event.preventDefault();
   }
 
-  onSortChange(event) {
+  onSortChange(event: any) {
     console.log('event', event.value);
   }
 
