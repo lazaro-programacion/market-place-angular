@@ -28,8 +28,6 @@ const routes: Routes = [
   { path: 'editar-perfil/:id', component: EditarPerfilComponent },
 
   { path: ':page', component: NotFoundComponentComponent },
-  
-
   { path: '**', component: NotFoundComponentComponent }
 ];
 

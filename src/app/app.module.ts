@@ -79,7 +79,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TabMenuModule,
     SidebarModule,
     PanelMenuModule,
-
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]

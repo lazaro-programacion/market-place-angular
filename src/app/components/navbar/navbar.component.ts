@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
     visibleSidebar1: any;
     public items1: any[];
     items2: MenuItem[];
-
     items4: MenuItem[];
     items5: MenuItem[];
     activeItem: MenuItem;
@@ -158,47 +157,29 @@ export class NavbarComponent implements OnInit {
         }
 
 
-    // ngDoCheck(): void {
-    //     this.serviceService.getServices().subscribe(
-    //         serv => this.services = serv
-    //     );
-
-    // }
-
-
     buscador() {
-
-        // console.log('go busqueda', this.search);
         this.router.navigate(['/buscador', this.search]);
         this.search = '';
     }
 
-    handleClick(event) {
+    handleClick(event: Event) {
         // execute action
         event.preventDefault();
-
         this.login = !this.login;
-        // console.log('has hecho click', this.login);
     }
 
     logear() {
         this.router.navigate(['login']);
         this.login = !this.login;
-        //  console.log('has hecho click', this.login);
     }
 
     registrar() {
         this.router.navigate(['registro']);
         this.login = !this.login;
-        //  console.log('has hecho click', this.login);
     }
 
 
     showBasicDialog() {
         this.displayBasic = true;
     }
-
-
-
-
 }

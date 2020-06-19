@@ -30,9 +30,7 @@ export class SuppliersListComponent implements OnInit {
         this.suppliers = supp;
       }
     );
-    console.log('suppliers en supplier-list', this.suppliers);
   }
-
 
   selectSupplier(event: Event, supplier: Supplier) {
     this.selectedSupplier = supplier;
@@ -43,6 +41,5 @@ export class SuppliersListComponent implements OnInit {
   onDialogHide() {
     this.selectSupplier = null;
   }
-
 
 }

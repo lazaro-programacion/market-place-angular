@@ -7,48 +7,32 @@ import { Users } from 'src/app/models/users';
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css'],
 })
-export class UsersListComponent implements OnInit, DoCheck {
+export class UsersListComponent implements OnInit {
   public users: Users[];
   public search = '';
   public error: any;
-  public render = true;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
     this.usersService.getUsers().subscribe((users) => (this.users = users));
   }
 
-  ngDoCheck(): void {
-    if (this.render) {
-      this.render = false;
-      if (this.error) {
-        this.usersService.getUsers().subscribe((users) => (this.users = users));
-      }
-    }
-  }
-
   buscador(): void {
     this.error = null;
-
     if (!this.search) {
       this.usersService.getUsers().subscribe((users) => (this.users = users));
     } else {
       this.usersService
         .searchUsers(this.search)
         .then((users) => {
-          if (users) {
-            this.users = users;
-          } else {
-            alert('No hay resultados para esta busqueda');
-          }
+          this.users = users;
         })
         .catch((err) => {
-          this.render = true;
           this.error = err.error.message;
-          return throwError('Algo ha salido mal');
+          this.usersService.getUsers().subscribe(
+            (usrs) => (this.users = usrs));
         });
-
     }
     this.search = '';
   }

@@ -1,6 +1,7 @@
 <div class="btn btn-toolbar">
 <div style="margin: auto;" >
-  <input class="btn btn-outline-dark" style="width: 100%;" type="text" [(ngModel)]= 'search'   (keyup.enter)="buscador()" placeholder="Buscar...">
+  <input class="btn btn-outline-dark" style="width: 100%;" type="text"
+    [(ngModel)]= 'search' (keyup.enter)="buscador()" placeholder="Buscar...">
  <hr>
   <div *ngIf='error?error:error' class="alert alert-danger" role="alert">
     {{error}}
@@ -10,7 +11,6 @@
 
 
 <table class="table m-2" style="width: 80%; margin: auto !important;">
-
   <thead class="table-info">
     <tr>
       <th scope="col">#</th>

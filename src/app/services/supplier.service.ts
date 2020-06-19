@@ -8,16 +8,13 @@ import { Supplier } from '../models/supplier';
   providedIn: 'root'
 })
 export class SupplierService {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  };
+
   constructor(private httpClient: HttpClient) {
   }
-
 
   getSuppliers = () => {
     return this.httpClient.get<Supplier[]>('http://localhost:4000/api/supplier/');
   }
+
+  // TODO: Implementar los demas
 }

@@ -11,14 +11,12 @@ import { SelectItem } from 'primeng/api';
 })
 export class ServicesListComponent implements OnInit {
 
-  displayDialog: boolean;
-  sortOptions: SelectItem[];
-  sortKey: string;
-  sortField: string;
-  sortOrder: number;
-
-  selectedService: Service;
-
+  public displayDialog: boolean;
+  public sortOptions: SelectItem[];
+  public sortKey: string;
+  public sortField: string;
+  public sortOrder: number;
+  public selectedService: Service;
 
   public services: Service[];
   public administrador = false;
@@ -31,7 +29,6 @@ export class ServicesListComponent implements OnInit {
         this.services = serv;
       }
     );
-    console.log('services', this.services);
   }
 
   toggleAdministrador() {
@@ -47,11 +44,6 @@ export class ServicesListComponent implements OnInit {
 
   onDialogHide() {
     this.selectedService = null;
-  }
-
-  serviceDetails(service: Service) {
-    console.log('Nuevo servicio');
-
   }
 
 }
