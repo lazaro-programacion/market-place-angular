@@ -2,21 +2,18 @@
   <div class="row">
     <div class="col-md-12" style="display: flex; flex-wrap: wrap;">
       <div class="card" style="width: 18rem;">
-        <img
+        <img src="{{foto}}" alt="..." *ngIf='foto' >
+        <img *ngIf='!foto'
           src= "../../assets/images/upload_user/{{usuari.imagen}} "
           style="height: 273px; padding: 10px;"
           class="card-img-top"
           alt="..."
         />
         {{usuari.imagen}}
-        <div>
-          <div>
-            <input type="file" >
-          </div>
-          <div>
-            <button class="btn btn-primary">Cambiar imagen</button>
-          </div>
-        </div>
+        <angular-file-uploader
+      [config]="afuConfig"
+      (ApiResponse)="DocUpload($event)">
+</angular-file-uploader>
       </div>
 
       <div class="well well-sm" style="flex: 0 0 60%;">

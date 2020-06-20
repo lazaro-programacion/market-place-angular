@@ -20,6 +20,8 @@ import { ServiceAddComponent } from './components/service-add/service-add.compon
 import { ServicesListComponent } from './components/services-list/services-list.component';
 import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
+
 
 import { UsersService } from './services/users.service';
 
@@ -58,6 +60,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SuppliersListComponent,
     UsersListComponent,
     NgbdCarouselPauseComponent,
+
   ],
   imports: [
     AppRoutingModule,
@@ -79,6 +82,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TabMenuModule,
     SidebarModule,
     PanelMenuModule,
+    AngularFileUploaderModule
 
   ],
   providers: [UsersService],
