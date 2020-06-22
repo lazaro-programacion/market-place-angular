@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
         this.login = false;
         this.search = '';
         this.itemsService = [];
-        this.itemsSupplier= []
+        this.itemsSupplier = [];
         this.serviceService.getServices().subscribe(
             serv => {
                 this.services = serv;
@@ -65,18 +65,17 @@ export class NavbarComponent implements OnInit {
         console.log('los servicios', this.services);
 
         this.supplierService.getSuppliers().subscribe(
-            response =>{
+            response => {
                this.supplierServices = response;
-               this.supplierServices.forEach(element =>{
+               this.supplierServices.forEach(element => {
                    this.itemsSupplier.push({
                     label: element.nombre,
                     icon: 'pi pi-briefcase',
                     routerLink: '/supplier/' + element._id
-                   })
-                   
-               })
+                   });
+               });
             }
-        )
+        );
 
 
         console.log('array', this.itemsService, this.itemsSupplier);

@@ -1,0 +1,13 @@
+<div class="container" *ngIf="supplier$ | async as supplier">
+
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="supplier.imagen" alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title">{{supplier.nombre}} {{supplier.apellidos}}</h2>
+      <p class="card-text">nif: {{supplier.nif}}</p>
+      <p class="card-text">iban: {{supplier.iban}}</p>
+      <p class="card-text">email: {{supplier.email}}</p>
+      <button class="btn btn-primary" type="button" routerLink='/supplier'>Lista</button>
+    </div>
+  </div>
+</div>

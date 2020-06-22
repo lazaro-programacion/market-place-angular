@@ -16,5 +16,10 @@ export class SupplierService {
     return this.httpClient.get<Supplier[]>('http://localhost:4000/api/supplier/');
   }
 
+
+  getSupplier = (id: string) => {
+    return this.httpClient.get<Supplier>('http://localhost:4000/api/supplier/' + id);
+  }
+
   // TODO: Implementar los demas
 }
