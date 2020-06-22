@@ -12,24 +12,52 @@ import { Service } from 'src/app/models/service';
 export class ServiceAddComponent implements OnInit {
 
 
+  public administrador = history.state.admin;
   public service: Service;
-  public administrador: boolean;
+  public id = history.state.id;
 
   constructor(private serviceService: ServicesService) { }
 
   ngOnInit(): void {
-    // console.log('servicio', history.state.data);
-    // const id = history.state.id;
     this.administrador = true; // history.state.admin;
-    const id = '5ee74de88e04772fb4f8f299'; // solo para pruebas
-    this.serviceService.getService(id).subscribe(
-      serv => {
-        this.service = serv;
-        // console.log('serv', serv);
-      }
-    );
-
+    // const id = '5ee74de88e04772fb4f8f299'; // solo para pruebas
+    this.getTheService(this.id);
 
   }
 
+  getTheService = (id: string) => {
+    this.serviceService.getService(id).subscribe(
+      serv => {
+        this.service = serv;
+      }
+    );
+
+    console.log('service', this.service);
+
+  }
+
+  editServicio(id: string) {
+    console.log('Editar servicio', id, this.service);
+    // TODO: editar servicio
+  }
+
+  nuevoServicio() {
+    console.log('nuevo servicio');
+    this.serviceService.createService(this.service).subscribe(
+      serv => console.log('servicio', serv)
+    );
+    // TODO: añadir validación y comprobación
+  }
+
+  activeServiceToggle(id: string) {
+    console.log('togle servicio activo');
+    // TODO: cambiar servicio de activo a inactivo
+
+  }
+
+  cancelAction() {
+    console.log('cancelar la edicion/creación');
+    // TODO: si se pulsa restaurar el contenido por defecto
+    this.getTheService(this.id);
+  }
 }

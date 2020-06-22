@@ -23,8 +23,11 @@ export class ServicesService {
   createService = (service: Service): Observable<Service> => {
     console.log('Guardando servicio', service);
     // TODO: Implementar
-    return null;
+
+    return this.httpClient.post<Service>('http://localhost:4000/api/service', service);
   }
+
+
 
   deleteService = () => {
     // TODO: Implementar

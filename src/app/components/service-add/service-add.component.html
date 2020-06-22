@@ -15,28 +15,22 @@
                 <div class="product-price">
                     <p><span>{{service.price}}</span>€</p>
                 </div>
+                <div>
+                    <button (click)='editServicio(service._id)'>Editar</button>
+                    <button>Desactivar</button>
+                    <button (click)='nuevoServicio()'>Nuevo</button>
+                    <button (click)='cancelAction()'>Cancelar</button>
+                </div>
             </div>
             <div class="editor">
-                <div>
-                    <button mat-mat-button color='primary' >Editar</button>
-                    <button mat-mat-button>Desativar</button>
-                    <button mat-mat-button>Nuevo</button>
-                    <button mat-mat-button>Cancelar</button>
-                </div>
-                <div>
-                    <div class="ui-float-label">
-                        <input type='text' pInputText [(ngModel)]='service.nombre'>
-                        <label>Nombre</label>
-                    </div>
-                    <div class="ui-float-label">
-                        <input type='text' pInputText [(ngModel)]='service.descripcion'>
-                        <label>Descripción</label>
-                    </div>
-                    <div class="ui-float-label">
-                        <input type='text' pInputText [(ngModel)]='service.price'>
-                        <label>Precio</label>
-                    </div>
-                </div>
+                <label>Nombre</label><br>
+                <input type='text'[(ngModel)]='service.nombre'>
+                <hr>
+                <label>Descripción</label><br>
+                <textarea cols="30" rows="8" [(ngModel)]='service.descripcion'></textarea>
+                <hr/>
+                <label>Precio</label><br>
+                <input type='text' [(ngModel)]='service.price'>
             </div>
 
         </div>
