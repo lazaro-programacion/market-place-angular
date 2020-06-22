@@ -41,6 +41,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SupplierviewComponent } from './components/supplierview/supplierview.component';
 
 
 @NgModule({
@@ -60,7 +61,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SuppliersListComponent,
     UsersListComponent,
     NgbdCarouselPauseComponent,
-
+    SupplierviewComponent,
   ],
   imports: [
     AppRoutingModule,

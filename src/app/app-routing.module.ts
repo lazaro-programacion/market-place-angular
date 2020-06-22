@@ -11,6 +11,8 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
+import { Supplier } from './models/supplier';
+import { SupplierviewComponent } from './components/supplierview/supplierview.component';
 
 
 const routes: Routes = [
@@ -26,7 +28,7 @@ const routes: Routes = [
   { path: 'buscador/', component: SearchComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent },
   { path: 'editar-perfil/:id', component: EditarPerfilComponent },
-
+  { path: 'supplier/view/:id', component: SupplierviewComponent},
   { path: ':page', component: NotFoundComponentComponent },
   { path: '**', component: NotFoundComponentComponent }
 ];
