@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Service } from 'src/app/models/service';
 import { ServicesService } from 'src/app/services/services.service';
 import { SupplierService } from 'src/app/services/supplier.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { SelectItem } from 'primeng/api';
 

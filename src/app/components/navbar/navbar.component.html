@@ -3,13 +3,8 @@
   style="background-image: url(../assets/images/banner.png); width: 100%;"
 >
   <img #img src="assets/images/LOGO.png" alt="Logo" height="100vh" />
-  <!--
-<p-contextMenu [global]="true" [model]="items1"></p-contextMenu>
-
-
-
--->
-  <p-contextMenu [target]="div" [model]="items2"></p-contextMenu>
+ 
+  <p-contextMenu [target]="div" [model]="itemsSub"></p-contextMenu>
 </div>
 
 <div
@@ -28,7 +23,7 @@
     <button
       pButton
       type="button"
-      (click)="visibleSidebar1 = true"
+      (click)="visibleSidebar = true"
       icon="pi pi-align-justify"
     ></button>
 
@@ -37,7 +32,7 @@
 
   <div class="p-col-8 p-md-8 p-lg-8 p-offset-0 p-md-offset-0 p-lg-offset-0">
     <div class="ui-inputgroup" >
-
+      
       <button
         class="p-col-0 p-md-col-1 p-lg-col-1"
         pButton
@@ -56,10 +51,14 @@
       />
 
   </div>
+  
   </div>
-
-  <div class="p-col-2 p-md-col-2 p-lg-col-2 p-lg-offset-1" id="btnLogin">
-    <div *ngIf="login === false">
+ 
+  <div class="p-col-2 p-md-col-2 p-lg-col-1 p-lg-offset-1" id="btnLogin">
+   
+    
+  
+    <div *ngIf="!identity">
       <button
         type="button"
         style="float: right;"
@@ -96,9 +95,13 @@
         </p-footer>
       </p-dialog>
     </div>
-    <div *ngIf="login === true">
+    <div *ngIf="identity">
       <div class="p-grid p-dir-col">
         <div class="p-col">
+          <span *ngIf="identity" class="myPerfil" >
+           <img [src]="url + '/user/get-image/' + identity.imagen" *ngIf="identity.imagen"  [alt]="identity.usuario" class='perfil' >
+            Hola {{identity.usuario | uppercase}}
+          </span>
           <button
             type="button"
             pButton
@@ -106,7 +109,7 @@
             label="Logout"
             icon="pi pi-power-off"
             style="float: right;"
-            (click)="handleClick($event)"
+            (click)="logout()"
           ></button>
         </div>
       </div>
@@ -126,11 +129,12 @@
     );
   "
 >
+
   <div
     style="margin: 5px;"
   >
 
-    <p-tabMenu [model]="items4" [activeItem]="activeItem">
+    <p-tabMenu [model]="itemsMenu" [activeItem]="activeItem">
       <ng-template pTemplate="item" let-item let-i="index" >
         <div style="position: relative; text-align: center; min-width: 10em;" (click)='buscador()'>
           <div
@@ -151,14 +155,25 @@
 <hr />
 
 <p-sidebar
-  [(visible)]="visibleSidebar1"
+  [(visible)]="visibleSidebar"
   [style]="{ width: '31.5vw' }"
   [baseZIndex]="10000"
 >
 <h1 style="font-weight: normal;">JEDI Market</h1>
+<div *ngIf="identity" >
+  <img [src]="url + '/user/get-image/' + identity.imagen" [alt]="identity.usuario" *ngIf="identity.imagen" class='perfil' style= 'margin: 10px;' >
+  {{identity.usuario | uppercase}}
+</div>
+
 <p-panelMenu
-  [model]="items5"
+  [model]="itemsSide"
   [transitionOptions]="'500ms'"
   [style]="{ width: '25vw' }"
 ></p-panelMenu>
+
+ 
+
+<div class="salir">
+   <p-button label="Salir" (click)="visibleSidebar = false" ></p-button>
+</div>
 </p-sidebar>

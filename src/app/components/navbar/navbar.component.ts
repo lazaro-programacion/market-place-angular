@@ -1,24 +1,34 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Service } from 'src/app/models/service';
 import { ServicesService } from 'src/app/services/services.service';
+import { Supplier} from 'src/app/models/supplier';
+import { SupplierService} from 'src/app/services/supplier.service';
+import { Users } from "../../models/users";
+import { UsersService } from "../../services/users.service"
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
-
+import { GLOBAL } from "../../../config/global";
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
-    providers: [ServicesService]
+    providers: [ServicesService, SupplierService]
 })
 export class NavbarComponent implements OnInit {
 
-    visibleSidebar1: any;
-    public items1: any[];
-    items2: MenuItem[];
-    items4: MenuItem[];
-    items5: MenuItem[];
+    @Input() identity: Users;
+    @Input() token: string;
+
+    public url: string;
+
+    public visibleSidebar: boolean;
+    public itemsService: any[];
+    public itemsSupplier: any[];
+    itemsSub: MenuItem[];
+    itemsMenu: MenuItem[];
+    itemsSide: MenuItem[];
     activeItem: MenuItem;
 
     displayBasic: boolean;
@@ -28,10 +38,11 @@ export class NavbarComponent implements OnInit {
     public login: boolean;
     public search: string;
     public services: Service[] = [];
-
+    public supplierServices: Supplier[] = [];
 
 
     constructor(
+        private supplierService: SupplierService,
         private serviceService: ServicesService,
         private router: Router,
         private route: ActivatedRoute
@@ -42,14 +53,17 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
 
+        this.url = GLOBAL.url;
+
         this.login = false;
         this.search = '';
-        this.items1 = [];
+        this.itemsService = [];
+        this.itemsSupplier = [];
         this.serviceService.getServices().subscribe(
             serv => {
                 this.services = serv;
                 this.services.forEach(element => {
-                    this.items1.push({
+                    this.itemsService.push({
                         label: element.nombre,
                         icon: 'pi pi-android',
                         routerLink: '/service/' + element._id
@@ -57,50 +71,49 @@ export class NavbarComponent implements OnInit {
                 });
             }
         );
-        console.log('los servicios', this.services);
+        //console.log('los servicios', this.services);
+
+        this.supplierService.getSuppliers().subscribe(
+            response => {
+               this.supplierServices = response;
+               this.supplierServices.forEach(element => {
+                   this.itemsSupplier.push({
+                    label: element.nombre,
+                    icon: 'pi pi-briefcase',
+                    routerLink: '/supplier/' + element._id
+                   });
+               });
+            }
+        );
 
 
-        console.log('array', this.items1);
+        //console.log('array', this.itemsService, this.itemsSupplier);
 
-        this.items5 = [
+        this.itemsSide = [
             {
                 label: 'SERVICIOS',
                 icon: 'pi pi-tags',
-                items: this.items1
+                items: this.itemsService
             },
             {
                 label: 'PROVEEDORES',
                 icon: 'pi pi-fw pi-users',
-                items: [
-                    { label: 'Delete', icon: 'pi pi-fw pi-trash' },
-                    { label: 'Refresh', icon: 'pi pi-fw pi-refresh' }
-                ]
+                items: this.itemsSupplier
             },
             {
                 label: 'Usuarios Settings',
                 icon: 'pi pi-cog',
                 items: [
                     {
-                        label: 'Contents',
-                        icon: 'pi pi-pi pi-bars'
+                        label: 'Mis datos',
+                        icon: 'pi pi-pi pi-id-card',
+                        routerLink: 'editar-perfil'
+
                     },
                     {
-                        label: 'Search',
-                        icon: 'pi pi-pi pi-search',
-                        items: [
-                            {
-                                label: 'Text',
-                                items: [
-                                    {
-                                        label: 'Workspace'
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'User',
-                                icon: 'pi pi-fw pi-file',
-                            }
-                        ]
+                        label: 'Atencion al cliente',
+                        icon: 'pi pi-pi pi-tablet',
+                        routerLink: 'editar-perfil'
                     }
                 ]
             },
@@ -109,26 +122,20 @@ export class NavbarComponent implements OnInit {
                 icon: 'pi pi-shopping-cart',
                 items: [
                     {
-                        label: 'Edit',
-                        icon: 'pi pi-fw pi-pencil',
-                        items: [
-                            { label: 'Save', icon: 'pi pi-fw pi-save' },
-                            { label: 'Update', icon: 'pi pi-fw pi-save' },
-                        ]
+                        label: 'Carrito',
+                        icon: 'pi pi-fw pi-calendar',
+                        
                     },
                     {
-                        label: 'Other',
-                        icon: 'pi pi-fw pi-tags',
-                        items: [
-                            { label: 'Delete', icon: 'pi pi-fw pi-minus' }
-                        ]
+                        label: 'Mis Deseos',
+                        icon: 'pi pi-fw pi-heart',
                     }
                 ]
             }
         ];
 
 
-        this.items2 = [
+        this.itemsSub = [
             {
                 label: 'About',
                 icon: 'pi pi-fw pi-users'
@@ -139,20 +146,20 @@ export class NavbarComponent implements OnInit {
             }
         ];
 
-        this.items4 = [
+        this.itemsMenu = [
             {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
             {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service'},
-            {label: 'Proveedores', icon: 'pi pi-user-minus', routerLink: '/supplier', command: (event) => {
-              console.log('menu event', event.item.label, event.originalEvent);
-          }} ,
+            {label: 'Proveedores', icon: 'pi pi-user-minus', routerLink: '/supplier',
+            // command: (event) => {console.log('menu event', event.item.label, event.originalEvent);}
+             } ,
             {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
             {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil'},
             {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'},
             {label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista'}
-           // {label: 'Logout', icon: 'pi pi-power-off'}
+           
           ];
 
-        this.activeItem = this.items4[0];
+        this.activeItem = this.itemsMenu[0];
 
         }
 
@@ -170,14 +177,21 @@ export class NavbarComponent implements OnInit {
 
     logear() {
         this.router.navigate(['login']);
-        this.login = !this.login;
+        this.displayBasic = false;
     }
 
     registrar() {
         this.router.navigate(['registro']);
-        this.login = !this.login;
+        this.displayBasic = false;
     }
 
+
+    logout(){
+    localStorage.clear()
+    this.identity = null
+    this.token = null
+    this.router.navigate(['/home'])
+    }
 
     showBasicDialog() {
         this.displayBasic = true;

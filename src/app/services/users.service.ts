@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Users } from '../models/users';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { GLOBAL } from "../../config/global";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,52 @@ export class UsersService {
     })
   };
 
+  public url: string
+  public identity: any;
+  public token: string;
+
   constructor(private httpClient: HttpClient) {
+    this.url = GLOBAL.url
+  }
+
+
+  register(userRegister):Observable<any>{
+   const params = JSON.stringify(userRegister)
+    const headers = new HttpHeaders({ 'Content-Type':  'application/json'})
+    return this.httpClient.post(this.url + '/user/register', params, {headers:headers})
+      
+  }
+
+  signUp(userLogin, gettoken = null):Observable<any>{
+  
+    if(gettoken !=null){
+      userLogin.gettoken = gettoken
+    }
+
+   // const params = JSON.stringify(userLogin)
+    const headers = new HttpHeaders({ 'Content-Type':  'application/json'})
+    return this.httpClient.post(this.url + '/user/login', userLogin, {headers:headers})
+
+  }
+
+  getIdentity = () =>{
+    const identity = JSON.parse(localStorage.getItem('identity'))
+    if(identity != 'undefined'){
+      this.identity = identity
+    }else{
+      this.identity = null
+    }
+    return this.identity
+  }
+  
+  getToken = () => {
+    const token = localStorage.getItem('token')
+      if(token != 'undefined'){
+      this.token = token
+    }else{
+      this.token = null
+    }
+    return this.token
   }
 
   getUsers = () => {
@@ -39,17 +85,37 @@ export class UsersService {
       );
   }
 
-  putUsers = (users: Users, _id: string): Observable<Users> => {
-    return this.httpClient.put<Users>(
-      'http://localhost:4000/api/user/' + _id, users, this.httpOptions)
+
+
+  putUsers(userUpdate, _id: string):Observable<any>{
+   // const params = JSON.stringify(userUpdate)
+    const headers = new HttpHeaders({
+       'Content-Type':  'application/json',
+       'Authorization': this.getToken() 
+        })
+        return this.httpClient.put( this.url + '/user/update-user/'+ _id,  userUpdate, {headers:headers})
+  }
+  
+
+  putPassword = (password: string, _id: string): Observable<any> => {
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': this.getToken() 
+       })
+    return this.httpClient.put(
+      this.url + '/user/' + _id, password, {headers:headers})
       .pipe(
         catchError(this.handleError)
       );
   }
 
   searchUsers = (search: string) => {
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': this.getToken() 
+       })
     return this.httpClient.get<Users[]>(
-      'http://localhost:4000/api/user/search/' + search, this.httpOptions).toPromise();
+      'http://localhost:4000/api/user/search/' + search, {headers: headers}).toPromise();
   }
 
   private handleError(error: HttpErrorResponse) {

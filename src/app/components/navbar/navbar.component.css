@@ -4,4 +4,22 @@
     .mydialog {
         display: none;
     }
+    .myPerfil {
+        display: none;
+    }
+
 }
+
+.perfil{
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border-color: 2px solid #36A0FF;
+    
+  }
+
+  .salir{
+      margin-top: 15px;
+  }
+  
+ 
