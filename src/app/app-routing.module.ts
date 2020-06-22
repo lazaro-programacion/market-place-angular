@@ -11,6 +11,8 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
+import { Supplier } from './models/supplier';
+import { SupplierviewComponent } from './components/supplierview/supplierview.component';
 
 import { AdminGuard } from "./services/guard/admin.guard";
 import { UsuarioGuard  } from "./services/guard/usuario.guard";
@@ -31,7 +33,7 @@ const routes: Routes = [
   { path: 'buscador/:search', component: SearchComponent },
   { path: 'buscador/', component: SearchComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [UsuarioGuard], },
-
+  { path: 'supplier/view/:id', component: SupplierviewComponent},
  
 
   { path: ':page', component: NotFoundComponentComponent },

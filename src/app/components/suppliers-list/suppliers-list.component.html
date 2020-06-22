@@ -10,6 +10,9 @@
                         <input type="search" pInputText placeholder="Búsqueda por nombre"
                             (input)="dv.filter($event.target.value)">
                     </div>
+                    <div>
+                      <button class="btn btn-primary" type="button" routerLink='/supplier/'>Nuevo proveedor</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,13 +26,14 @@
                     </div>
                     <div class="product-info">
                         <div class="product-text">
-                            <h1>{{supplier.nombre}} {{supplier.apellido}}</h1>
+                            <h1>{{supplier.nombre}} {{supplier.apellidos}}</h1>
                             <p>{{supplier.email}}</p>
                         </div>
                         <div class="product-price-btn">
                             <p><span></span></p>
-                            <button type="button">Ver</button>
-                        </div>
+                            <button type="button" [routerLink]="'/supplier/view/'+supplier._id">Detalles</button>
+                            <button type="button" [routerLink]="'/supplier/view/'+supplier._id">Editar</button>
+                          </div>
                     </div>
                 </div>
 
