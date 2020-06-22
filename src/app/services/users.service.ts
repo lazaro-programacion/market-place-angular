@@ -12,23 +12,25 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UsersService {
+
+  // TODO: No debería ser necerario
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-    }),
+    })
   };
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   getUsers = () => {
     return this.httpClient.get<Users[]>('http://localhost:4000/api/user');
   }
 
-  // tslint:disable-next-line: variable-name
   getUser = (_id: string): Observable<Users> => {
     return this.httpClient.get<Users>(`http://localhost:4000/api/user/` + _id);
   }
 
-  // tslint:disable-next-line: variable-name
   saveUsers = (users: Users): Observable<Users> => {
     console.log('saving patient', Users);
     return this.httpClient
@@ -36,7 +38,6 @@ export class UsersService {
       .pipe(catchError(this.handleError));
   }
 
-  // tslint:disable-next-line: variable-name
   putUsers = (users: Users, _id: string): Observable<Users> => {
     return this.httpClient
       .put<Users>(
@@ -83,4 +84,3 @@ export class UsersService {
     return throwError('Something bad happened; please try again later.');
   }
 }
-console.log('me traigo', Users);

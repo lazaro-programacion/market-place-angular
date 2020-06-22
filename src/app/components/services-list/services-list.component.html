@@ -1,5 +1,5 @@
-<p-dataView class="data-view" #dv [value]="services" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="name"
-    [sortField]="sortField" [sortOrder]="sortOrder">
+<p-dataView class="data-view" #dv [value]="services" [paginator]="true" [rows]="5" paginatorPosition="both"
+    filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="p-grid">
@@ -9,33 +9,39 @@
                     <div style="position:relative">
                         <input type="search" pInputText placeholder="Búsqueda por nombre"
                             (input)="dv.filter($event.target.value)">
-                            <button routerLink='/service/add'>Nuevo</button>
                     </div>
                 </div>
             </div>
         </div>
     </p-header>
     <ng-template let-service pTemplate="listItem">
-        <div class="p-col-12">
+        <div class="p-col-12 p-md-10">
             <div class="service-details">
                 <div class="wrapper">
                     <div class="product-img">
                         <img [src]="service.imagen" height="420" width="327">
                     </div>
                     <div class="product-info">
+                        <div>admin
+                            <input type='checkbox' (change)='toggleAdministrador()'>
+                        </div>
                         <div class="product-text">
                             <h1>{{service.nombre}}</h1>
-                            <h2>...Es >>></h2>
                             <p>{{service.descripcion}}</p>
                         </div>
-                        <div class="product-price-btn">
-                            <p><span>{{service.price}}</span></p>
-                            <button type="button">¡Comprar!</button>
+                        <div class="product-price">
+                            <p>{{service.price}} €</p>
                         </div>
+                        <div class="button">
+                        <button  type="button" routerLink='/service/add' [state]='{id: service._id, admin: administrador}' >Detalles</button>
+
+                        </div>
+
                     </div>
                 </div>
 
             </div>
         </div>
     </ng-template>
+
 </p-dataView>

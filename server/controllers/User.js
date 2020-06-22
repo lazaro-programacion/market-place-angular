@@ -1,22 +1,93 @@
 const User = require("../models/User");
 const fs = require("fs");
 const path = require("path");
+const { exists } = require("../models/User");
+// importar libreria bcrypt
+const bcrypt = require('bcrypt-nodejs');
+// importar jwt
+const jwt = require('../jwt/jwt');
 
 const userController = {
+
   createUser: (req, res) => {
     console.log("la req ", req.body);
     const user = new User();
+
+    // Asignar valores al objeto
     user.usuario = req.body.usuario;
     user.email = req.body.email;
     user.rol = req.body.rol;
-    user.password = req.body.password;
+ // comprobar email unico         // se usa userID para no tener conflicto con user
+ console.log('userr',user)
+ User.findOne({email: user.email.toLowerCase()}, ((err, userId) =>{
+  if(err){
+      res.status(500).send({message: 'error al comprobar el usuario'});
+  }else{
+      if(!userId){
+            // codificar password
+          bcrypt.hash(req.body.password, null, null, function (err, hash) {
+              user.password = hash
+              // guardar usuario
+              user.save((err, userStored) => {
+                  if(err){
+                      res.status(500).send({message: 'error al guardar el usuario'});
+                  }else{
+                      if(!userStored){
+                          res.status(404).send({message: 'No se ha registrado el usuario'});
+                      }else{
+                          res.status(200).send({user: userStored, message: 'usuario guardado correctamente'});
+                          }
+                      }
 
-    user.save((err, newUser) =>
-      err
-        ? res.status(500).send("Error guardando : " + err.message)
-        : res.status(201).jsonp(newUser)
-    );
-  },
+                })
+
+               })
+          }else{
+              res.status(500).send({message: 'el email del usuario ya existe'});
+          }
+      }
+  }))
+
+
+
+},
+login: (req, res) => {
+  const params = req.body
+  const password = params.password
+  const email = params.email
+          // comprobar si el email existe
+          User.findOne({email: email.toLowerCase()}, (err, user) =>{
+              if(err){
+                  res.status(500).send({message: 'error al comprobar el usuario'});
+              }else{
+                  if(user){
+                      // comprobar password enviado con el existente
+                      bcrypt.compare(password , user.password, (err, check) => {
+
+                      if(check){
+                              // comprobar y generar token
+                          if(params.gettoken){
+                               // devolver token
+                               res.status(200).send({
+                                   token: jwt.createToken(user)
+                               });
+                          }else{
+                              res.status(200).send({user: user});
+                          }
+
+                      }else{
+                          res.status(404).send({ message: 'el password no es correcto'});
+                      }
+
+                      })
+
+                  }else{
+                      res.status(404).send({ message: 'el usuario no esta registrado'});
+                  }
+              }
+          })
+
+} ,
   getUser: (req, res) => {
     User.find((err, user) =>
       err ? res.status(500).send("error") : res.status(200).jsonp(user)
@@ -37,13 +108,43 @@ const userController = {
   },
 
   getUpdate: (req, res) => {
-    User.findByIdAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      { new: true },
-      (err, user) =>
-        err ? res.status(500).send("error") : res.status(200).jsonp(user)
-    );
+
+    // recoger parametros
+    const userId = req.params.id
+    const update = req.body
+    delete update.password
+   // console.log('id', userId, 'update', update)
+   // comprobar id usuario logeado y el que viene ne los params
+   if(userId != req.user.sub){
+     return res.status(500).send({ message: 'no tienes permisos'});
+ }
+User.findByIdAndUpdate(userId, update, {new:true}, (err, userUpdated) => {
+     if(err){
+         res.status(500).send({ message: 'error al actuaqlizar usuario'});
+     }else{
+        if(!userUpdated){
+         res.status(404).send({ message: 'no se ha podido actuaqlizar usuario'});
+        }else{
+          res.status(200).send({user: userUpdated})
+        }
+
+     }
+})
+ },
+  getImagen: (req, res) => {
+   const file = req.params.image;
+   console.log('nombre imagen', file);
+   const path_file = 'src/assets/images/upload_user/' + file;
+
+   fs.exists(path_file, (exists) =>{
+     console.log('EXISTS', path.resolve(path_file));
+     if (exists) {
+       res.sendFile(path.resolve(path_file));
+     } else {
+      res.status(404).send("La imagen no existe")
+     }
+   })
+
   },
 
   upload: (req, res) => {
@@ -86,6 +187,8 @@ const userController = {
       }
     }
   },
+
+
 
   getSearch: (req, res) => {
     const busqueda = req.params.search;

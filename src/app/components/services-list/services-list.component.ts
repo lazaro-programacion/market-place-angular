@@ -11,16 +11,15 @@ import { SelectItem } from 'primeng/api';
 })
 export class ServicesListComponent implements OnInit {
 
-  displayDialog: boolean;
-  sortOptions: SelectItem[];
-  sortKey: string;
-  sortField: string;
-  sortOrder: number;
-
-  selectedService: Service;
-
+  public displayDialog: boolean;
+  public sortOptions: SelectItem[];
+  public sortKey: string;
+  public sortField: string;
+  public sortOrder: number;
+  public selectedService: Service;
 
   public services: Service[];
+  public administrador = false;
 
   constructor(private serviceService: ServicesService) { }
 
@@ -30,7 +29,11 @@ export class ServicesListComponent implements OnInit {
         this.services = serv;
       }
     );
-    console.log('services', this.services);
+  }
+
+  toggleAdministrador() {
+    this.administrador = !this.administrador;
+    console.log('admin', this.administrador);
   }
 
   selectService(event: Event, service: Service) {
@@ -41,10 +44,6 @@ export class ServicesListComponent implements OnInit {
 
   onDialogHide() {
     this.selectedService = null;
-  }
-
-  createService(){
-    console.log('Nuevo servicio');
   }
 
 }

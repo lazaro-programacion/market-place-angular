@@ -22,10 +22,12 @@ export class EditarPerfilComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   public imagen: FileList;
   public foto: string;
-
   public id = '';
   public code = '';
   public usuari: Users;
+  public noFoto = '5cbIcPt3pOllUbB8kZEFDqm3.png';
+
+public url = 'http://localhost:4000/api/user/get-image/';
 
   afuConfig = {
     multiple: false,
@@ -53,23 +55,19 @@ export class EditarPerfilComponent implements OnInit {
   };
 
   constructor(
-    private usersSErvice: UsersService,
+    private usersService: UsersService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    this.usuari = new Users();
-  }
+  ) { this.usuari = new Users(); }
 
   ngOnInit(): void {
     this.code = this.route.snapshot.paramMap.get('id');
-    this.usersSErvice.getUser(this.code).subscribe((serv) => {
-      (this.usuari = serv),
-        (this.email = serv.email),
-        (this.usuario = serv.usuario),
-        (this.password = serv.password),
-        (this.id = serv._id);
-    });
-    console.log(this.usuari);
+    this.usersService.getUser(this.code).subscribe(
+      serv => {
+        this.usuari = serv, this.email = serv.email, this.usuario = serv.usuario, this.password = serv.password,
+          this.id = serv._id;
+      }
+    );
   }
 
   showBasicDialog2() {
@@ -88,7 +86,7 @@ export class EditarPerfilComponent implements OnInit {
     newUsuario.imagen = this.usuari.imagen;
 
 
-    this.usersSErvice.putUsers(newUsuario, this.code).subscribe(() => {
+    this.usersService.putUsers(newUsuario, this.code).subscribe(() => {
       this.router.navigate(['/editar-perfil']);
     });
   }
@@ -98,13 +96,13 @@ export class EditarPerfilComponent implements OnInit {
 
   upload = () => {
     console.log(this.imagen);
-    this.usersSErvice.upload(this.imagen, this.usuari._id).subscribe((res) => {
+    this.usersService.upload(this.imagen, this.usuari._id).subscribe((res) => {
       console.log('que essssssssssssss', res);
       this.foto = ' http://localhost:4000/' + res.path;
     });
   }
 
-  DocUpload = (event) => {
+  DocUpload = (event: any) => {
     this.usuari.imagen = event.body.imagen;
     console.log('evento ', this.usuari.imagen);
   }
