@@ -80,7 +80,7 @@ export class NavbarComponent implements OnInit {
                    this.itemsSupplier.push({
                     label: element.nombre,
                     icon: 'pi pi-briefcase',
-                    routerLink: '/supplier/' + element._id
+                    routerLink: '/supplier/view/' + element._id
                    });
                });
             }
