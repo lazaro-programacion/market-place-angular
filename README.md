@@ -57,3 +57,11 @@ npm i -s connect-multiparty
 para usar el [(ngModel)]
 teneis que usarlos con el estalone 
 [(ngModel)]= 'search'   [ngModelOptions]="{ standalone: true }" 
+
+```
+intalaciones en backend para autenticar
+npm i --save moment
+npm i --save jwt-simple
+npm i --save bcrypt-nodejs
+
+```
