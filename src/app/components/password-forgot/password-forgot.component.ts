@@ -27,8 +27,8 @@ export class PasswordForgotComponent implements OnInit {
  
    // this.usersService.getUsers().subscribe((users) => (this.users = users));
     this.show = true;
-  
-    
+
+
   }
   onSubmit(email:string){
     //console.log(email)
@@ -81,34 +81,15 @@ if(this.email === ''){
   }
 
   onPassword(){
-    
-   this.newUser = this.user[0]
-   this.newUser.password = this.newPassword 
-   
-   
-   console.log('datos a enviar', this.newUser._id,  this.newUser)
-  
-   this.usersService.putPassword(this.newUser, this.newUser._id).subscribe(
-    response =>{
 
-      console.log(response)
-         if(!response.user){
-           this.status = 'error'
-         }else{
-         //  localStorage.setItem('identity', JSON.stringify(this.user))
-         //  this.status = 'success'
-            console.log('response.user')
 
-          } 
-    },
-    error =>{
-      const message = <any>error
-      if(message != null){
-        this.status = 'error'
-      }
-      
-    }
-  )
-  }    
+    this.newUser.password = this.newPassword
+    console.log('datos a enviar', this.newUser._id,  this.newUser.password )
+    this.usersService.putPassword(this.newUser.password, this.newUser._id).subscribe(
+      () => {
+          this.status = 'correcto'
+      });
+
+  }
 
 }

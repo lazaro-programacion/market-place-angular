@@ -30,11 +30,11 @@ export class UsersService {
    const params = JSON.stringify(userRegister)
     const headers = new HttpHeaders({ 'Content-Type':  'application/json'})
     return this.httpClient.post(this.url + '/user/register', params, {headers:headers})
-      
+
   }
 
   signUp(userLogin, gettoken = null):Observable<any>{
-  
+
     if(gettoken !=null){
       userLogin.gettoken = gettoken
     }
@@ -54,7 +54,7 @@ export class UsersService {
     }
     return this.identity
   }
-  
+
   getToken = () => {
     const token = localStorage.getItem('token')
       if(token != 'undefined'){
@@ -95,27 +95,29 @@ export class UsersService {
    // const params = JSON.stringify(userUpdate)
     const headers = new HttpHeaders({
        'Content-Type':  'application/json',
-       'Authorization': this.getToken() 
+       'Authorization': this.getToken()
         })
         return this.httpClient.put( this.url + '/user/update-user/'+ _id,  userUpdate, {headers:headers})
   }
-  
 
-  putPassword = (userUpdate, _id: string): Observable<any> => {
+
+  putPassword = (password: string, _id: string): Observable<any> => {
 
     const headers = new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': this.getToken() 
+      'Authorization': this.getToken()
        })
     return this.httpClient.put(
-      this.url + '/user/' + _id, userUpdate, {headers:headers})
-     
+      this.url + '/user/' + _id, {password}, {headers:headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   searchUsers = (search: string) => {
     const headers = new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': this.getToken() 
+      'Authorization': this.getToken()
        })
     return this.httpClient.get<Users[]>(
       'http://localhost:4000/api/user/search/' + search, {headers: headers}).toPromise();
