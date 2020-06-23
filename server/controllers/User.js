@@ -159,17 +159,35 @@ User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpd
     
  },
    
-   getPassword: (req, res) => {
+ getPassword: (req, res) => {
+// recoger parametros
+const userId = req.params.id
+const update = req.body
+
+User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpdated) => {
+  if(err){ 
+      res.status(500).send({ message: 'error al actuaqlizar usuario'});
+  }else{
+     if(!userUpdated){
+      res.status(404).send({ message: 'no se ha podido actuaqlizar usuario'});
+     }else{
+       res.status(200).send({user: userUpdated})
+     }
+
+  }
+  })
+   /*
     const userId = req.params.id
     const update = req.body
+    console.log(userId, update)
      User.findByIdAndUpdate(
       { _id: userId },
-      { password: update },
+       update,
       { new: true },
       (err, user) =>
         err ? res.status(500).send("error") : res.status(200).jsonp(user)
     );
- 
+ */
  },
 
  upload: (req, res) => {
@@ -259,6 +277,34 @@ fs.exists(path_file, (exists) => {
  
 
 },
+
+
+getEmail: (req, res) => {
+  const busqueda = req.params.email;
+  console.log(busqueda);
+  User.find(
+     { email: busqueda}  
+     )
+    .exec((err, users) => {
+      if (err) {
+        return res.status(500).send("erroraco");
+      }
+      if (!users || users.length <= 0) {
+           return res.status(404).jsonp({message: 'No hay resultados de la busqueda'})
+
+       // return res.status(200).jsonp(users);
+      }
+      return res.status(200).jsonp(users);
+    });
+},
+
+
+
+
+
+
+
+
 
 
 };

@@ -35,17 +35,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.usersService.getIdentity())
     console.log(this.usersService.getToken())
+    
   }
 
   onSubmit(form: any) {
-/*
-    console.log('logeado', form, this.email, this.password);
-    const user: Users = new Users(); // (  this.usuario, this.email, this.rol, this.password)
 
-    user.email = this.email;
-    user.rol = this.rol;
-    user.password = this.password;
-*/
   //  console.log('form', form,this.user)
     // loguear y recibir datos usuario
     this.usersService.signUp(this.user).subscribe(

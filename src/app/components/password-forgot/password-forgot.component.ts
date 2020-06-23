@@ -9,8 +9,9 @@ import { UsersService } from "../../services/users.service"
 })
 export class PasswordForgotComponent implements OnInit {
  public email : string;
- public userFilter: Users[];
- public users: Users[] = [];
+
+ //public users: Users[] = [];
+ public user: Users;
  public newUser: Users;
  public status:string= '';
  public newPassword: string;
@@ -23,8 +24,8 @@ export class PasswordForgotComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = '';
-    this.userFilter= [];
-    this.usersService.getUsers().subscribe((users) => (this.users = users));
+ 
+   // this.usersService.getUsers().subscribe((users) => (this.users = users));
     this.show = true;
   
     
@@ -32,38 +33,82 @@ export class PasswordForgotComponent implements OnInit {
   onSubmit(email:string){
     //console.log(email)
 
-    this.usersService.getUsers().subscribe((users) => (this.users = users));
-    
-    //console.log(this.users)
-  if(this.email === ''){ 
+  //  let userFilter = []
+    if(this.email === ''){ 
+      this.status = ''
+    }else{
+
+   this.usersService.getEmail(email).subscribe(
+     response => {
+       console.log(response)
+      this.user = response;
+
+       if(this.user){
+         this.status = 'success'
+         this.show = false
+       }else{
+         this.status ='error'
+       }
+
+     },
+     error => { 
+      var errorMessage = <any>error
+     if(errorMessage != null){
+   
+       this.status = 'error'
+     }
+   })
+   
+  
+/*
+if(this.email === ''){ 
     this.status = ''
   }else{
-
-    this.userFilter = this.users.filter(element =>(element.email === email))
-    
-    if (this.userFilter.length === 1 ){
+    userFilter = this.users.filter(element =>(element.email === email))
+    if (userFilter.length === 1 ){
       this.status = 'success'
-     // console.log(this.userFilter[0])
-      this.newUser = this.userFilter[0]
+    
+      this.newUser = userFilter[0]
       this.show = false
     }else{
       this.status = 'error'
     }
+*/
 
+     
   }   
 
   }
 
   onPassword(){
     
-    
-    this.newUser.password = this.newPassword 
-    console.log('datos a enviar', this.newUser._id,  this.newUser.password )
-    this.usersService.putUsers(this.newUser.password, this.newUser._id).subscribe(
-      () => {
-          this.status = 'correcto'
-      });
+   this.newUser = this.user[0]
+   this.newUser.password = this.newPassword 
+   
+   
+   console.log('datos a enviar', this.newUser._id,  this.newUser)
+  
+   this.usersService.putPassword(this.newUser, this.newUser._id).subscribe(
+    response =>{
 
-  }     
+      console.log(response)
+         if(!response.user){
+           this.status = 'error'
+         }else{
+         //  localStorage.setItem('identity', JSON.stringify(this.user))
+         //  this.status = 'success'
+            console.log('response.user')
+
+          } 
+    },
+    error =>{
+      const message = <any>error
+      if(message != null){
+        this.status = 'error'
+      }
+      
+    }
+  )
+  }    
 
 }

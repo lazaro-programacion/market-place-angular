@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
 import { ActivatedRoute } from '@angular/router';
@@ -14,12 +14,23 @@ export class SupplierviewComponent implements OnInit {
   public id: string;
   public supplier$: Observable<Supplier>;
 
+
   constructor(private route: ActivatedRoute,
               private supplierService: SupplierService) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.supplier$ = this.supplierService.getSupplier(this.id);
+   
+    
+     this.route.params.subscribe(val => {
+          // put the code from `ngOnInit` here
+          this.id = this.route.snapshot.paramMap.get('id');
+   
+          this.supplier$ = this.supplierService.getSupplier(this.id);
+        });
+    
   }
 
+
+ 
 }
+   

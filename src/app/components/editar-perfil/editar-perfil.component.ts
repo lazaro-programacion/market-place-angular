@@ -36,21 +36,12 @@ export class EditarPerfilComponent implements OnInit {
   ) { this.user = new Users("","","","","",""); }
 
   ngOnInit(): void {
-    // this.code = this.route.snapshot.paramMap.get('id');
+   
     this.url = GLOBAL.url;
     this.identity= this.usersService.getIdentity();
     this.token= this.usersService.getToken();
     this.user = this.identity
-    /*
-    this.usersService.getUser(this.code).subscribe(
-      serv => {
-        
-        this.usuari = serv 
-        , this.email = serv.email, this.usuario = serv.usuario, this.password = serv.password, this.id = serv._id;
-         console.log(this.user.email) 
-      }
-    );
-    */
+   
    console.log(this.identity, this.user)
    this.afuConfig = {
     multiple: false,
@@ -76,7 +67,7 @@ export class EditarPerfilComponent implements OnInit {
       resetBtn: 'Reset',
       uploadBtn: 'Upload',
       dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Sube la imagen del articulo...',
+      attachPinBtn: 'Sube la imagen de tu avatar...',
       afterUploadMsg_success: 'Successfully Uploaded !',
       afterUploadMsg_error: 'Upload Failed !'
     }
@@ -112,20 +103,7 @@ export class EditarPerfilComponent implements OnInit {
                                     }
                                   )
 
-/*
-     
-    newUsuario._id = this.usuari._id;
-    newUsuario.usuario = this.usuario;
-    newUsuario.email = this.email;
-    newUsuario.password = this.password;
 
-
- this.usersService.putUsers(newUsuario, this.code).subscribe(
-      () => {
-        this.router.navigate(['/editar-perfil']);
-      });
-
-  */
    
   }
 
