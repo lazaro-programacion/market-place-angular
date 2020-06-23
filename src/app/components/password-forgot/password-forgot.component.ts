@@ -26,21 +26,21 @@ export class PasswordForgotComponent implements OnInit {
     this.userFilter= [];
     this.usersService.getUsers().subscribe((users) => (this.users = users));
     this.show = true;
-  
-    
+
+
   }
   onSubmit(email:string){
     //console.log(email)
 
     this.usersService.getUsers().subscribe((users) => (this.users = users));
-    
+
     //console.log(this.users)
-  if(this.email === ''){ 
+  if(this.email === ''){
     this.status = ''
   }else{
 
     this.userFilter = this.users.filter(element =>(element.email === email))
-    
+
     if (this.userFilter.length === 1 ){
       this.status = 'success'
      // console.log(this.userFilter[0])
@@ -50,20 +50,20 @@ export class PasswordForgotComponent implements OnInit {
       this.status = 'error'
     }
 
-  }   
+  }
 
   }
 
   onPassword(){
-    
-    
-    this.newUser.password = this.newPassword 
+
+
+    this.newUser.password = this.newPassword
     console.log('datos a enviar', this.newUser._id,  this.newUser.password )
-    this.usersService.putUsers(this.newUser.password, this.newUser._id).subscribe(
+    this.usersService.putPassword(this.newUser.password, this.newUser._id).subscribe(
       () => {
           this.status = 'correcto'
       });
 
-  }     
+  }
 
 }
