@@ -46,6 +46,8 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { FormVendorComponent } from './components/form-vendor/form-vendor.component';
 
+import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
+import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,8 +70,10 @@ import { FormVendorComponent } from './components/form-vendor/form-vendor.compon
     PasswordForgotComponent,
     SupplierviewComponent,
     ContactUsComponent,
-    FormVendorComponent
+    FormVendorComponent,
     
+    SupplierAddComponent,
+    SupplierEditComponent
   ],
   imports: [
     AppRoutingModule,
