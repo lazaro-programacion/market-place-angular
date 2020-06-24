@@ -4,6 +4,7 @@ const path = require("path");
 
 // importar libreria bcrypt
 const bcrypt = require('bcrypt-nodejs');
+const bcryptnew = require('bcrypt');
 // importar jwt
 const jwt = require('../jwt/jwt');
 
@@ -28,9 +29,29 @@ const userController = {
   }else{
       if(!userId){
             // codificar password
-          bcrypt.hash(req.body.password, null, null, function (err, hash) {
+          
+              const saltRounds = 10
+              const hash = bcryptnew.hashSync(req.body.password, saltRounds);
               user.password = hash
-              // guardar usuario
+              console.log(user.password)
+                // guardar usuario
+                user.save((err, userStored) => {
+                    if(err){
+                        res.status(500).send({message: 'error al guardar el usuario'});
+                    }else{
+                        if(!userStored){
+                            res.status(404).send({message: 'No se ha registrado el usuario'});
+                        }else{
+                            res.status(200).send({user: userStored, message: 'usuario guardado correctamente'});
+                            }
+                        }
+  
+                  })
+            /***
+             * 
+             *  bcrypt.hash(req.body.password, null, null, function (err, hash) {
+              user.password = hash
+             
               user.save((err, userStored) => {
                   if(err){
                       res.status(500).send({message: 'error al guardar el usuario'});
@@ -45,6 +66,12 @@ const userController = {
                 })
   
                })
+             * 
+             * 
+             * 
+             * 
+             */
+           
           }else{
               res.status(500).send({message: 'el email del usuario ya existe'});
           }
@@ -53,19 +80,6 @@ const userController = {
 
 
 
-/*
-    user.save((err, newUser) =>
-      err
-        ? res.status(500).send("Error guardando : " + err.message)
-        : res.status(201).jsonp(newUser)
-    );
-  },
-  getUser: (req, res) => {
-    User.find((err, user) =>
-      err ? res.status(500).send("error") : res.status(200).jsonp(user)
-    );
-  },
-*/
 
 
 },
@@ -81,26 +95,53 @@ login: (req, res) => {
                   res.status(500).send({message: 'error al comprobar el usuario'});
               }else{
                   if(user){
+                    console.log(password, user.password)
                       // comprobar password enviado con el existente
-                      bcrypt.compare(password , user.password, (err, check) => {
-
-                      if(check){
-                              // comprobar y generar token
-                          if(params.gettoken){
-                               // devolver token
-                               res.status(200).send({
-                                   token: jwt.createToken(user)
-                               });
+                     const compare =  bcryptnew.compareSync(password, user.password);
+                      if(compare === true){
+                        if(params.gettoken){
+                          // devolver token
+                          res.status(200).send({
+                              token: jwt.createToken(user)
+                          });
                           }else{
                               res.status(200).send({user: user});
                           }
-
                       }else{
-                          res.status(404).send({ message: 'el password no es correcto'});
-                      } 
-
-                      })
+                        res.status(404).send({ message: 'el password no es correcto'});
+                    } 
+                     
+                  
+                    /***
+                     * 
+                     *  bcrypt.compare(password , user.password, (err, resp) => {
                       
+                              console.log('response', resp ) 
+                              if(resp){
+                                // comprobar y generar token
+                            if(params.gettoken){
+                                // devolver token
+                                res.status(200).send({
+                                    token: jwt.createToken(user)
+                                });
+                            }else{
+                                res.status(200).send({user: user});
+                            }
+
+                        }else{
+                            res.status(404).send({ message: 'el password no es correcto'});
+                        } 
+
+                        })
+                     * 
+                     * 
+                     * 
+                     * 
+                     */
+                   
+
+
+                     
                   }else{
                       res.status(404).send({ message: 'el usuario no esta registrado'});
                   }
@@ -159,36 +200,64 @@ User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpd
     
  },
    
+ // metodo cambio password
+
  getPassword: (req, res) => {
 // recoger parametros
 const userId = req.params.id
 const update = req.body
 
-User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpdated) => {
+
+const saltRounds = 10
+const hash = bcryptnew.hashSync(req.body.password, saltRounds);
+update.password = hash
+console.log(update.password)
+
+User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) => {
   if(err){ 
-      res.status(500).send({ message: 'error al actuaqlizar usuario'});
+      res.status(500).send({ message: 'error al actualizar usuario'});
   }else{
      if(!userUpdated){
-      res.status(404).send({ message: 'no se ha podido actuaqlizar usuario'});
+      res.status(404).send({ message: 'no se ha podido actualizar usuario'});
      }else{
        res.status(200).send({user: userUpdated})
      }
 
   }
   })
-   /*
-    const userId = req.params.id
-    const update = req.body
-    console.log(userId, update)
-     User.findByIdAndUpdate(
-      { _id: userId },
-       update,
-      { new: true },
-      (err, user) =>
-        err ? res.status(500).send("error") : res.status(200).jsonp(user)
-    );
- */
+
+  /**
+   * 
+   * bcrypt.hash(req.body, saltRounds, null, function (err, hash) {
+ update.password = hash
+  console.log(update.password)
+  User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) => {
+    if(err){ 
+        res.status(500).send({ message: 'error al actualizar usuario'});
+    }else{
+       if(!userUpdated){
+        res.status(404).send({ message: 'no se ha podido actualizar usuario'});
+       }else{
+         res.status(200).send({user: userUpdated})
+       }
+  
+    }
+    })
+
+})
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   */
+
+
+  
  },
+
+ // metodo descargar archivos
 
  upload: (req, res) => {
   const user = new User();
@@ -230,6 +299,8 @@ User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpd
     }
   }
 },
+
+// metodo buscador
   getSearch: (req, res) => {
     const busqueda = req.params.search;
     console.log(busqueda);
@@ -278,7 +349,7 @@ fs.exists(path_file, (exists) => {
 
 },
 
-
+// metodos comprobar email
 getEmail: (req, res) => {
   const busqueda = req.params.email;
   console.log(busqueda);

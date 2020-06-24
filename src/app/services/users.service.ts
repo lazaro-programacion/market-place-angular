@@ -101,14 +101,11 @@ export class UsersService {
   }
 
 
-  putPassword = (password: string, _id: string): Observable<any> => {
-
-    const headers = new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': this.getToken()
-       })
+  putPassword = (user: Users, _id: string): Observable<any> => {
+    console.log(user)
+    
     return this.httpClient.put(
-      this.url + '/user/' + _id, {password}, {headers:headers})
+      this.url + '/user/' + _id, user)
       .pipe(
         catchError(this.handleError)
       );

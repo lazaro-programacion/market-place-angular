@@ -32,13 +32,13 @@ export class PasswordForgotComponent implements OnInit {
   }
   onSubmit(email:string){
     //console.log(email)
-
+   this.email = email.toLowerCase()
   //  let userFilter = []
     if(this.email === ''){ 
       this.status = ''
     }else{
 
-   this.usersService.getEmail(email).subscribe(
+   this.usersService.getEmail(this.email).subscribe(
      response => {
        console.log(response)
       this.user = response;
@@ -82,14 +82,17 @@ if(this.email === ''){
 
   onPassword(){
 
-
+    this.newUser = this.user[0]
     this.newUser.password = this.newPassword
-    console.log('datos a enviar', this.newUser._id,  this.newUser.password )
-    this.usersService.putPassword(this.newUser.password, this.newUser._id).subscribe(
+    console.log('datos a enviar', this.newUser._id,  this.newUser, this.newUser.password )
+    
+     this.usersService.putPassword(this.newUser, this.newUser._id).subscribe(
       () => {
           this.status = 'correcto'
       });
 
+    
+    
   }
 
 }

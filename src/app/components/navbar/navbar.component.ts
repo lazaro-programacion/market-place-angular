@@ -80,7 +80,7 @@ export class NavbarComponent implements OnInit, DoCheck {
                    this.itemsSupplier.push({
                     label: element.nombre,
                     icon: 'pi pi-briefcase',
-                    routerLink: '/supplier/view/' + element._id
+                   routerLink: '/supplier/view/' + element._id
                    });
                });
             }
@@ -137,12 +137,14 @@ export class NavbarComponent implements OnInit, DoCheck {
 
         this.itemsSub = [
             {
-                label: 'About',
-                icon: 'pi pi-fw pi-users'
+                label: 'Contacta con nosotros',
+                icon: 'pi pi-fw pi-envelope',
+                routerLink: 'contacta'
             },
             {
-                label: 'Business',
-                icon: 'pi pi-fw pi-briefcase'
+                label: 'Vende con nosotros',
+                icon: 'pi pi-fw pi-briefcase',
+                routerLink: 'form-vendedor'
             }
         ];
 

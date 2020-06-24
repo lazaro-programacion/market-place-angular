@@ -14,7 +14,7 @@ const SuppliersRoutes = require("./routes/Suppliers");
   // Configuracion
  app.use('/api/service', require('./routes/service-routes'))
  app.use("/api/supplier/", SuppliersRoutes);
-
+ app.use('/api/email' , require('./routes/email'));
 mongoose
   .connect(
     "mongodb+srv://admin:admin@cluster0-rckpe.mongodb.net/market-store-jedi?retryWrites=true&w=majority"
