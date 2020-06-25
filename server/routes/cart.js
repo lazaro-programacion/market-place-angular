@@ -14,10 +14,10 @@ const md_admin = require('../middlewares/isAdmin')
 
 
 // Rutas útiles
-router.post('/', [md_auth.ensureAuth, md_admin.isAdmin], CartController.saveCart);
+router.post('/', [md_auth.ensureAuth], CartController.saveCart);
 router.get('/carts', CartController.getCarts);
-router.get('/cart/:id', CartController.getCart);
-
+router.get('/cart-user/',[md_auth.ensureAuth],  CartController.getCartsUser);
+router.get('/cart-filter/:start&:end', CartController.filterCartDates);
 
 
 

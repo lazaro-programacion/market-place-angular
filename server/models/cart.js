@@ -1,12 +1,12 @@
 // cargar mongoose
 var mongoose = require('mongoose');
-//const { stringify } = require('querystring');
+const moment = require('moment')
 // para utilizar los objetos de este tipo
 var Schema = mongoose.Schema;
 
 // crear propiedades del objeto
 var CartSchema = Schema({
-    //date: new Date().toLocaleString(),
+    date: Date,
     quantity: Number,
     //totalCart: Number,
     service: {type: Schema.ObjectId, ref: 'Service'},
