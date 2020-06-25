@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.usersService.getIdentity())
-    console.log(this.usersService.getToken())
+   // console.log(this.usersService.getIdentity())
+   console.log(this.usersService.getToken())
     
   }
 

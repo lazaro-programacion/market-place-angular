@@ -42,7 +42,7 @@ export class EditarPerfilComponent implements OnInit {
     this.token= this.usersService.getToken();
     this.user = this.identity
    
-   console.log(this.identity, this.user)
+   // console.log(this.identity, this.user)
    this.afuConfig = {
     multiple: false,
     formatsAllowed: ".jpg, .png., .gift, .jpeg",

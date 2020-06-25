@@ -22,6 +22,7 @@ import { SuppliersListComponent } from './components/suppliers-list/suppliers-li
 import { UsersListComponent } from './components/users-list/users-list.component';
 
 import { UsersService } from './services/users.service';
+import { EmailSupplierService } from "./services/email-supplier.service";
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -98,7 +99,7 @@ import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.
     AngularFileUploaderModule
    
   ],
-  providers: [UsersService],
+  providers: [UsersService, EmailSupplierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

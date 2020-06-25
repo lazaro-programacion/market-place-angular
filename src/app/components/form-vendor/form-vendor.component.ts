@@ -6,7 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-form-vendor',
   templateUrl: './form-vendor.component.html',
-  styleUrls: ['./form-vendor.component.css']
+  styleUrls: ['./form-vendor.component.css'],
+  providers: [EmailSupplierService]
 })
 export class FormVendorComponent implements OnInit {
 
