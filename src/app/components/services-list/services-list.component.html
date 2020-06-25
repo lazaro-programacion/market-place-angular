@@ -22,9 +22,6 @@
                         <img [src]="service.imagen" height="420" width="327">
                     </div>
                     <div class="product-info">
-                        <div>admin
-                            <input type='checkbox' (change)='toggleAdministrador()'>
-                        </div>
                         <div class="product-text">
                             <h1>{{service.nombre}}</h1>
                             <p>{{service.descripcion}}</p>
@@ -33,7 +30,7 @@
                             <p>{{service.price}} €</p>
                         </div>
                         <div class="button">
-                        <button  type="button" routerLink='/service/add' [state]='{id: service._id, admin: administrador}' >Detalles</button>
+                        <button  type="button" routerLink='/service/add' [state]='{id: service._id}' >Detalles</button>
 
                         </div>
 

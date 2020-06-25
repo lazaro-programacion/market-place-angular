@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
+import { UsersService } from 'src/app/services/users.service';
+import { Users } from 'src/app/models/users';
 
 
 
@@ -12,17 +14,21 @@ import { Service } from 'src/app/models/service';
 export class ServiceAddComponent implements OnInit {
 
 
-  public administrador = history.state.admin;
   public service: Service;
   public id = history.state.id;
+  public saveId: string;
+  public user: any;
 
-  constructor(private serviceService: ServicesService) { }
+  constructor(private serviceService: ServicesService, private userService: UsersService) { }
 
   ngOnInit(): void {
-    this.administrador = true; // history.state.admin;
-    // const id = '5ee74de88e04772fb4f8f299'; // solo para pruebas
+    if (this.id) {
+      localStorage.setItem('savedId', this.id);
+    } else {
+      this.id = localStorage.getItem('savedId');
+    }
+    this.user = this.userService.getIdentity();
     this.getTheService(this.id);
-
   }
 
   getTheService = (id: string) => {
@@ -31,14 +37,13 @@ export class ServiceAddComponent implements OnInit {
         this.service = serv;
       }
     );
-
-    console.log('service', this.service);
-
   }
 
   editServicio(id: string) {
-    console.log('Editar servicio', id, this.service);
-    // TODO: editar servicio
+    this.serviceService.editService(this.service).subscribe(
+      ser => console.log('servicio editado', this.service)
+    );
+
   }
 
   nuevoServicio() {
@@ -49,10 +54,14 @@ export class ServiceAddComponent implements OnInit {
     // TODO: añadir validación y comprobación
   }
 
-  activeServiceToggle(id: string) {
-    console.log('togle servicio activo');
-    // TODO: cambiar servicio de activo a inactivo
+  onChangeAlert = (event) => {
+    console.log('tecla pulsada');
+    if (this.service.descripcion !== event.target.value) {
 
+      console.log('¡Hay cambios!');
+    } else {
+      console.log('sin cambios');
+    }
   }
 
   cancelAction() {

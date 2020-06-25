@@ -27,10 +27,9 @@ export class ServicesService {
     return this.httpClient.post<Service>('http://localhost:4000/api/service', service);
   }
 
-
-
-  deleteService = () => {
-    // TODO: Implementar
+  editService = (service: Service) => {
+    console.log('editando servicio', service._id);
+    return this.httpClient.put<Service>('http://localhost:4000/api/service/' + service._id, service);
   }
 
 }

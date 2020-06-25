@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
 import { SelectItem } from 'primeng/api';
+import { UsersService } from 'src/app/services/users.service';
+import { Users } from 'src/app/models/users';
 
 @Component({
   selector: 'app-services-list',
@@ -19,9 +21,9 @@ export class ServicesListComponent implements OnInit {
   public selectedService: Service;
 
   public services: Service[];
-  public administrador = false;
+  public user: Users;
 
-  constructor(private serviceService: ServicesService) { }
+  constructor(private serviceService: ServicesService, private usersService: UsersService) { }
 
   ngOnInit(): void {
     this.serviceService.getServices().subscribe(
@@ -31,9 +33,12 @@ export class ServicesListComponent implements OnInit {
     );
   }
 
-  toggleAdministrador() {
-    this.administrador = !this.administrador;
-    console.log('admin', this.administrador);
+  activeServicesList = (filter: string) => {
+    if (filter === 'A') {
+      return this.services.filter(item => item.active === true);
+    } else if (filter === 'I') {
+      return this.services.filter(item => item.active === false);
+    } else { return this.services; }
   }
 
   selectService(event: Event, service: Service) {

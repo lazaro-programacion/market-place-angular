@@ -1,4 +1,4 @@
-<div class="wrapper-admin" *ngIf="administrador">
+<div class="wrapper-admin" *ngIf="user.rol==='admin'">
     <div class="servicio">
         <div class="cabecera">
             <h1>Servicio</h1>
@@ -17,27 +17,31 @@
                 </div>
                 <div>
                     <button (click)='editServicio(service._id)'>Editar</button>
-                    <button>Desactivar</button>
                     <button (click)='nuevoServicio()'>Nuevo</button>
                     <button (click)='cancelAction()'>Cancelar</button>
                 </div>
             </div>
             <div class="editor">
-                <label>Nombre</label><br>
-                <input type='text'[(ngModel)]='service.nombre'>
-                <hr>
+                <h2>Área de edición</h2>
+                <div class='editor-group'>
+                    <label>Nombre</label>
+                    <label>Activo</label>
+                    <input type='text' [(ngModel)]='service.nombre'>
+                    <input type="checkbox" [(ngModel)]='service.active'>
+                </div>
                 <label>Descripción</label><br>
-                <textarea cols="30" rows="8" [(ngModel)]='service.descripcion'></textarea>
-                <hr/>
+                <textarea cols="38" rows="7" [(ngModel)]='service.descripcion' (keypress)='onChangeAlert($event)'></textarea>
+                <br />
                 <label>Precio</label><br>
                 <input type='text' [(ngModel)]='service.price'>
+
             </div>
 
         </div>
 
     </div>
 </div>
-<div class="wrapper-user" *ngIf="!administrador">
+<div class="wrapper-user" *ngIf="user.rol!=='admin'">
     <div class="servicio">
         <div class="cabecera">
             <h3>Servicio</h3>
