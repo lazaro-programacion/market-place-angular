@@ -8,7 +8,8 @@ var Schema = mongoose.Schema;
 var CartSchema = Schema({
     date: Date,
     quantity: Number,
-    //totalCart: Number,
+    unit_price: Number,
+    totalCart: Number,
     service: {type: Schema.ObjectId, ref: 'Service'},
     supplier: {type: Schema.ObjectId, ref: 'Suppliers'},
     user: {type: Schema.ObjectId, ref: 'User'} // referencia a otra coleccion por id

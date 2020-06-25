@@ -17,7 +17,7 @@ const md_admin = require('../middlewares/isAdmin')
 router.post('/', [md_auth.ensureAuth], CartController.saveCart);
 router.get('/carts', CartController.getCarts);
 router.get('/cart-user/',[md_auth.ensureAuth],  CartController.getCartsUser);
-router.get('/cart-filter/:start&:end', CartController.filterCartDates);
+router.get('/cart-filter/:start&:end',[md_auth.ensureAuth /*, md_admin.isAdmin*/],  CartController.filterCartDates);
 
 
 
