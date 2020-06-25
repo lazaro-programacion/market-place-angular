@@ -59,11 +59,9 @@ teneis que usarlos con el estalone
 [(ngModel)]= 'search'   [ngModelOptions]="{ standalone: true }" 
 
 ```
-npm i -s bcrypt-nodejs
-´´´
+intalaciones en backend para autenticar
+npm i --save moment
+npm i --save jwt-simple
+npm i --save bcrypt-nodejs
+npm i angular-file-uploader
 ```
-npm i -s jwt-simple   
-´´´
-```
-npm i -s moment
-´´´

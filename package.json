@@ -37,7 +37,7 @@
     "ng-uikit-pro-standard": "^1.0.0",
     "nodemon": "^2.0.4",
     "primeflex": "^1.1.1",
-    "primeicons": "^4.0.0-rc.2",
+    "primeicons": "^4.0.0",
     "primeng": "^9.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

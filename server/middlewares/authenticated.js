@@ -5,7 +5,7 @@ const secret = 'clave_secreta'
 exports.ensureAuth = function(req, res, next){
     // comprobar si llega la cabecera (headers) de autenticacion
     if(!req.headers.authorization){
-        return res.status(403).send({message: 'la peticion no lleva el hedaer de autenticacion'})
+        return res.status(403).send({message: 'la peticion no lleva el header de autenticacion'})
     }
                              // expresion regular para eliminar caracteres especiales del string del token
     const token = req.headers.authorization.replace(/['"]+/g, '')
@@ -20,7 +20,7 @@ exports.ensureAuth = function(req, res, next){
               message: 'El token ha expirado'
           })
         }
-       
+
         req.user = payload;
       //  console.log('user', req.user)
 
@@ -29,8 +29,8 @@ exports.ensureAuth = function(req, res, next){
             message: 'El token no es valido'
         })
     }
- 
-    
+
+
   // req.user = payload;
   // console.log('user', req.user)
 

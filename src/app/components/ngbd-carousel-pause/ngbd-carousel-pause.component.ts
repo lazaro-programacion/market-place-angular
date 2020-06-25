@@ -38,7 +38,7 @@ export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
       this.imagesFilter = this.servicesFilter;
     });
 
-    console.log('mi input', this.imagesFilter);
+   // console.log('mi input', this.imagesFilter);
 
     this.sortOptions = [
       { label: 'Mas barato', value: '!precio' },
@@ -48,7 +48,7 @@ export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    console.log('servicesFilter', this.servicesFilter);
+   // console.log('servicesFilter', this.servicesFilter);
     this.imagesFilter = this.servicesFilter;
   }
 
@@ -59,7 +59,7 @@ export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
   }
 
   onSortChange(event: any) {
-    console.log('event', event.value);
+  //  console.log('event', event.value);
   }
 
   onDialogHide() {

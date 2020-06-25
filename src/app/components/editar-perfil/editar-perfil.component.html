@@ -1,74 +1,91 @@
 <div class="container">
+  <div class="alert alert-success" *ngIf="status === 'success'" role="alert">
+    Te has actualizado correctament!
+    <a [routerLink]="['/home']">ir al Home aqui</a>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="status === 'error'" role="alert">
+    Ha habido un problema no se han actualizado tus datos!
+  </div>
+
   <div class="row">
     <div class="col-md-12" style="display: flex; flex-wrap: wrap;">
       <div class="card" style="width: 18rem;">
-        <img [src]=" url + usuari.imagen" alt="..." *ngIf='usuari.imagen' >
-         <img *ngIf='!usuari.imagen'
-         [src]=" url + noFoto"
+        <img *ngIf="!identity.imagen" [src]="urls + noFoto" />
+        <img
+          *ngIf ='identity.imagen'
+          [src]="urls  + identity.imagen "
           style="height: 273px; padding: 10px;"
           class="card-img-top"
-          alt="..."
+          [alt]="identity.usuario"
         />
-        <angular-file-uploader
-      [config]="afuConfig"
-      (ApiResponse)="DocUpload($event)">
-</angular-file-uploader>
+        <div>
+          <div>
+            <label for="exampleInputavatar">Avatar</label>
+            <angular-file-uploader
+              *ngIf="token"
+              [config]="afuConfig"
+              (ApiResponse)="DocUpload($event)"
+            >
+            </angular-file-uploader>
+          </div>
+        </div>
       </div>
 
       <div class="well well-sm" style="flex: 0 0 60%;">
-        <form class="form-horizontal" method="post">
+        <form
+          class="form-horizontal"
+          method="post"
+          #userForm="ngForm"
+          (ngSubmit)="guardar()"
+        >
           <fieldset>
             <legend class="text-center header">Editar perfil</legend>
 
             <div class="form-group">
               <div class="col-md-8" style="flex: 0 0 60%; margin: auto;">
                 <input
-                  id="fname"
+                  id="name"
                   name="name"
                   type="text"
-                  [(ngModel)]="usuario"
+                  #name="ngModel"
+                  [(ngModel)]="identity.usuario"
                   [ngModelOptions]="{ standalone: true }"
-                  placeholder="Usuario"
                   class="form-control"
+                  required
                 />
               </div>
             </div>
-
+            <span *ngIf="!name.valid && name.touched">
+              <p>El nombre es obligatorio</p>
+            </span>
             <div class="form-group">
               <div class="col-md-8" style="flex: 0 0 60%; margin: auto;">
                 <input
                   id="email"
                   name="email"
                   type="text"
-                  [(ngModel)]="email"
+                  #Email="ngModel"
+                  [(ngModel)]="identity.email"
                   [ngModelOptions]="{ standalone: true }"
-                  placeholder="Email"
                   class="form-control"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  required
                 />
               </div>
             </div>
+            <span *ngIf="!Email.valid && Email.touched">
+              <p>El email es obligatorio</p>
+            </span>
 
-            <div class="form-group">
-              <div class="col-md-8" style="flex: 0 0 60%; margin: auto;">
-                <input
-                  id="phone"
-                  name="phone"
-                  type="password"
-                  [(ngModel)]="password"
-                  [ngModelOptions]="{ standalone: true }"
-                  placeholder="Password"
-                  class="form-control"
-                />
-              </div>
-            </div>
             <div class="form-group">
               <div class="col-md-12 text-center">
                 <button
                   type="submit"
                   class="btn btn-primary btn-lg"
-                  (click)="guardar()"
+                  [disabled]="!name.valid || !Email.valid"
                 >
-                  Guardar
+                  Actualizar
                 </button>
               </div>
             </div>

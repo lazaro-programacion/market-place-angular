@@ -43,7 +43,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SupplierviewComponent } from './components/supplierview/supplierview.component';
 
-
+import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +61,8 @@ import { SupplierviewComponent } from './components/supplierview/supplierview.co
     SuppliersListComponent,
     UsersListComponent,
     NgbdCarouselPauseComponent,
-    SupplierviewComponent,
+    PasswordForgotComponent,
+    SupplierviewComponent
   ],
   imports: [
     AppRoutingModule,
@@ -84,7 +85,6 @@ import { SupplierviewComponent } from './components/supplierview/supplierview.co
     SidebarModule,
     PanelMenuModule,
     AngularFileUploaderModule
-
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]

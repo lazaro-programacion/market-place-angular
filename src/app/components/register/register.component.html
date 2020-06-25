@@ -1,7 +1,15 @@
+<div class="alert alert-success" *ngIf="status === 'success'"  role="alert">
+  Te has registrado correctamente!
+  <a [routerLink]="['/login']"  >Identificate aqui</a>
+</div>
 
+<div class="alert alert-danger" *ngIf="status === 'error'"  role="alert">
+  Ha existido un problema en tu registro vuelvelo a intentar!
+</div>
 
 
 <div class='p-grid p-justify-center'>
+  
     <div class="col-12 col-md-6 col-lg-4 ">
     <form class="text-center border border-light p-5" #userForm='ngForm' (ngSubmit)="onSubmit(userForm)"  >
      
@@ -11,8 +19,8 @@
           
           <div class="col">
             <!-- First name -->
-            <input class="form-control" type="text" id="defaultRegisterFormUser" ngControl="nombre" #nombre='ngModel'  [(ngModel)]='usuario' [ngModelOptions]="{standalone: true}" class="form-control"
-            maxlength="30"  placeholder="Usuario"   required>
+            <input class="form-control" type="text" id="defaultRegisterFormUser" ngControl="nombre" #nombre='ngModel'  [(ngModel)]='user.usuario' [ngModelOptions]="{standalone: true}" class="form-control"
+            maxlength="30"  placeholder="Usuario" autocomplete="additional-name"  required>
             <small *ngIf="!nombre.valid && nombre.touched">
               El nombre no es valido
             </small>
@@ -23,8 +31,8 @@
     
         <!-- E-mail -->
         
-        <input class="form-control" type="email" id="defaultRegisterFormEmail"  ngControl="Email" #Email='ngModel'  [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control mb-4"
-         placeholder="E-mail" maxlength="30"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+        <input class="form-control" type="email" id="defaultRegisterFormEmail"  ngControl="Email" #Email='ngModel'  [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" class="form-control mb-4"
+         placeholder="E-mail" maxlength="30"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" autocomplete="additional-name" required>
          <small *ngIf="!Email.valid && Email.touched">
           El email no es valido
         </small>
@@ -32,8 +40,8 @@
        
       
         <!-- Password -->
-        <input class="form-control" type="password" id="defaultRegisterFormPassword"    ngControl="Password" #Password='ngModel'  [(ngModel)]="password" [ngModelOptions]="{standalone: true}"  class="form-control" 
-        placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" minlength="6"  required>
+        <input class="form-control" type="password" id="defaultRegisterFormPassword"    ngControl="Password" #Password='ngModel'  [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}"  class="form-control" 
+        placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" minlength="6" autocomplete="additional-name" required>
         <small *ngIf="!Password.valid && Password.touched">
           El password no es valido 
         </small>
@@ -44,7 +52,7 @@
         <!-- Sign up button -->
         <div class="col-12">
           
-          <button type='submit' class='btn btn-primary btn-block' [disabled]='!nombre.valid || !Email.valid || password.length < 6' >Registrar</button>     
+          <button type='submit' class='btn btn-primary btn-block' [disabled]='!nombre.valid || !Email.valid || !Password.valid' >Registrar</button>     
       
       
         </div>
@@ -61,8 +69,8 @@
         <!-- Terms of service -->
         <p>By clicking
           <em>Sign up</em> you agree to our
-          <button type="button" (click)="showBasicDialog2()" pButton icon="pi pi-info-circle" label="terms of service"></button>
-          <p-dialog header="Terminos y Condiciones" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+          <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-info-circle" label="terms of service"></button>
+          <p-dialog header="Terminos y Condiciones" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
               Puzo was first to show interest in having Marlon Brando portray Don Vito Corleone by sending a letter to Brando in which he stated Brando was the "only actor who can play the Godfather." Despite Puzo's wishes, the executives at Paramount were against having Brando, partly due to the poor performance of his recent films and also his short temper. Coppola favored Brando or Laurence Olivier for the role, but Olivier's agent refused the role claiming Olivier was sick; however, Olivier went on to star in Sleuth later that year. The studio mainly pushed for Ernest Borgnine to receive the part. Other considerations were George C. Scott, Richard Conte, Anthony Quinn, and Orson Welles.
               <br><br>
               After months of debate between Coppola and Paramount over Brando, the two finalists for the role were Borgnine and Brando, the latter of whom Paramount president Stanley Jaffe required to perform a screen test. Coppola did not want to offend Brando and stated that he needed to test equipment in order to set up the screen test at Brando's California residence. For make-up, Brando stuck cotton balls in his cheeks, put shoe polish in his hair to darken it, and rolled his collar. Coppola placed Brando's audition tape in the middle of the videos of the audition tapes as the Paramount executives watched them. The executives were impressed with Brando's efforts and allowed Coppola to cast Brando for the role if Brando accepted a lower salary and put up a bond to ensure he would not cause any delays in production. Brando earned $1.6 million from a net participation deal.
@@ -76,8 +84,8 @@
               Coppola gave several roles in the film to family members. He gave his sister, Talia Shire, the role of Connie Corleone. His daughter Sofia played Michael Francis Rizzi, Connie's and Carlo's newborn son. Carmine Coppola, his father, appeared in the film as an extra playing a piano during a scene. Coppola's wife, mother, and two sons all appeared as extras in the picture. Several smaller roles, like Luca Brasi, were cast after the filming had started.
               <br><br>
               <p-footer>
-                  <button type="button" pButton icon="pi pi-check" (click)="displayBasic2=false" label="Yes"></button>
-                  <button type="button" pButton icon="pi pi-times" (click)="displayBasic2=false" label="No" class="ui-button-secondary"></button>
+                  <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="Yes"></button>
+                  <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="No" class="ui-button-secondary"></button>
               </p-footer>
           </p-dialog>
       </form>

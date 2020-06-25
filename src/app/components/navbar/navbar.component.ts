@@ -1,11 +1,13 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Service } from 'src/app/models/service';
 import { ServicesService } from 'src/app/services/services.service';
 import { Supplier } from 'src/app/models/supplier';
 import { SupplierService } from 'src/app/services/supplier.service';
+import { Users } from '../../models/users';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
+import { GLOBAL } from '../../../config/global';
 
 @Component({
   selector: 'app-navbar',
@@ -14,186 +16,176 @@ import { MenuItem } from 'primeng/api';
   providers: [ServicesService, SupplierService],
 })
 export class NavbarComponent implements OnInit {
+  @Input() identity: Users;
+  @Input() token: string;
 
-    visibleSidebar1: any;
-    public itemsService: any[];
-    public itemsSupplier: any[];
-    items2: MenuItem[];
-    items4: MenuItem[];
-    items5: MenuItem[];
-    activeItem: MenuItem;
+  public url: string;
 
-    displayBasic: boolean;
-    displayPosition: boolean;
-    position: string;
+  public visibleSidebar: boolean;
+  public itemsService: any[];
+  public itemsSupplier: any[];
+  itemsSub: MenuItem[];
+  itemsMenu: MenuItem[];
+  itemsSide: MenuItem[];
+  activeItem: MenuItem;
 
-    public login: boolean;
-    public search: string;
-    public services: Service[] = [];
-    public supplierServices: Supplier[] = [];
+  displayBasic: boolean;
+  displayPosition: boolean;
+  position: string;
 
+  public login: boolean;
+  public search: string;
+  public services: Service[] = [];
+  public supplierServices: Supplier[] = [];
 
-    constructor(
-        private supplierService: SupplierService,
-        private serviceService: ServicesService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) {
+  constructor(
+    private supplierService: SupplierService,
+    private serviceService: ServicesService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-    }
+  ngOnInit() {
+    this.url = GLOBAL.url;
 
+    this.login = false;
+    this.search = '';
+    this.itemsService = [];
+    this.itemsSupplier = [];
+    this.serviceService.getServices().subscribe((serv) => {
+      this.services = serv;
+      this.services.forEach((element) => {
+        this.itemsService.push({
+          label: element.nombre,
+          icon: 'pi pi-android',
+          routerLink: '/service/' + element._id,
+        });
+      });
+    });
+    // console.log('los servicios', this.services);
 
-    ngOnInit() {
+    this.supplierService.getSuppliers().subscribe((response) => {
+      this.supplierServices = response;
+      this.supplierServices.forEach((element) => {
+        this.itemsSupplier.push({
+          label: element.nombre,
+          icon: 'pi pi-briefcase',
+          routerLink: '/supplier/' + element._id,
+        });
+      });
+    });
 
-        this.login = false;
-        this.search = '';
-        this.itemsService = [];
-        this.itemsSupplier = [];
-        this.serviceService.getServices().subscribe(
-            serv => {
-                this.services = serv;
-                this.services.forEach(element => {
-                    this.itemsService.push({
-                        label: element.nombre,
-                        icon: 'pi pi-android',
-                        routerLink: '/service/' + element._id
-                    });
-                });
-            }
-        );
-        console.log('los servicios', this.services);
+    // console.log('array', this.itemsService, this.itemsSupplier);
 
-        this.supplierService.getSuppliers().subscribe(
-            response => {
-               this.supplierServices = response;
-               this.supplierServices.forEach(element => {
-                   this.itemsSupplier.push({
-                    label: element.nombre,
-                    icon: 'pi pi-briefcase',
-                    routerLink: '/supplier/' + element._id
-                   });
-               });
-            }
-        );
+    this.itemsSide = [
+      {
+        label: 'SERVICIOS',
+        icon: 'pi pi-tags',
+        items: this.itemsService,
+      },
+      {
+        label: 'PROVEEDORES',
+        icon: 'pi pi-fw pi-users',
+        items: this.itemsSupplier,
+      },
+      {
+        label: 'Usuarios Settings',
+        icon: 'pi pi-cog',
+        items: [
+          {
+            label: 'Mis datos',
+            icon: 'pi pi-pi pi-id-card',
+            routerLink: 'editar-perfil',
+          },
+          {
+            label: 'Atencion al cliente',
+            icon: 'pi pi-pi pi-tablet',
+            routerLink: 'editar-perfil',
+          },
+        ],
+      },
+      {
+        label: 'CARRITO',
+        icon: 'pi pi-shopping-cart',
+        items: [
+          {
+            label: 'Carrito',
+            icon: 'pi pi-fw pi-calendar',
+          },
+          {
+            label: 'Mis Deseos',
+            icon: 'pi pi-fw pi-heart',
+          },
+        ],
+      },
+    ];
 
+    this.itemsSub = [
+      {
+        label: 'About',
+        icon: 'pi pi-fw pi-users',
+      },
+      {
+        label: 'Business',
+        icon: 'pi pi-fw pi-briefcase',
+      },
+    ];
 
-        console.log('array', this.itemsService, this.itemsSupplier);
+    this.itemsMenu = [
+      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
+      {
+        label: 'Nuestros servicios',
+        icon: 'pi pi-fw pi-microsoft',
+        routerLink: '/service',
+      },
+      {
+        label: 'Proveedores',
+        icon: 'pi pi-user-minus',
+        routerLink: '/supplier',
+        // command: (event) => {console.log('menu event', event.item.label, event.originalEvent);}
+      },
+      { label: 'Buscar', icon: 'pi pi-fw pi-search-minus' },
+      {
+        label: 'Usuarios',
+        icon: 'pi pi-fw pi-user',
+        routerLink: '/editar-perfil',
+      },
+      { label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart' },
+      { label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista' },
+    ];
 
-        this.items5 = [
-            {
-                label: 'SERVICIOS',
-                icon: 'pi pi-tags',
-                items: this.itemsService
-            },
-            {
-                label: 'PROVEEDORES',
-                icon: 'pi pi-fw pi-users',
-                items: this.itemsSupplier
-            },
-            {
-                label: 'Usuarios Settings',
-                icon: 'pi pi-cog',
-                items: [
-                    {
-                        label: 'Contents',
-                        icon: 'pi pi-pi pi-bars'
-                    },
-                    {
-                        label: 'Search',
-                        icon: 'pi pi-pi pi-search',
-                        items: [
-                            {
-                                label: 'Text',
-                                items: [
-                                    {
-                                        label: 'Workspace'
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'User',
-                                icon: 'pi pi-fw pi-file',
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                label: 'CARRITO',
-                icon: 'pi pi-shopping-cart',
-                items: [
-                    {
-                        label: 'Edit',
-                        icon: 'pi pi-fw pi-pencil',
-                        items: [
-                            { label: 'Save', icon: 'pi pi-fw pi-save' },
-                            { label: 'Update', icon: 'pi pi-fw pi-save' },
-                        ]
-                    },
-                    {
-                        label: 'Other',
-                        icon: 'pi pi-fw pi-tags',
-                        items: [
-                            { label: 'Delete', icon: 'pi pi-fw pi-minus' }
-                        ]
-                    }
-                ]
-            }
-        ];
+    this.activeItem = this.itemsMenu[0];
+  }
 
+  buscador() {
+    this.router.navigate(['/buscador', this.search]);
+    this.search = '';
+  }
 
-        this.items2 = [
-            {
-                label: 'About',
-                icon: 'pi pi-fw pi-users'
-            },
-            {
-                label: 'Business',
-                icon: 'pi pi-fw pi-briefcase'
-            }
-        ];
+  handleClick(event: Event) {
+    // execute action
+    event.preventDefault();
+    this.login = !this.login;
+  }
 
-        this.items4 = [
-            {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
-            {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service'},
-            {label: 'Proveedores', icon: 'pi pi-user-minus', routerLink: '/supplier', command: (event) => {
-              console.log('menu event', event.item.label, event.originalEvent);
-          }} ,
-            {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
-            {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil'},
-            {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'},
-            {label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista'}
-           // {label: 'Logout', icon: 'pi pi-power-off'}
-          ];
+  logear() {
+    this.router.navigate(['login']);
+    this.displayBasic = false;
+  }
 
-        this.activeItem = this.items4[0];
+  registrar() {
+    this.router.navigate(['registro']);
+    this.displayBasic = false;
+  }
 
-        }
+  logout() {
+    localStorage.clear();
+    this.identity = null;
+    this.token = null;
+    this.router.navigate(['/home']);
+  }
 
-
-    buscador() {
-        this.router.navigate(['/buscador', this.search]);
-        this.search = '';
-    }
-
-    handleClick(event: Event) {
-        // execute action
-        event.preventDefault();
-        this.login = !this.login;
-    }
-
-    logear() {
-        this.router.navigate(['login']);
-        this.login = !this.login;
-    }
-
-    registrar() {
-        this.router.navigate(['registro']);
-        this.login = !this.login;
-    }
-
-
-    showBasicDialog() {
-        this.displayBasic = true;
-    }
+  showBasicDialog() {
+    this.displayBasic = true;
+  }
 }
