@@ -1,7 +1,7 @@
-<div class="wrapper-admin" *ngIf="administrador">
+<div class="wrapper-admin" *ngIf="user.rol==='admin'">
     <div class="servicio">
         <div class="cabecera">
-            <h3>Servicio</h3>
+            <h1>Servicio</h1>
         </div>
         <div class="grid-container">
             <div class="product-img">
@@ -12,38 +12,36 @@
                     <h1>{{service.nombre}}</h1>
                     <p>{{service.descripcion}}</p>
                 </div>
-                <div class="product-price-btn">
+                <div class="product-price">
                     <p><span>{{service.price}}</span>€</p>
+                </div>
+                <div>
+                    <button (click)='editServicio(service._id)'>Editar</button>
+                    <button (click)='nuevoServicio()'>Nuevo</button>
+                    <button (click)='cancelAction()'>Cancelar</button>
                 </div>
             </div>
             <div class="editor">
-                <div>
-                    <button>Editar</button>
-                    <button>Desativar</button>
-                    <button>Nuevo</button>
-                    <button>Cancelar</button>
+                <h2>Área de edición</h2>
+                <div class='editor-group'>
+                    <label>Nombre</label>
+                    <label>Activo</label>
+                    <input [ngStyle]="service.nombre!==oldService.nombre && { backgroungd: 'red'}" type='text' [(ngModel)]='service.nombre' (input)='onChangeNombre($event)'>
+                    <input type="checkbox" [(ngModel)]='service.active'>
                 </div>
-                <div>
-                    <div class="ui-float-label">
-                        <input type='text' pInputText [(ngModel)]='service.nombre'>
-                        <label>Nombre</label>
-                    </div>
-                    <div class="ui-float-label">
-                        <input type='text' pInputText [(ngModel)]='service.descripcion'>
-                        <label>Descripción</label>
-                    </div>
-                    <div class="ui-float-label">
-                        <input type='text' pInputText [(ngModel)]='service.price'>
-                        <label>Precio</label>
-                    </div>
-                </div>
+                <label>Descripción</label><br>
+                <textarea cols="38" rows="7" [(ngModel)]='service.descripcion' (blur)='onChangeDescripcion($event)'></textarea>
+                <br />
+                <label>Precio</label><br>
+                <input type='text' [(ngModel)]='service.price' (blur)='onChangePrice($event)'>
+
             </div>
 
         </div>
 
     </div>
 </div>
-<div class="wrapper-user" *ngIf="!administrador">
+<div class="wrapper-user" *ngIf="user.rol!=='admin'">
     <div class="servicio">
         <div class="cabecera">
             <h3>Servicio</h3>
@@ -57,7 +55,7 @@
                     <h1>{{service.nombre}}</h1>
                     <p>{{service.descripcion}}</p>
                 </div>
-                <div class="product-price-btn">
+                <div class="product-price">
                     <p><span>{{service.price}}</span>€</p>
                 </div>
                 <button type="button">¡Comprar!</button>

@@ -32,7 +32,7 @@ const serviceController = {
             if (err) {
                 return res.status(404).send("Not found");
             }
-            service.nombre = body.name;
+            service.nombre = body.nombre;
             service.descripcion = body.descripcion;
             service.imagen = body.imagen;
             service.active = body.active;
