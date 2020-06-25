@@ -80,7 +80,7 @@ export class NavbarComponent implements OnInit {
                    this.itemsSupplier.push({
                     label: element.nombre,
                     icon: 'pi pi-briefcase',
-                    routerLink: '/supplier/' + element._id
+                    routerLink: '/supplier/view/' + element._id
                    });
                });
             }
@@ -124,7 +124,7 @@ export class NavbarComponent implements OnInit {
                     {
                         label: 'Carrito',
                         icon: 'pi pi-fw pi-calendar',
-                        
+
                     },
                     {
                         label: 'Mis Deseos',
@@ -156,7 +156,7 @@ export class NavbarComponent implements OnInit {
             {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil'},
             {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'},
             {label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista'}
-           
+
           ];
 
         this.activeItem = this.itemsMenu[0];

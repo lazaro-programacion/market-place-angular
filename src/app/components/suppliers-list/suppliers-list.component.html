@@ -11,7 +11,7 @@
                             (input)="dv.filter($event.target.value)">
                     </div>
                     <div>
-                      <button class="btn btn-primary" type="button" routerLink='/supplier/'>Nuevo proveedor</button>
+                      <button class="btn btn-primary" type="button" routerLink='/supplier/add'>Nuevo proveedor</button>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                         <div class="product-price-btn">
                             <p><span></span></p>
                             <button type="button" [routerLink]="'/supplier/view/'+supplier._id">Detalles</button>
-                            <button type="button" [routerLink]="'/supplier/view/'+supplier._id">Editar</button>
+                            <button type="button" [routerLink]="'/supplier/edit/'+supplier._id">Editar</button>
                           </div>
                     </div>
                 </div>

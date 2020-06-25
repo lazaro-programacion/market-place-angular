@@ -1,0 +1,40 @@
+<p>supplier-add works!</p>
+
+<div>
+  Nombre:
+  <input type="text" [(ngModel)]="nombre">
+</div>
+<div>
+  Apellidos:
+  <input type="text" [(ngModel)]="apellidos">
+</div>
+
+<div>
+  NIF:
+  <input type="text" [(ngModel)]="nif">
+</div>
+
+<div>
+  Foto del proveedor URL:
+  <input type="text" [(ngModel)]="imagen">
+</div>
+
+
+<div>
+  Cuenta IBAN:
+  <input type="text" [(ngModel)]="iban">
+</div>
+
+
+<div>
+  Email:
+  <input type="text" [(ngModel)]="email">
+</div>
+
+
+<div>
+  Activo true o false:
+  <input type="text" [(ngModel)]="active">
+</div>
+
+<button (click)="save()">Guardar</button>

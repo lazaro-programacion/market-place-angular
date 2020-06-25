@@ -43,6 +43,8 @@ import { SupplierviewComponent } from './components/supplierview/supplierview.co
 
 import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
+import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,9 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
     NgbdCarouselPauseComponent,
     
     PasswordForgotComponent,
-    SupplierviewComponent
+    SupplierviewComponent,
+    SupplierAddComponent,
+    SupplierEditComponent
   ],
   imports: [
     AppRoutingModule,

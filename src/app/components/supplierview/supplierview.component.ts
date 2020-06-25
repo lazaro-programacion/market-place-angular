@@ -15,11 +15,13 @@ export class SupplierviewComponent implements OnInit {
   public supplier$: Observable<Supplier>;
 
   constructor(private route: ActivatedRoute,
-              private supplierService: SupplierService) { }
+    private supplierService: SupplierService) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.supplier$ = this.supplierService.getSupplier(this.id);
+    this.route.params.subscribe(val => {
+      this.id = this.route.snapshot.paramMap.get('id');
+      this.supplier$ = this.supplierService.getSupplier(this.id);
+    });
   }
 
 }
