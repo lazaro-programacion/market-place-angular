@@ -14,9 +14,8 @@
 }
 
 .cabecera{
-    height: 28px;
-
-  }
+  height: 28px;
+}
 
   .grid-container{
     height: 400px;
@@ -24,7 +23,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 10px;
   }
-
+  
   .product-img {
     height: 400px;
   }
@@ -48,7 +47,7 @@
     font-size: 34px;
     color: #474747;
   }
-
+  
   .product-text p {
     font-family: 'Playfair Display', serif;
     color: #8d8d8d;
@@ -57,8 +56,7 @@
     font-weight: lighter;
     overflow: hidden;
   }
-  
-  
+    
   .product-price  {
     margin: 0.5em 0;
     font-family: 'Trocchi', serif;
@@ -86,14 +84,27 @@
   }
   
   
+  .wrapper-user {
+    height: 428px;
+    width: 654px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .grid-userview{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
   
   
-  
-  .product-price-btn button:hover {
+  .grid-userview .product-info button:hover {
     background-color: #79b0a1;
   }
-        .product-price-btn button {
-          display: inline-block;
+
+  .grid-userview .product-info button {
+    display: inline-block;
           height: 50px;
           width: 176px;
           margin: 0 40px 0 16px;
@@ -110,7 +121,7 @@
           cursor: pointer;
           outline: none;
         }
-  
-  
-  
-  
+        
+        
+        
+        
