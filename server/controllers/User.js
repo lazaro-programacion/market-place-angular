@@ -226,32 +226,7 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
   }
   })
 
-  /**
-   * 
-   * bcrypt.hash(req.body, saltRounds, null, function (err, hash) {
- update.password = hash
-  console.log(update.password)
-  User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) => {
-    if(err){ 
-        res.status(500).send({ message: 'error al actualizar usuario'});
-    }else{
-       if(!userUpdated){
-        res.status(404).send({ message: 'no se ha podido actualizar usuario'});
-       }else{
-         res.status(200).send({user: userUpdated})
-       }
   
-    }
-    })
-
-})
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   */
 
 
   

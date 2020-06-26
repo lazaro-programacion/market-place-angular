@@ -7,6 +7,8 @@ var Schema = mongoose.Schema;
 // crear propiedades del objeto
 var CartSchema = Schema({
     date: Date,
+    // order: shortuid libreria de id
+    // incidencia: boolean (abrierta o cerrada)
     quantity: Number,
     unit_price: Number,
     totalCart: Number,
