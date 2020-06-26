@@ -16,8 +16,9 @@ export class ServiceAddComponent implements OnInit {
 
   public service: Service;
   public id = history.state.id;
-  public saveId: string;
   public user: any;
+  public oldService: Service;
+
 
   constructor(private serviceService: ServicesService, private userService: UsersService) { }
 
@@ -28,13 +29,20 @@ export class ServiceAddComponent implements OnInit {
       this.id = localStorage.getItem('savedId');
     }
     this.user = this.userService.getIdentity();
+    console.log(this.id);
     this.getTheService(this.id);
+
   }
 
   getTheService = (id: string) => {
     this.serviceService.getService(id).subscribe(
       serv => {
         this.service = serv;
+        console.log(this.service);
+        this.oldService = {...this.service};
+        // localStorage.setItem('savedNombre', this.service.nombre);
+        // localStorage.setItem('savedDescricion', this.service.descripcion);
+        // localStorage.setItem('savedPrice', this.service.price.toString());
       }
     );
   }
@@ -54,13 +62,27 @@ export class ServiceAddComponent implements OnInit {
     // TODO: añadir validación y comprobación
   }
 
-  onChangeAlert = (event) => {
-    console.log('tecla pulsada');
-    if (this.service.descripcion !== event.target.value) {
-
-      console.log('¡Hay cambios!');
+  onChangeNombre = (event) => {
+    const actualBg = event.target.style.background;
+    if (localStorage.getItem('savedNombre') !== event.target.value) {
+     // event.target.style.background = 'red';
     } else {
-      console.log('sin cambios');
+     // event.target.style.background = actualBg;
+
+    }
+  }
+  onChangeDescripcion = (event) => {
+    console.log('antiguo', localStorage.getItem('savedDescricion'));
+    console.log('nuevo', event.target.value);
+    if (localStorage.getItem('savedDescripcion') !== event.target.value) {
+      console.log('hay cambios');
+    }
+  }
+  onChangePrice = (event) => {
+    console.log('antiguo', localStorage.getItem('savedPrice'));
+    console.log('nuevo', event.target.value);
+    if (parseFloat(localStorage.getItem('savedPrice')) !== event.target.value) {
+      console.log('hay cambios');
     }
   }
 

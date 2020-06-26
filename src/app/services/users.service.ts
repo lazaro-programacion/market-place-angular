@@ -48,9 +48,9 @@ export class UsersService {
   getIdentity = () =>{
     const identity = JSON.parse(localStorage.getItem('identity'))
     if(identity != 'undefined'){
-      this.identity = identity
+      this.identity = identity;
     }else{
-      this.identity = null
+      this.identity = null;
     }
     return this.identity
   }
@@ -58,9 +58,9 @@ export class UsersService {
   getToken = () => {
     const token = localStorage.getItem('token')
       if(token != 'undefined'){
-      this.token = token
+      this.token = token;
     }else{
-      this.token = null
+      this.token = null;
     }
     return this.token
   }
@@ -85,7 +85,11 @@ export class UsersService {
       );
   }
 
-
+  getEmail = (email: string): Observable<Users> => {
+    return this.httpClient.get<Users>(
+      `http://localhost:4000/api/user/email/` + email
+    );
+  }
 
   putUsers(userUpdate, _id: string):Observable<any>{
    // const params = JSON.stringify(userUpdate)
@@ -97,13 +101,11 @@ export class UsersService {
   }
 
 
-  putPassword = (password: string, _id: string): Observable<any> => {
-    const headers = new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': this.getToken()
-       })
+  putPassword = (user: Users, _id: string): Observable<any> => {
+    console.log(user)
+    
     return this.httpClient.put(
-      this.url + '/user/' + _id, {password}, {headers:headers})
+      this.url + '/user/' + _id, user)
       .pipe(
         catchError(this.handleError)
       );

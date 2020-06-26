@@ -1,5 +1,8 @@
-<div class="container" *ngIf="supplier$ | async as supplier">
+<!--si no existe filtro Oninit - es decir vengo de la pagina supplier-->
 
+<div class="container" *ngIf="supplier$ | async as supplier ">
+  <div class="row">
+    <div class="mx-auto">
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" [src]="supplier.imagen" alt="Card image cap">
     <div class="card-body">
@@ -10,4 +13,5 @@
       <button class="btn btn-primary" type="button" routerLink='/supplier'>Lista</button>
     </div>
   </div>
+</div>
 </div>

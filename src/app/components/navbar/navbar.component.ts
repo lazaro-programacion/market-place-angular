@@ -16,7 +16,7 @@ import { GLOBAL } from "../../../config/global";
     styleUrls: ['./navbar.component.css'],
     providers: [ServicesService, SupplierService]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, DoCheck {
 
     @Input() identity: Users;
     @Input() token: string;
@@ -66,7 +66,7 @@ export class NavbarComponent implements OnInit {
                     this.itemsService.push({
                         label: element.nombre,
                         icon: 'pi pi-android',
-                        routerLink: '/service/' + element._id
+                        routerLink: 'service/' + element._id
                     });
                 });
             }
@@ -80,7 +80,7 @@ export class NavbarComponent implements OnInit {
                    this.itemsSupplier.push({
                     label: element.nombre,
                     icon: 'pi pi-briefcase',
-                    routerLink: '/supplier/view/' + element._id
+                   routerLink: '/supplier/view/' + element._id
                    });
                });
             }
@@ -137,12 +137,14 @@ export class NavbarComponent implements OnInit {
 
         this.itemsSub = [
             {
-                label: 'About',
-                icon: 'pi pi-fw pi-users'
+                label: 'Contacta con nosotros',
+                icon: 'pi pi-fw pi-envelope',
+                routerLink: 'contacta'
             },
             {
-                label: 'Business',
-                icon: 'pi pi-fw pi-briefcase'
+                label: 'Vende con nosotros',
+                icon: 'pi pi-fw pi-briefcase',
+                routerLink: 'form-vendedor'
             }
         ];
 
@@ -163,6 +165,14 @@ export class NavbarComponent implements OnInit {
 
         }
 
+    ngDoCheck(){
+        this.itemsSupplier.forEach( element => ({
+            label: element.nombre,
+            icon: 'pi pi-briefcase',
+            routerLink: 'supplier/view/' + element._id
+           }));
+      
+    }
 
     buscador() {
         this.router.navigate(['/buscador', this.search]);

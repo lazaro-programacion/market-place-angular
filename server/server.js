@@ -12,9 +12,10 @@ const SuppliersRoutes = require("./routes/Suppliers");
   app.use('/api/user' ,require('./routes/User'));
   app.use('/api/rol' ,require('./routes/Rol'));   // donde coge las rutas estaaaaa
   // Configuracion
- app.use('/api/service', require('./routes/service-routes'))
+ app.use('/api/service', require('./routes/service-routes'));
+ app.use('/api/cart', require('./routes/cart'));
  app.use("/api/supplier/", SuppliersRoutes);
-
+ app.use('/api/email' , require('./routes/email'));
 mongoose
   .connect(
     "mongodb+srv://admin:admin@cluster0-rckpe.mongodb.net/market-store-jedi?retryWrites=true&w=majority"

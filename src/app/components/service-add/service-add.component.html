@@ -26,14 +26,14 @@
                 <div class='editor-group'>
                     <label>Nombre</label>
                     <label>Activo</label>
-                    <input type='text' [(ngModel)]='service.nombre'>
+                    <input [ngStyle]="service.nombre!==oldService.nombre && { backgroungd: 'red'}" type='text' [(ngModel)]='service.nombre' (input)='onChangeNombre($event)'>
                     <input type="checkbox" [(ngModel)]='service.active'>
                 </div>
                 <label>Descripción</label><br>
-                <textarea cols="38" rows="7" [(ngModel)]='service.descripcion' (keypress)='onChangeAlert($event)'></textarea>
+                <textarea cols="38" rows="7" [(ngModel)]='service.descripcion' (blur)='onChangeDescripcion($event)'></textarea>
                 <br />
                 <label>Precio</label><br>
-                <input type='text' [(ngModel)]='service.price'>
+                <input type='text' [(ngModel)]='service.price' (blur)='onChangePrice($event)'>
 
             </div>
 
