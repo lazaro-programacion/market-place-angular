@@ -36,8 +36,8 @@ const routes: Routes = [
   { path: 'buscador/', component: SearchComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [UsuarioGuard], },
   { path: 'supplier/view/:id', component: SupplierviewComponent},
-  { path: 'supplier/add', component: SupplierAddComponent},
-  { path: 'supplier/edit/:id', component: SupplierAddComponent},
+  { path: 'supplier/add', component: SupplierAddComponent, canActivate: [AdminGuard]},
+  { path: 'supplier/edit/:id', component: SupplierAddComponent, canActivate: [AdminGuard]},
   { path: ':page', component: NotFoundComponentComponent },
   { path: '**', component: NotFoundComponentComponent }
 ];
