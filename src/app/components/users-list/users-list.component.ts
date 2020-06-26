@@ -53,9 +53,9 @@ export class UsersListComponent implements OnInit {
     this.show = !this.show;
   }
   active1(item) {
-    this.active = !this.active;
+   // this.active = !this.active;
     const usuario = {
-      active: this.active,
+      active: !item.active,
       usuario: item.usuario,
       email: item.email,
       rol: item.rol,
