@@ -44,6 +44,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SupplierviewComponent } from './components/supplierview/supplierview.component';
 
 import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
+import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
+import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +65,10 @@ import { PasswordForgotComponent } from './components/password-forgot/password-f
     UsersListComponent,
     NgbdCarouselPauseComponent,
     PasswordForgotComponent,
-    SupplierviewComponent
+    SupplierviewComponent,
+    SupplierAddComponent,
+    SupplierEditComponent,
+    CarritoComponent
   ],
   imports: [
     AppRoutingModule,

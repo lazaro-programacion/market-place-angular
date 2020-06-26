@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
 import { SelectItem } from 'primeng/api';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-suppliers-list',

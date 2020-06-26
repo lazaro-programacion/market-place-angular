@@ -16,176 +16,183 @@ import { GLOBAL } from '../../../config/global';
   providers: [ServicesService, SupplierService],
 })
 export class NavbarComponent implements OnInit {
-  @Input() identity: Users;
-  @Input() token: string;
 
-  public url: string;
+    @Input() identity: Users;
+    @Input() token: string;
 
-  public visibleSidebar: boolean;
-  public itemsService: any[];
-  public itemsSupplier: any[];
-  itemsSub: MenuItem[];
-  itemsMenu: MenuItem[];
-  itemsSide: MenuItem[];
-  activeItem: MenuItem;
+    public url: string;
 
-  displayBasic: boolean;
-  displayPosition: boolean;
-  position: string;
+    public visibleSidebar: boolean;
+    public itemsService: any[];
+    public itemsSupplier: any[];
+    itemsSub: MenuItem[];
+    itemsMenu: MenuItem[];
+    itemsSide: MenuItem[];
+    activeItem: MenuItem;
 
-  public login: boolean;
-  public search: string;
-  public services: Service[] = [];
-  public supplierServices: Supplier[] = [];
+    displayBasic: boolean;
+    displayPosition: boolean;
+    position: string;
 
-  constructor(
-    private supplierService: SupplierService,
-    private serviceService: ServicesService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    public login: boolean;
+    public search: string;
+    public services: Service[] = [];
+    public supplierServices: Supplier[] = [];
 
-  ngOnInit() {
-    this.url = GLOBAL.url;
 
-    this.login = false;
-    this.search = '';
-    this.itemsService = [];
-    this.itemsSupplier = [];
-    this.serviceService.getServices().subscribe((serv) => {
-      this.services = serv;
-      this.services.forEach((element) => {
-        this.itemsService.push({
-          label: element.nombre,
-          icon: 'pi pi-android',
-          routerLink: '/service/' + element._id,
-        });
-      });
-    });
-    // console.log('los servicios', this.services);
+    constructor(
+        private supplierService: SupplierService,
+        private serviceService: ServicesService,
+        private router: Router,
+        private route: ActivatedRoute
+    ) {
 
-    this.supplierService.getSuppliers().subscribe((response) => {
-      this.supplierServices = response;
-      this.supplierServices.forEach((element) => {
-        this.itemsSupplier.push({
-          label: element.nombre,
-          icon: 'pi pi-briefcase',
-          routerLink: '/supplier/' + element._id,
-        });
-      });
-    });
+    }
 
-    // console.log('array', this.itemsService, this.itemsSupplier);
 
-    this.itemsSide = [
-      {
-        label: 'SERVICIOS',
-        icon: 'pi pi-tags',
-        items: this.itemsService,
-      },
-      {
-        label: 'PROVEEDORES',
-        icon: 'pi pi-fw pi-users',
-        items: this.itemsSupplier,
-      },
-      {
-        label: 'Usuarios Settings',
-        icon: 'pi pi-cog',
-        items: [
-          {
-            label: 'Mis datos',
-            icon: 'pi pi-pi pi-id-card',
-            routerLink: 'editar-perfil',
-          },
-          {
-            label: 'Atencion al cliente',
-            icon: 'pi pi-pi pi-tablet',
-            routerLink: 'editar-perfil',
-          },
-        ],
-      },
-      {
-        label: 'CARRITO',
-        icon: 'pi pi-shopping-cart',
-        items: [
-          {
-            label: 'Carrito',
-            icon: 'pi pi-fw pi-calendar',
-          },
-          {
-            label: 'Mis Deseos',
-            icon: 'pi pi-fw pi-heart',
-          },
-        ],
-      },
-    ];
+    ngOnInit() {
 
-    this.itemsSub = [
-      {
-        label: 'About',
-        icon: 'pi pi-fw pi-users',
-      },
-      {
-        label: 'Business',
-        icon: 'pi pi-fw pi-briefcase',
-      },
-    ];
+        this.url = GLOBAL.url;
 
-    this.itemsMenu = [
-      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
-      {
-        label: 'Nuestros servicios',
-        icon: 'pi pi-fw pi-microsoft',
-        routerLink: '/service',
-      },
-      {
-        label: 'Proveedores',
-        icon: 'pi pi-user-minus',
-        routerLink: '/supplier',
-        // command: (event) => {console.log('menu event', event.item.label, event.originalEvent);}
-      },
-      { label: 'Buscar', icon: 'pi pi-fw pi-search-minus' },
-      {
-        label: 'Usuarios',
-        icon: 'pi pi-fw pi-user',
-        routerLink: '/editar-perfil',
-      },
-      { label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart' },
-      { label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista' },
-    ];
+        this.login = false;
+        this.search = '';
+        this.itemsService = [];
+        this.itemsSupplier = [];
+        this.serviceService.getServices().subscribe(
+            serv => {
+                this.services = serv;
+                this.services.forEach(element => {
+                    this.itemsService.push({
+                        label: element.nombre,
+                        icon: 'pi pi-android',
+                        routerLink: '/service/' + element._id
+                    });
+                });
+            }
+        );
+        // console.log('los servicios', this.services);
 
-    this.activeItem = this.itemsMenu[0];
-  }
+        this.supplierService.getSuppliers().subscribe(
+            response => {
+               this.supplierServices = response;
+               this.supplierServices.forEach(element => {
+                   this.itemsSupplier.push({
+                    label: element.nombre,
+                    icon: 'pi pi-briefcase',
+                    routerLink: '/supplier/view/' + element._id
+                   });
+               });
+            }
+        );
 
-  buscador() {
-    this.router.navigate(['/buscador', this.search]);
-    this.search = '';
-  }
 
-  handleClick(event: Event) {
-    // execute action
-    event.preventDefault();
-    this.login = !this.login;
-  }
+        // onsole.log('array', this.itemsService, this.itemsSupplier);
 
-  logear() {
-    this.router.navigate(['login']);
-    this.displayBasic = false;
-  }
+        this.itemsSide = [
+            {
+                label: 'SERVICIOS',
+                icon: 'pi pi-tags',
+                items: this.itemsService
+            },
+            {
+                label: 'PROVEEDORES',
+                icon: 'pi pi-fw pi-users',
+                items: this.itemsSupplier
+            },
+            {
+                label: 'Usuarios Settings',
+                icon: 'pi pi-cog',
+                items: [
+                    {
+                        label: 'Mis datos',
+                        icon: 'pi pi-pi pi-id-card',
+                        routerLink: 'editar-perfil'
 
-  registrar() {
-    this.router.navigate(['registro']);
-    this.displayBasic = false;
-  }
+                    },
+                    {
+                        label: 'Atencion al cliente',
+                        icon: 'pi pi-pi pi-tablet',
+                        routerLink: 'editar-perfil'
+                    }
+                ]
+            },
+            {
+                label: 'CARRITO',
+                icon: 'pi pi-shopping-cart',
+                items: [
+                    {
+                        label: 'Carrito',
+                        icon: 'pi pi-fw pi-calendar',
 
-  logout() {
+                    },
+                    {
+                        label: 'Mis Deseos',
+                        icon: 'pi pi-fw pi-heart',
+                    }
+                ]
+            }
+        ];
+
+
+        this.itemsSub = [
+            {
+                label: 'About',
+                icon: 'pi pi-fw pi-users'
+            },
+            {
+                label: 'Business',
+                icon: 'pi pi-fw pi-briefcase'
+            }
+        ];
+
+        this.itemsMenu = [
+            {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
+            {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service'},
+            {label: 'Proveedores', icon: 'pi pi-user-minus', routerLink: '/supplier',
+            // command: (event) => {console.log('menu event', event.item.label, event.originalEvent);}
+             } ,
+            {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
+            {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil'},
+            {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'},
+            {label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista'}
+
+          ];
+
+        this.activeItem = this.itemsMenu[0];
+
+        }
+
+
+    buscador() {
+        this.router.navigate(['/buscador', this.search]);
+        this.search = '';
+    }
+
+    handleClick(event: Event) {
+        // execute action
+        event.preventDefault();
+        this.login = !this.login;
+    }
+
+    logear() {
+        this.router.navigate(['login']);
+        this.displayBasic = false;
+    }
+
+    registrar() {
+        this.router.navigate(['registro']);
+        this.displayBasic = false;
+    }
+
+
+    logout(){
     localStorage.clear();
     this.identity = null;
     this.token = null;
     this.router.navigate(['/home']);
-  }
+    }
 
-  showBasicDialog() {
-    this.displayBasic = true;
-  }
+    showBasicDialog() {
+        this.displayBasic = true;
+    }
 }

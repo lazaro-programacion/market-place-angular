@@ -30,14 +30,14 @@ export class UsersService {
   }
 
 
-  register(userRegister: any): Observable<any> {
-    const params = JSON.stringify(userRegister);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.post(this.url + '/user/register', params, { headers });
+  register(userRegister): Observable<any>{
+   const params = JSON.stringify(userRegister)
+   const headers = new HttpHeaders({ 'Content-Type':  'application/json'});
+   return this.httpClient.post(this.url + '/user/register', params, {headers});
 
   }
 
-  signUp(userLogin: any, gettoken = null): Observable<any> {
+  signUp(userLogin, gettoken = null): Observable<any>{
 
     if (gettoken != null) {
       userLogin.gettoken = gettoken;
@@ -104,7 +104,7 @@ export class UsersService {
       'Authorization': this.getToken()
        });
     return this.httpClient.put(
-      this.url + '/user/' + _id, password, {headers:headers})
+      this.url + '/user/' + _id, {password}, {headers:headers})
       .pipe(
         catchError(this.handleError)
       );
