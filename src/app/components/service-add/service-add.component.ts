@@ -1,8 +1,10 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
-import { UsersService } from 'src/app/services/users.service';
-import { Users } from 'src/app/models/users';
+import { SupplierService } from 'src/app/services/supplier.service';
+import { Supplier } from 'src/app/models/supplier';
+import {ShowSuppliersComponent} from '../show-suppliers/show-suppliers.component';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -15,6 +17,7 @@ export class ServiceAddComponent implements OnInit {
 
 
   public service: Service;
+  public suppliers: Supplier[];
   public id = history.state.id;
   public user: any;
   public oldService: Service;
@@ -25,17 +28,26 @@ export class ServiceAddComponent implements OnInit {
   public editMode = false;
 
 
-  constructor(private serviceService: ServicesService, private userService: UsersService) { }
+  constructor(
+    private serviceService: ServicesService, 
+    private supplierService: SupplierService,
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit(): void {
+
     if (this.id) {
       localStorage.setItem('savedId', this.id);
     } else {
       this.id = localStorage.getItem('savedId');
     }
-    this.user = this.userService.getIdentity();
-    console.log(this.user);
     this.getTheService(this.id);
+
+    this.supplierService.getSuppliers().subscribe(
+      supp => this.suppliers = supp
+    );
+
+    this.user = JSON.parse(localStorage.getItem('identity'));
 
   }
 
@@ -59,7 +71,6 @@ export class ServiceAddComponent implements OnInit {
     this.createMode = false;
     this.editMode = false;
   }
-
 
   nuevoServicio = () => {
     this.service = { _id: '', active: true, nombre: '', descripcion: '', price: 0, imagen: '' };
@@ -112,5 +123,7 @@ export class ServiceAddComponent implements OnInit {
   supplierSelector = () => {
     console.log('Seleccionar proveedor');
     // TODO: método selección de proveedor
+    const modalRef = this.modalService.open(ShowSuppliersComponent);
+    modalRef.componentInstance.suppliers = this.suppliers;
   }
 }

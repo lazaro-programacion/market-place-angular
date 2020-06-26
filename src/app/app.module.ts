@@ -49,6 +49,7 @@ import { FormVendorComponent } from './components/form-vendor/form-vendor.compon
 
 import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
+import { ShowSuppliersComponent } from './components/show-suppliers/show-suppliers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.
     FormVendorComponent,
     
     SupplierAddComponent,
-    SupplierEditComponent
+    SupplierEditComponent,
+    ShowSuppliersComponent
   ],
   imports: [
     AppRoutingModule,

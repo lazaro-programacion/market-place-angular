@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
 import { SelectItem } from 'primeng/api';
-import { UsersService } from 'src/app/services/users.service';
-import { Users } from 'src/app/models/users';
 
 @Component({
   selector: 'app-services-list',
@@ -22,13 +20,14 @@ export class ServicesListComponent implements OnInit {
 
   public services: Service[];
   public allServices: Service[];
-  public user: Users;
+  public user: any;
 
   public inactiveViewFlag = false;
 
-  constructor(private serviceService: ServicesService, private usersService: UsersService) { }
+  constructor(private serviceService: ServicesService) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse( localStorage.getItem('identity'));
     this.serviceService.getServices().subscribe(
       serv => {
         this.allServices = serv;
@@ -57,10 +56,7 @@ export class ServicesListComponent implements OnInit {
   }
 
   inactiveViewToggle = () => {
-    // this.inactiveViewFlag = !this.inactiveViewFlag;
     this.services = this.activeServicesList();
-    console.log('ver inactivos', this.inactiveViewFlag);
-
   }
 
 }
