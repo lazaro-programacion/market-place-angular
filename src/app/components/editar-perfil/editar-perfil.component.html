@@ -23,12 +23,16 @@
           <div>
             <label for="exampleInputavatar">Avatar</label>
             <angular-file-uploader
-              *ngIf="token"
-              [config]="afuConfig"
-              (ApiResponse)="DocUpload($event)"
-            >
-            </angular-file-uploader>
+            *ngIf="token"
+          [config]="afuConfig"
+          (ApiResponse)="DocUpload($event)">
+           </angular-file-uploader>
+
+
+
+
           </div>
+
         </div>
       </div>
 
@@ -95,3 +99,4 @@
     </div>
   </div>
 </div>
+<div class="espacio-porfabor"></div>

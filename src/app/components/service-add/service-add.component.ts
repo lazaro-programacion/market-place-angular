@@ -16,8 +16,14 @@ export class ServiceAddComponent implements OnInit {
 
   public service: Service;
   public id = history.state.id;
-  public saveId: string;
   public user: any;
+  public oldService: Service;
+  public nombreBgColor = '#ffffff';
+  public descripcionBgColor = '#ffffff';
+  public priceBgColor = '#ffffff';
+  public createMode = false;
+  public editMode = false;
+
 
   constructor(private serviceService: ServicesService, private userService: UsersService) { }
 
@@ -28,7 +34,9 @@ export class ServiceAddComponent implements OnInit {
       this.id = localStorage.getItem('savedId');
     }
     this.user = this.userService.getIdentity();
+    console.log(this.user);
     this.getTheService(this.id);
+
   }
 
   getTheService = (id: string) => {
@@ -40,33 +48,69 @@ export class ServiceAddComponent implements OnInit {
   }
 
   editServicio(id: string) {
+    this.editMode = true;
+    this.oldService = { ...this.service };
+  }
+
+  guardarEditado() {
     this.serviceService.editService(this.service).subscribe(
       ser => console.log('servicio editado', this.service)
     );
+    this.createMode = false;
+    this.editMode = false;
+  }
+
+
+  nuevoServicio = () => {
+    this.service = { _id: '', active: true, nombre: '', descripcion: '', price: 0, imagen: '' };
+    this.createMode = true;
 
   }
 
-  nuevoServicio() {
-    console.log('nuevo servicio');
+  guardarNuevo() {
     this.serviceService.createService(this.service).subscribe(
-      serv => console.log('servicio', serv)
+      serv => console.log('servicio creado', serv)
     );
-    // TODO: añadir validación y comprobación
   }
 
-  onChangeAlert = (event) => {
-    console.log('tecla pulsada');
-    if (this.service.descripcion !== event.target.value) {
+  onChangeNombre = () => {
+    if (this.editMode) {
+      if (this.oldService.nombre !== this.service.nombre) {
+        this.nombreBgColor = '#F76F6F';
+      } else {
+        this.nombreBgColor = '#ffffff';
+      }
+    }
+  }
 
-      console.log('¡Hay cambios!');
-    } else {
-      console.log('sin cambios');
+  onChangeDescripcion = () => {
+    if (this.editMode) {
+      if (this.oldService.descripcion !== this.service.descripcion) {
+        this.descripcionBgColor = '#F76F6F';
+      } else {
+        this.descripcionBgColor = '#ffffff';
+      }
+    }
+  }
+
+  onChangePrice = () => {
+    if (this.editMode) {
+      if (this.oldService.price.toString() !== this.service.price.toString()) {
+        this.priceBgColor = '#F76F6F';
+      } else {
+        this.priceBgColor = '#ffffff';
+      }
     }
   }
 
   cancelAction() {
-    console.log('cancelar la edicion/creación');
-    // TODO: si se pulsa restaurar el contenido por defecto
-    this.getTheService(this.id);
+    this.service = this.oldService;
+    this.createMode = false;
+    this.editMode = false;
+  }
+
+  supplierSelector = () => {
+    console.log('Seleccionar proveedor');
+    // TODO: método selección de proveedor
   }
 }

@@ -24,6 +24,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 
 import { UsersService } from './services/users.service';
+import { EmailSupplierService } from './services/email-supplier.service';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -38,15 +39,21 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';
 import { SidebarModule } from 'primeng/sidebar';
 import { TabMenuModule } from 'primeng/tabmenu';
+import {SplitButtonModule} from 'primeng/splitbutton';
+
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SupplierviewComponent } from './components/supplierview/supplierview.component';
 
 import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { FormVendorComponent } from './components/form-vendor/form-vendor.component';
+
 import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
+import { ActiveUser1Pipe } from './pipes/active-user1.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,9 +73,12 @@ import { CarritoComponent } from './components/carrito/carrito.component';
     NgbdCarouselPauseComponent,
     PasswordForgotComponent,
     SupplierviewComponent,
+    ContactUsComponent,
+    FormVendorComponent,
     SupplierAddComponent,
     SupplierEditComponent,
-    CarritoComponent
+    CarritoComponent,
+    ActiveUser1Pipe
   ],
   imports: [
     AppRoutingModule,
@@ -90,9 +100,11 @@ import { CarritoComponent } from './components/carrito/carrito.component';
     TabMenuModule,
     SidebarModule,
     PanelMenuModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
+    SplitButtonModule
+
   ],
-  providers: [UsersService],
+  providers: [UsersService, EmailSupplierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

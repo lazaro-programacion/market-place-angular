@@ -42,7 +42,7 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.code = this.route.snapshot.paramMap.get('id');
+
     this.url = GLOBAL.url;
     this.identity = this.usersService.getIdentity();
     this.token = this.usersService.getToken();

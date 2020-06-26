@@ -13,12 +13,11 @@ import { GLOBAL } from '../../config/global';
   providedIn: 'root',
 })
 export class UsersService {
-
   // TODO: No debería ser necerario
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-    })
+    }),
   };
 
   public url: string;
@@ -29,95 +28,111 @@ export class UsersService {
     this.url = GLOBAL.url;
   }
 
-
-  register(userRegister): Observable<any>{
-   const params = JSON.stringify(userRegister)
-   const headers = new HttpHeaders({ 'Content-Type':  'application/json'});
-   return this.httpClient.post(this.url + '/user/register', params, {headers});
-
+  register(userRegister): Observable<any> {
+    const params = JSON.stringify(userRegister);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.url + '/user/register', params, {
+      headers,
+    });
   }
 
-  signUp(userLogin, gettoken = null): Observable<any>{
-
+  signUp(userLogin, gettoken = null): Observable<any> {
     if (gettoken != null) {
       userLogin.gettoken = gettoken;
     }
 
     // const params = JSON.stringify(userLogin)
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.post(this.url + '/user/login', userLogin, { headers: headers });
-
+    return this.httpClient.post(this.url + '/user/login', userLogin, {
+      headers: headers,
+    });
   }
 
   getIdentity = () => {
     const identity = JSON.parse(localStorage.getItem('identity'));
-    // tslint:disable-next-line: triple-equals
     if (identity != 'undefined') {
       this.identity = identity;
     } else {
       this.identity = null;
     }
     return this.identity;
-  }
+  };
 
   getToken = () => {
     const token = localStorage.getItem('token');
-    // tslint:disable-next-line: triple-equals
     if (token != 'undefined') {
       this.token = token;
     } else {
       this.token = null;
     }
     return this.token;
-  }
+  };
 
   getUsers = () => {
     return this.httpClient.get<Users[]>('http://localhost:4000/api/user');
-  }
+  };
 
   getUser = (_id: string): Observable<Users> => {
     return this.httpClient.get<Users>(`http://localhost:4000/api/user/` + _id);
-  }
+  };
 
   saveUsers = (users: Users): Observable<Users> => {
     console.log('saving patient', Users);
     return this.httpClient
       .post<Users>('http://localhost:4000/api/user/', users, this.httpOptions)
       .pipe(catchError(this.handleError));
-  }
+  };
 
+  getEmail = (email: string): Observable<Users> => {
+    return this.httpClient.get<Users>(
+      `http://localhost:4000/api/user/email/` + email
+    );
+  };
 
-
-  putUsers(userUpdate, _id: string): Observable<any>{
-   // const params = JSON.stringify(userUpdate)
+  putUsers(userUpdate, _id: string): Observable<any> {
+    // const params = JSON.stringify(userUpdate)
     const headers = new HttpHeaders({
-       'Content-Type':  'application/json',
-       'Authorization': this.getToken()
-        })
-    return this.httpClient.put( this.url + '/user/update-user/' + _id,  userUpdate, {headers});
-  }
-
-
-  putPassword = (password: string, _id: string): Observable<any> => {
-    const headers = new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': this.getToken()
-       });
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    });
     return this.httpClient.put(
-      this.url + '/user/' + _id, {password}, {headers:headers})
-      .pipe(
-        catchError(this.handleError)
-      );
+      this.url + '/user/update-user/' + _id,
+      userUpdate,
+      { headers }
+    );
   }
+  putAdminUsers(userUpdate, _id: string): Observable<any> {
+    // const params = JSON.stringify(userUpdate)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    });
+    return this.httpClient.put(
+      this.url + '/user/update/' + _id,
+      userUpdate,
+      { headers }
+    );
+  }
+
+  putPassword = (user: Users, _id: string): Observable<any> => {
+    console.log(user);
+
+    return this.httpClient
+      .put(this.url + '/user/' + _id, user)
+      .pipe(catchError(this.handleError));
+  };
 
   searchUsers = (search: string) => {
     const headers = new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': this.getToken()
-       })
-    return this.httpClient.get<Users[]>(
-      'http://localhost:4000/api/user/search/' + search, {headers: headers}).toPromise();
-  }
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    });
+    return this.httpClient
+      .get<Users[]>('http://localhost:4000/api/user/search/' + search, {
+        headers: headers,
+      })
+      .toPromise();
+  };
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

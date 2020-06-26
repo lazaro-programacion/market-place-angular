@@ -6,7 +6,8 @@ const userSchema = mongoose.Schema({
   email: String,
   rol: String, // poner como lista
   password: String,
-  imagen: String
+  imagen: String,
+  active: Boolean
 });
 
 module.exports = mongoose.model("User", userSchema);

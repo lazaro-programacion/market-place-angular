@@ -64,4 +64,13 @@ npm i --save moment
 npm i --save jwt-simple
 npm i --save bcrypt-nodejs
 npm i angular-file-uploader
+npm i--save bcrypt
+
+```
+
+```
+npm install primeicons --save
+npm install @angular/cdk --save
+npm i nodemailer
+
 ```

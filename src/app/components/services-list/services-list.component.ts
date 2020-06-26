@@ -21,24 +21,29 @@ export class ServicesListComponent implements OnInit {
   public selectedService: Service;
 
   public services: Service[];
+  public allServices: Service[];
   public user: Users;
+
+  public inactiveViewFlag = false;
 
   constructor(private serviceService: ServicesService, private usersService: UsersService) { }
 
   ngOnInit(): void {
     this.serviceService.getServices().subscribe(
       serv => {
-        this.services = serv;
+        this.allServices = serv;
+        this.services = this.activeServicesList();
       }
     );
   }
 
-  activeServicesList = (filter: string) => {
-    if (filter === 'A') {
-      return this.services.filter(item => item.active === true);
-    } else if (filter === 'I') {
-      return this.services.filter(item => item.active === false);
-    } else { return this.services; }
+  // TODO: añadir botón para admin que liste servicios desactivados
+  activeServicesList = () => {
+    if (this.inactiveViewFlag) {
+      return this.allServices.filter(item => item.active === false);
+    } else {
+      return this.allServices.filter(item => item.active === true);
+    }
   }
 
   selectService(event: Event, service: Service) {
@@ -49,6 +54,12 @@ export class ServicesListComponent implements OnInit {
 
   onDialogHide() {
     this.selectedService = null;
+  }
+
+  inactiveViewToggle = () => {
+    this.inactiveViewFlag = !this.inactiveViewFlag;
+    this.services = this.activeServicesList();
+
   }
 
 }

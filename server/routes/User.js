@@ -15,11 +15,13 @@ router.post("/register", userController.createUser);
 router.get("/:id", userController.getUserID);
 router.delete("/:id",  [md_auth.ensureAuth, md_admin.isAdmin ], userController.getDelete);
 router.put("/update-user/:id", md_auth.ensureAuth  , userController.getUpdate);
-router.put("/:id", md_auth.ensureAuth  , userController.getPassword);
+router.put("/update/:id", [md_auth.ensureAuth ,md_admin.isAdmin ] , userController.AdmingetUpdate);
+router.put("/:id" , userController.getPassword);
 router.get("/get-image/:image", userController.getImagen);
 router.post("/upload-image/:id?", mp_upload, userController.upload);
 router.get("/search/:search",  [md_auth.ensureAuth, md_admin.isAdmin]  , userController.getSearch);
 
+router.get("/email/:email", userController.getEmail);
 
 
 module.exports = router;

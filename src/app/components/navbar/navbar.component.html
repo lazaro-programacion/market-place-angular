@@ -155,8 +155,10 @@
 <hr />
 
 <p-sidebar
+  class="sidebar"
   [(visible)]="visibleSidebar"
-  [style]="{ width: '31.5vw' }"
+  styleClass="ui-sidebar-md"
+  
   [baseZIndex]="10000"
 >
 <h1 style="font-weight: normal;">JEDI Market</h1>
@@ -165,15 +167,27 @@
   {{identity.usuario | uppercase}}
 </div>
 
+  
 <p-panelMenu
   [model]="itemsSide"
   [transitionOptions]="'500ms'"
-  [style]="{ width: '25vw' }"
+  styleClass="ui-sidebar-md"
 ></p-panelMenu>
 
- 
+ <div class="enlaces">
+   <a [routerLink]="['/contacta']"  >
+    <i class="pi pi-envelope"></i>
+     Contacta con Nosotros</a>
+</div>
+
+<div class="enlaces"> 
+   <a [routerLink]="['/form-vendedor']"  >
+    <i class="pi pi-briefcase"></i>
+     Quieres ser proveedor?</a>
+ </div>
 
 <div class="salir">
    <p-button label="Salir" (click)="visibleSidebar = false" ></p-button>
 </div>
+
 </p-sidebar>
