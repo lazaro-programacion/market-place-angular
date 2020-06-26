@@ -9,7 +9,7 @@
                     <div style="position:relative">
                         <input type="search" pInputText placeholder="Búsqueda por nombre"
                             (input)="dv.filter($event.target.value)">
-                            <button class="btn btn-primary" (click)='inactiveViewToggle()'>Ver inactivos</button>
+                            Ver inactivos <input type='checkbox' [(ngModel)]='inactiveViewFlag' (change)='inactiveViewToggle()'>
                         </div>
                 </div>
             </div>
