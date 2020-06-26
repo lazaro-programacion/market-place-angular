@@ -16,24 +16,32 @@
                     <p><span>{{service.price}}</span>€</p>
                 </div>
                 <div>
-                    <button (click)='editServicio(service._id)'>Editar</button>
-                    <button (click)='nuevoServicio()'>Nuevo</button>
-                    <button (click)='cancelAction()'>Cancelar</button>
+                    <button class="btn btn-warning" (click)='nuevoServicio()'
+                        *ngIf="!createMode&&!editMode">Nuevo</button>
+                    <button class="btn btn-danger" (click)='editServicio(service._id)'
+                        *ngIf="!createMode&&!editMode">Editar</button>
+                    <button class="btn btn-success" (click)='guardarNuevo()' *ngIf="createMode">Guardar</button>
+                    <button class="btn btn-success" (click)='guardarEditado()' *ngIf="editMode">Guardar</button>
+                    <button class="btn btn-primary" (click)='cancelAction()'
+                        *ngIf="editMode||createMode">Cancelar</button>
                 </div>
             </div>
-            <div class="editor">
+            <div class="editor" *ngIf="createMode||editMode">
                 <h2>Área de edición</h2>
                 <div class='editor-group'>
                     <label>Nombre</label>
                     <label>Activo</label>
-                    <input [ngStyle]="service.nombre!==oldService.nombre && { backgroungd: 'red'}" type='text' [(ngModel)]='service.nombre' (input)='onChangeNombre($event)'>
+                    <input [style.background-color]="nombreBgColor" type='text' [(ngModel)]='service.nombre'
+                        (keyup)='onChangeNombre()'>
                     <input type="checkbox" [(ngModel)]='service.active'>
                 </div>
                 <label>Descripción</label><br>
-                <textarea cols="38" rows="7" [(ngModel)]='service.descripcion' (blur)='onChangeDescripcion($event)'></textarea>
+                <textarea [style.background-color]="descripcionBgColor" cols="38" rows="7"
+                    [(ngModel)]='service.descripcion' (keyup)='onChangeDescripcion()'></textarea>
                 <br />
                 <label>Precio</label><br>
-                <input type='text' [(ngModel)]='service.price' (blur)='onChangePrice($event)'>
+                <input [style.background-color]="priceBgColor" type='text' [(ngModel)]='service.price'
+                    (keyup)='onChangePrice()'>
 
             </div>
 
@@ -42,25 +50,22 @@
     </div>
 </div>
 <div class="wrapper-user" *ngIf="user.rol!=='admin'">
-    <div class="servicio">
-        <div class="cabecera">
-            <h3>Servicio</h3>
+    <div class="cabecera">
+        <h3>Servicio</h3>
+    </div>
+    <div class="grid-userview">
+        <div class="product-img">
+            <img [src]="service.imagen" height="420" width="327" alt="Imagen producto">
         </div>
-        <div class="wrapper">
-            <div class="product-img">
-                <img [src]="service.imagen" height="420" width="327" alt="Imagen producto">
+        <div class="product-info">
+            <div class="product-text">
+                <h1>{{service.nombre}}</h1>
+                <p>{{service.descripcion}}</p>
             </div>
-            <div class="product-info">
-                <div class="product-text">
-                    <h1>{{service.nombre}}</h1>
-                    <p>{{service.descripcion}}</p>
-                </div>
-                <div class="product-price">
-                    <p><span>{{service.price}}</span>€</p>
-                </div>
-                <button type="button">¡Comprar!</button>
+            <div class="product-price">
+                <p><span>{{service.price}}</span>€</p>
             </div>
+            <button type="button" (click)='supplierSelector()'>Selecciona proveedor</button>
         </div>
-
     </div>
 </div>

@@ -9,7 +9,8 @@
                     <div style="position:relative">
                         <input type="search" pInputText placeholder="Búsqueda por nombre"
                             (input)="dv.filter($event.target.value)">
-                    </div>
+                            <button class="btn btn-primary" (click)='inactiveViewToggle()'>Ver inactivos</button>
+                        </div>
                 </div>
             </div>
         </div>
