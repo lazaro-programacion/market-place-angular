@@ -1,12 +1,13 @@
 const User = require("../models/User");
 const fs = require("fs");
 const path = require("path");
-
+const { exists } = require("../models/User");
 // importar libreria bcrypt
 const bcrypt = require('bcrypt-nodejs');
 const bcryptnew = require('bcrypt');
 // importar jwt
 const jwt = require('../jwt/jwt');
+
 
 const userController = {
 
@@ -14,8 +15,8 @@ const userController = {
   createUser: (req, res) => {
     console.log("la req ", req.body);
     const user = new User();
-    
-  
+
+
     // Asignar valores al objeto
 
     user.usuario = req.body.usuario;
@@ -29,7 +30,7 @@ const userController = {
   }else{
       if(!userId){
             // codificar password
-          
+
               const saltRounds = 10
               const hash = bcryptnew.hashSync(req.body.password, saltRounds);
               user.password = hash
@@ -45,13 +46,13 @@ const userController = {
                             res.status(200).send({user: userStored, message: 'usuario guardado correctamente'});
                             }
                         }
-  
+
                   })
             /***
-             * 
+             *
              *  bcrypt.hash(req.body.password, null, null, function (err, hash) {
               user.password = hash
-             
+
               user.save((err, userStored) => {
                   if(err){
                       res.status(500).send({message: 'error al guardar el usuario'});
@@ -64,14 +65,14 @@ const userController = {
                       }
 
                 })
-  
+
                })
-             * 
-             * 
-             * 
-             * 
+             *
+             *
+             *
+             *
              */
-           
+
           }else{
               res.status(500).send({message: 'el email del usuario ya existe'});
           }
@@ -109,14 +110,14 @@ login: (req, res) => {
                           }
                       }else{
                         res.status(404).send({ message: 'el password no es correcto'});
-                    } 
-                     
-                  
+                    }
+
+
                     /***
-                     * 
+                     *
                      *  bcrypt.compare(password , user.password, (err, resp) => {
-                      
-                              console.log('response', resp ) 
+
+                              console.log('response', resp )
                               if(resp){
                                 // comprobar y generar token
                             if(params.gettoken){
@@ -130,24 +131,24 @@ login: (req, res) => {
 
                         }else{
                             res.status(404).send({ message: 'el password no es correcto'});
-                        } 
+                        }
 
                         })
-                     * 
-                     * 
-                     * 
-                     * 
+                     *
+                     *
+                     *
+                     *
                      */
-                   
 
 
-                     
+
+
                   }else{
                       res.status(404).send({ message: 'el usuario no esta registrado'});
                   }
-              }    
+              }
           })
-      
+
 } ,
 
   getUser: (req, res) => {
@@ -174,11 +175,11 @@ login: (req, res) => {
     // recoger parametros
     const userId = req.params.id
     const update = req.body
-    
+
     delete update.password
-   
- 
-   
+
+
+
    // console.log('id', userId, 'update', update)
    // comprobar id usuario logeado y el que viene ne los params
 
@@ -186,7 +187,7 @@ login: (req, res) => {
      return res.status(500).send({ message: 'no tienes permisos'});
  }
 User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpdated) => {
-     if(err){ 
+     if(err){
          res.status(500).send({ message: 'error al actuaqlizar usuario'});
      }else{
         if(!userUpdated){
@@ -197,9 +198,38 @@ User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpd
 
      }
      })
-    
+
  },
-   
+ AdmingetUpdate: (req, res) => {
+
+  // recoger parametros
+  const userId = req.params.id
+  const update = req.body
+console.log('esto que es ssss',req.user.sub, userId)
+
+const saltRounds = 10
+const hash = bcryptnew.hashSync(req.body.password, saltRounds);
+update.password = hash
+console.log(update.password)
+ // console.log('id', userId, 'update', update)
+ // comprobar id usuario logeado y el que viene ne los params
+
+
+User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) => {
+  if(err){
+      res.status(500).send({ message: 'error al actualizar usuario'});
+  }else{
+     if(!userUpdated){
+      res.status(404).send({ message: 'no se ha podido actualizar usuario'});
+     }else{
+       res.status(200).send({user: userUpdated})
+     }
+
+  }
+  })
+
+},
+
  // metodo cambio password
 
  getPassword: (req, res) => {
@@ -214,7 +244,7 @@ update.password = hash
 console.log(update.password)
 
 User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) => {
-  if(err){ 
+  if(err){
       res.status(500).send({ message: 'error al actualizar usuario'});
   }else{
      if(!userUpdated){
@@ -226,35 +256,6 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
   }
   })
 
-  /**
-   * 
-   * bcrypt.hash(req.body, saltRounds, null, function (err, hash) {
- update.password = hash
-  console.log(update.password)
-  User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) => {
-    if(err){ 
-        res.status(500).send({ message: 'error al actualizar usuario'});
-    }else{
-       if(!userUpdated){
-        res.status(404).send({ message: 'no se ha podido actualizar usuario'});
-       }else{
-         res.status(200).send({user: userUpdated})
-       }
-  
-    }
-    })
-
-})
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   */
-
-
-  
  },
 
  // metodo descargar archivos
@@ -345,7 +346,7 @@ fs.exists(path_file, (exists) => {
   });
 }
 })
- 
+
 
 },
 
@@ -354,7 +355,7 @@ getEmail: (req, res) => {
   const busqueda = req.params.email;
   console.log(busqueda);
   User.find(
-     { email: busqueda}  
+     { email: busqueda}
      )
     .exec((err, users) => {
       if (err) {

@@ -1,28 +1,27 @@
 <div class="container">
-  <div class="alert alert-success" *ngIf="status === 'success'"  role="alert">
+  <div class="alert alert-success" *ngIf="status === 'success'" role="alert">
     Te has actualizado correctament!
-    <a [routerLink]="['/home']"  >ir al Home aqui</a>
+    <a [routerLink]="['/home']">ir al Home aqui</a>
   </div>
 
-<div class="alert alert-danger" *ngIf="status === 'error'"  role="alert">
+  <div class="alert alert-danger" *ngIf="status === 'error'" role="alert">
     Ha habido un problema no se han actualizado tus datos!
   </div>
 
   <div class="row">
     <div class="col-md-12" style="display: flex; flex-wrap: wrap;">
       <div class="card" style="width: 18rem;">
+        <img *ngIf="!identity.imagen" [src]="urls + noFoto" />
         <img
-        [src]="url + '/user/get-image/' + identity.imagen"
+          *ngIf ='identity.imagen'
+          [src]="urls  + identity.imagen "
           style="height: 273px; padding: 10px;"
           class="card-img-top"
           [alt]="identity.usuario"
         />
-      
         <div>
           <div>
-           
-
- <label for="exampleInputavatar">Avatar</label>
+            <label for="exampleInputavatar">Avatar</label>
             <angular-file-uploader
             *ngIf="token"
           [config]="afuConfig"
@@ -30,31 +29,32 @@
            </angular-file-uploader>
 
 
-          
-           
+
+
           </div>
-      
+
         </div>
       </div>
 
       <div class="well well-sm" style="flex: 0 0 60%;">
-        <form class="form-horizontal" method="post" #userForm='ngForm' (ngSubmit)="guardar()">
-         
+        <form
+          class="form-horizontal"
+          method="post"
+          #userForm="ngForm"
+          (ngSubmit)="guardar()"
+        >
           <fieldset>
-            
-            <legend class="text-center header">Editar perfil </legend>
+            <legend class="text-center header">Editar perfil</legend>
 
             <div class="form-group">
               <div class="col-md-8" style="flex: 0 0 60%; margin: auto;">
-                
                 <input
                   id="name"
                   name="name"
                   type="text"
-                  #name="ngModel" 
+                  #name="ngModel"
                   [(ngModel)]="identity.usuario"
                   [ngModelOptions]="{ standalone: true }"
-              
                   class="form-control"
                   required
                 />
@@ -65,7 +65,6 @@
             </span>
             <div class="form-group">
               <div class="col-md-8" style="flex: 0 0 60%; margin: auto;">
-                
                 <input
                   id="email"
                   name="email"
@@ -73,9 +72,8 @@
                   #Email="ngModel"
                   [(ngModel)]="identity.email"
                   [ngModelOptions]="{ standalone: true }"
-                  
                   class="form-control"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   required
                 />
               </div>
@@ -83,15 +81,13 @@
             <span *ngIf="!Email.valid && Email.touched">
               <p>El email es obligatorio</p>
             </span>
-          
-            
+
             <div class="form-group">
               <div class="col-md-12 text-center">
-               
                 <button
                   type="submit"
                   class="btn btn-primary btn-lg"
-                  [disabled]="!name.valid || !Email.valid "
+                  [disabled]="!name.valid || !Email.valid"
                 >
                   Actualizar
                 </button>
@@ -103,3 +99,4 @@
     </div>
   </div>
 </div>
+<div class="espacio-porfabor"></div>

@@ -14,13 +14,14 @@ import { SuppliersListComponent } from './components/suppliers-list/suppliers-li
 import { Supplier } from './models/supplier';
 import { SupplierviewComponent } from './components/supplierview/supplierview.component';
 
-import { AdminGuard } from "./services/guard/admin.guard";
-import { UsuarioGuard  } from "./services/guard/usuario.guard";
-import { PasswordForgotComponent } from "./components/password-forgot/password-forgot.component";
-import { FormVendorComponent } from "./components/form-vendor/form-vendor.component";
-import { ContactUsComponent } from "./components/contact-us/contact-us.component";
+import { AdminGuard } from './services/guard/admin.guard';
+import { UsuarioGuard  } from './services/guard/usuario.guard';
+import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
+import { FormVendorComponent } from './components/form-vendor/form-vendor.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,9 @@ const routes: Routes = [
   { path: 'supplier/edit/:id', component: SupplierAddComponent, canActivate: [AdminGuard]},
   { path: 'form-vendedor', component: FormVendorComponent},
   { path: 'contacta', component: ContactUsComponent},
+  { path: 'carrito', component: CarritoComponent},
+
+
   { path: ':page', component: NotFoundComponentComponent },
   { path: '**', component: NotFoundComponentComponent }
 ];

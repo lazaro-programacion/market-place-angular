@@ -1,0 +1,24 @@
+.table td .pi:before {
+  --webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  color: rgb(0, 255, 0);
+}
+
+.negacion .table td .pi:before {
+  --webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  color: rgb(255, 10, 1);
+}
+
+.negacion .pi-times{
+
+  color: red;
+}
+.pi-times:before {
+  color: red !important;
+}
+.table-responsive {
+  overflow-y: visible !important;
+}

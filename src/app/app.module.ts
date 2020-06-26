@@ -20,9 +20,11 @@ import { ServiceAddComponent } from './components/service-add/service-add.compon
 import { ServicesListComponent } from './components/services-list/services-list.component';
 import { SuppliersListComponent } from './components/suppliers-list/suppliers-list.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
+
 
 import { UsersService } from './services/users.service';
-import { EmailSupplierService } from "./services/email-supplier.service";
+import { EmailSupplierService } from './services/email-supplier.service';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -37,19 +39,22 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';
 import { SidebarModule } from 'primeng/sidebar';
 import { TabMenuModule } from 'primeng/tabmenu';
+import {SplitButtonModule} from 'primeng/splitbutton';
+
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SupplierviewComponent } from './components/supplierview/supplierview.component';
 
 import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
-import { AngularFileUploaderModule } from "angular-file-uploader";
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { FormVendorComponent } from './components/form-vendor/form-vendor.component';
 
 import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
 import { ShowSuppliersComponent } from './components/show-suppliers/show-suppliers.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { ActiveUser1Pipe } from './pipes/active-user1.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,16 +72,15 @@ import { ShowSuppliersComponent } from './components/show-suppliers/show-supplie
     SuppliersListComponent,
     UsersListComponent,
     NgbdCarouselPauseComponent,
-    
-    
     PasswordForgotComponent,
     SupplierviewComponent,
     ContactUsComponent,
     FormVendorComponent,
-    
     SupplierAddComponent,
     SupplierEditComponent,
-    ShowSuppliersComponent
+    ShowSuppliersComponent,
+    CarritoComponent,
+    ActiveUser1Pipe
   ],
   imports: [
     AppRoutingModule,
@@ -98,8 +102,9 @@ import { ShowSuppliersComponent } from './components/show-suppliers/show-supplie
     TabMenuModule,
     SidebarModule,
     PanelMenuModule,
-    AngularFileUploaderModule
-   
+    AngularFileUploaderModule,
+    SplitButtonModule
+
   ],
   providers: [UsersService, EmailSupplierService],
   bootstrap: [AppComponent]
