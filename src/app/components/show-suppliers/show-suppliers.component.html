@@ -1,0 +1,21 @@
+<p>show-suppliers works!</p>
+<div *ngFor="let supplier of suppliers">
+    <div class="list">
+
+        <div class="wrapper">
+            <div class="imagen">
+                <img [src]='supplier.imagen' alt='imagen proveedor'/>
+            </div>
+            <div class="info">
+                <div class="nombre">
+                    <div>{{supplier.nombre}}</div>
+                    <div>{{supplier.apellidos}}</div>
+                </div>
+                
+                <div class="presentacion">adshads aidsfhapifjni k bnqiewjkbnlql</div>
+                <button class="btn btn-primary" (click)='selectSupplier.emit(supplier)'>Seleccionar</button>
+    
+            </div>
+        </div>
+    </div>
+</div>

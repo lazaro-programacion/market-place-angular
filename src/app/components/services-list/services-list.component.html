@@ -1,4 +1,4 @@
-<p-dataView class="data-view" #dv [value]="services" [paginator]="true" [rows]="5" paginatorPosition="both"
+<p-dataView class="data-view" #dv [value]="services" [paginator]="true" [rows]="10" paginatorPosition="both"
     filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
         <div class="ui-helper-clearfix">
@@ -9,7 +9,11 @@
                     <div style="position:relative">
                         <input type="search" pInputText placeholder="Búsqueda por nombre"
                             (input)="dv.filter($event.target.value)">
-                    </div>
+                            <div *ngIf="user.rol==='admin'">
+
+                                Ver inactivos <input type='checkbox' [(ngModel)]='inactiveViewFlag' (change)='inactiveViewToggle()'>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

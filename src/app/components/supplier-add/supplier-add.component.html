@@ -1,40 +1,41 @@
-<p>supplier-add works!</p>
-
-<div>
-  Nombre:
-  <input type="text" [(ngModel)]="nombre">
+<div class="form-group">
+  <label>Nombre:</label>
+  <input type="text" class="form-control" [(ngModel)]="nombre">
 </div>
-<div>
-  Apellidos:
-  <input type="text" [(ngModel)]="apellidos">
+<div class="form-group">
+  <label>Apellidos:</label>
+  <input type="text" class="form-control" [(ngModel)]="apellidos">
 </div>
 
-<div>
-  NIF:
-  <input type="text" [(ngModel)]="nif">
+<div class="form-group">
+  <label>NIF:</label>
+  <input type="text" class="form-control" [(ngModel)]="nif">
 </div>
 
-<div>
-  Foto del proveedor URL:
-  <input type="text" [(ngModel)]="imagen">
+<div class="form-group">
+  <label>Foto del proveedor URL:</label>
+  <input type="text" class="form-control" [(ngModel)]="imagen">
 </div>
 
 
-<div>
-  Cuenta IBAN:
-  <input type="text" [(ngModel)]="iban">
+<div class="form-group">
+  <label>Cuenta IBAN:</label>
+  <input type="text" class="form-control" [(ngModel)]="iban">
 </div>
 
 
-<div>
-  Email:
-  <input type="text" [(ngModel)]="email">
+<div class="form-group">
+  <label>Email:</label>
+  <input type="text" class="form-control" [(ngModel)]="email">
 </div>
 
 
-<div>
-  Activo true o false:
-  <input type="text" [(ngModel)]="active">
+<div class="form-group">
+  <label>Activo:&nbsp;</label>
+  <input type="checkbox" [(ngModel)]="active">
 </div>
 
-<button (click)="save()">Guardar</button>
+<button class="btn btn-primary" (click)="save()">Guardar</button>
+<hr>
+<hr>
+<hr>

@@ -1,20 +1,19 @@
 import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Service } from 'src/app/models/service';
 import { ServicesService } from 'src/app/services/services.service';
-import { Supplier} from 'src/app/models/supplier';
-import { SupplierService} from 'src/app/services/supplier.service';
-import { Users } from "../../models/users";
-import { UsersService } from "../../services/users.service"
+import { Supplier } from 'src/app/models/supplier';
+import { SupplierService } from 'src/app/services/supplier.service';
+import { Users } from '../../models/users';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
-import { GLOBAL } from "../../../config/global";
+import { GLOBAL } from '../../../config/global';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.css'],
-    providers: [ServicesService, SupplierService]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
+  providers: [ServicesService, SupplierService],
 })
 export class NavbarComponent implements OnInit, DoCheck {
 
@@ -71,7 +70,7 @@ export class NavbarComponent implements OnInit, DoCheck {
                 });
             }
         );
-        //console.log('los servicios', this.services);
+        // console.log('los servicios', this.services);
 
         this.supplierService.getSuppliers().subscribe(
             response => {
@@ -87,7 +86,7 @@ export class NavbarComponent implements OnInit, DoCheck {
         );
 
 
-        //console.log('array', this.itemsService, this.itemsSupplier);
+        // onsole.log('array', this.itemsService, this.itemsSupplier);
 
         this.itemsSide = [
             {
@@ -197,10 +196,10 @@ export class NavbarComponent implements OnInit, DoCheck {
 
 
     logout(){
-    localStorage.clear()
-    this.identity = null
-    this.token = null
-    this.router.navigate(['/home'])
+    localStorage.clear();
+    this.identity = null;
+    this.token = null;
+    this.router.navigate(['/home']);
     }
 
     showBasicDialog() {

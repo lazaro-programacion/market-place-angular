@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
 import { SelectItem } from 'primeng/api';
-import { UsersService } from 'src/app/services/users.service';
-import { Users } from 'src/app/models/users';
 
 @Component({
   selector: 'app-services-list',
@@ -21,24 +19,30 @@ export class ServicesListComponent implements OnInit {
   public selectedService: Service;
 
   public services: Service[];
-  public user: Users;
+  public allServices: Service[];
+  public user: any;
 
-  constructor(private serviceService: ServicesService, private usersService: UsersService) { }
+  public inactiveViewFlag = false;
+
+  constructor(private serviceService: ServicesService) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse( localStorage.getItem('identity'));
     this.serviceService.getServices().subscribe(
       serv => {
-        this.services = serv;
+        this.allServices = serv;
+        this.services = this.activeServicesList();
       }
     );
   }
 
-  activeServicesList = (filter: string) => {
-    if (filter === 'A') {
-      return this.services.filter(item => item.active === true);
-    } else if (filter === 'I') {
-      return this.services.filter(item => item.active === false);
-    } else { return this.services; }
+  // TODO: añadir botón para admin que liste servicios desactivados
+  activeServicesList = () => {
+    if (this.inactiveViewFlag) {
+      return this.allServices.filter(item => item.active === false);
+    } else {
+      return this.allServices.filter(item => item.active === true);
+    }
   }
 
   selectService(event: Event, service: Service) {
@@ -49,6 +53,10 @@ export class ServicesListComponent implements OnInit {
 
   onDialogHide() {
     this.selectedService = null;
+  }
+
+  inactiveViewToggle = () => {
+    this.services = this.activeServicesList();
   }
 
 }

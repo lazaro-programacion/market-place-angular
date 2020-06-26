@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
 
-     activeIndex: number = 0;
+     activeIndex = 0;
   constructor() { }
 
   ngOnInit(): void {

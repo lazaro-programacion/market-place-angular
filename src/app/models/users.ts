@@ -6,5 +6,6 @@ export class Users {
     public rol: string,
     public password: string,
     public imagen: string,
+    public active = true
     ){}
 }

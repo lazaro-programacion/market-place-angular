@@ -20,7 +20,7 @@ exports.ensureAuth = function(req, res, next){
               message: 'El token ha expirado'
           })
         }
-       
+
         req.user = payload;
       //  console.log('user', req.user)
 
@@ -29,8 +29,8 @@ exports.ensureAuth = function(req, res, next){
             message: 'El token no es valido'
         })
     }
- 
-    
+
+
   // req.user = payload;
   // console.log('user', req.user)
 
