@@ -37,17 +37,10 @@ const routes: Routes = [
   { path: 'buscador/', component: SearchComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [UsuarioGuard], },
   { path: 'supplier/view/:id', component: SupplierviewComponent},
-<<<<<<< HEAD
   { path: 'supplier/add', component: SupplierAddComponent, canActivate: [AdminGuard]},
   { path: 'supplier/edit/:id', component: SupplierAddComponent, canActivate: [AdminGuard]},
-=======
-
   { path: 'form-vendedor', component: FormVendorComponent},
   { path: 'contacta', component: ContactUsComponent},
-
-  { path: 'supplier/add', component: SupplierAddComponent},
-  { path: 'supplier/edit/:id', component: SupplierAddComponent},
->>>>>>> fb480d52de161cc52415116c52cb2d9d85da80f0
   { path: ':page', component: NotFoundComponentComponent },
   { path: '**', component: NotFoundComponentComponent }
 ];
