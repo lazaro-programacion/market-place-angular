@@ -22,10 +22,10 @@ export class AppComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     
      
-    console.log(this.userService.getToken())
+    //console.log(this.userService.getToken())
      
     this.identity = this.userService.getIdentity()
-    console.log(this.identity)
+    //console.log(this.identity)
    }
 
    ngDoCheck(): void {

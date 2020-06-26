@@ -16,8 +16,9 @@ import { SupplierviewComponent } from './components/supplierview/supplierview.co
 
 import { AdminGuard } from "./services/guard/admin.guard";
 import { UsuarioGuard  } from "./services/guard/usuario.guard";
-
 import { PasswordForgotComponent } from "./components/password-forgot/password-forgot.component";
+import { FormVendorComponent } from "./components/form-vendor/form-vendor.component";
+import { ContactUsComponent } from "./components/contact-us/contact-us.component";
 import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
 
@@ -36,6 +37,10 @@ const routes: Routes = [
   { path: 'buscador/', component: SearchComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [UsuarioGuard], },
   { path: 'supplier/view/:id', component: SupplierviewComponent},
+
+  { path: 'form-vendedor', component: FormVendorComponent},
+  { path: 'contacta', component: ContactUsComponent},
+
   { path: 'supplier/add', component: SupplierAddComponent},
   { path: 'supplier/edit/:id', component: SupplierAddComponent},
   { path: ':page', component: NotFoundComponentComponent },

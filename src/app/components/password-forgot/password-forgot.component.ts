@@ -9,8 +9,9 @@ import { UsersService } from "../../services/users.service"
 })
 export class PasswordForgotComponent implements OnInit {
  public email : string;
- public userFilter: Users[];
- public users: Users[] = [];
+
+ //public users: Users[] = [];
+ public user: Users;
  public newUser: Users;
  public status:string= '';
  public newPassword: string;
@@ -23,47 +24,75 @@ export class PasswordForgotComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = '';
-    this.userFilter= [];
-    this.usersService.getUsers().subscribe((users) => (this.users = users));
+ 
+   // this.usersService.getUsers().subscribe((users) => (this.users = users));
     this.show = true;
 
 
   }
   onSubmit(email:string){
     //console.log(email)
+   this.email = email.toLowerCase()
+  //  let userFilter = []
+    if(this.email === ''){ 
+      this.status = ''
+    }else{
 
-    this.usersService.getUsers().subscribe((users) => (this.users = users));
+   this.usersService.getEmail(this.email).subscribe(
+     response => {
+       console.log(response)
+      this.user = response;
 
-    //console.log(this.users)
-  if(this.email === ''){
+       if(this.user){
+         this.status = 'success'
+         this.show = false
+       }else{
+         this.status ='error'
+       }
+
+     },
+     error => { 
+      var errorMessage = <any>error
+     if(errorMessage != null){
+   
+       this.status = 'error'
+     }
+   })
+   
+  
+/*
+if(this.email === ''){ 
     this.status = ''
   }else{
-
-    this.userFilter = this.users.filter(element =>(element.email === email))
-
-    if (this.userFilter.length === 1 ){
+    userFilter = this.users.filter(element =>(element.email === email))
+    if (userFilter.length === 1 ){
       this.status = 'success'
-     // console.log(this.userFilter[0])
-      this.newUser = this.userFilter[0]
+    
+      this.newUser = userFilter[0]
       this.show = false
     }else{
       this.status = 'error'
     }
+*/
 
-  }
+     
+  }   
 
   }
 
   onPassword(){
 
-
+    this.newUser = this.user[0]
     this.newUser.password = this.newPassword
-    console.log('datos a enviar', this.newUser._id,  this.newUser.password )
-    this.usersService.putPassword(this.newUser.password, this.newUser._id).subscribe(
+    console.log('datos a enviar', this.newUser._id,  this.newUser, this.newUser.password )
+    
+     this.usersService.putPassword(this.newUser, this.newUser._id).subscribe(
       () => {
           this.status = 'correcto'
       });
 
+    
+    
   }
 
 }

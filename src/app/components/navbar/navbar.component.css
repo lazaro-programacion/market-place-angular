@@ -19,7 +19,15 @@
   }
 
   .salir{
-      margin-top: 15px;
+      margin-top: 5px;
+  }
+
+  .enlaces{
+      margin-top: 5px;
+  }
+
+  .sidebar{
+      overflow-y: hidden;
   }
   
  

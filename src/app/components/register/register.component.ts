@@ -39,16 +39,15 @@ export class RegisterComponent implements OnInit {
   onSubmit(form: any) {
   
    
-      console.log('form', form, this.user)
+    
       this.usersService.register(this.user).subscribe(
         response => {
-          console.log('pessponse', response)
-        
+         
           if(response.user && !this.user._id){
             this.user = response.user
             
             this.status = 'success'
-            console.log('usuario registrado', this.user, this.status)
+            //console.log('usuario registrado', this.user, this.status)
             form.reset()
            // this.router.navigate(['/home'])
     
@@ -62,7 +61,7 @@ export class RegisterComponent implements OnInit {
         
         },
         err =>{
-          console.log(err)
+       //   console.log(err)
           this.status = 'error'
         }
       )

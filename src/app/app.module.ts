@@ -22,6 +22,7 @@ import { SuppliersListComponent } from './components/suppliers-list/suppliers-li
 import { UsersListComponent } from './components/users-list/users-list.component';
 
 import { UsersService } from './services/users.service';
+import { EmailSupplierService } from "./services/email-supplier.service";
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -43,6 +44,9 @@ import { SupplierviewComponent } from './components/supplierview/supplierview.co
 
 import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { FormVendorComponent } from './components/form-vendor/form-vendor.component';
+
 import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
 @NgModule({
@@ -63,8 +67,12 @@ import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.
     UsersListComponent,
     NgbdCarouselPauseComponent,
     
+    
     PasswordForgotComponent,
     SupplierviewComponent,
+    ContactUsComponent,
+    FormVendorComponent,
+    
     SupplierAddComponent,
     SupplierEditComponent
   ],
@@ -89,8 +97,9 @@ import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.
     SidebarModule,
     PanelMenuModule,
     AngularFileUploaderModule
+   
   ],
-  providers: [UsersService],
+  providers: [UsersService, EmailSupplierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
