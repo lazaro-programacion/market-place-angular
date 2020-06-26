@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { Supplier } from 'src/app/models/supplier';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 

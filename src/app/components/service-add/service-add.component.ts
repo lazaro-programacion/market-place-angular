@@ -29,7 +29,7 @@ export class ServiceAddComponent implements OnInit {
 
 
   constructor(
-    private serviceService: ServicesService, 
+    private serviceService: ServicesService,
     private supplierService: SupplierService,
     private modalService: NgbModal
     ) { }
