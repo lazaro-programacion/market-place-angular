@@ -57,8 +57,9 @@ export class ServicesListComponent implements OnInit {
   }
 
   inactiveViewToggle = () => {
-    this.inactiveViewFlag = !this.inactiveViewFlag;
+    // this.inactiveViewFlag = !this.inactiveViewFlag;
     this.services = this.activeServicesList();
+    console.log('ver inactivos', this.inactiveViewFlag);
 
   }
 
