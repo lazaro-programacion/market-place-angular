@@ -4,7 +4,7 @@ const patientController = {
 
 
     getSuppliers: (req, res) => {
-        // console.log(res); 
+        // console.log(res);
         Suppliers.find(
             (err, suppliers) => {
                 return err ? res.status(500).send(err) : res.status(200).jsonp(suppliers)
@@ -24,6 +24,7 @@ const patientController = {
         suplier.imagen = body.imagen;
         suplier.active = body.active;
         suplier.email = body.email;
+        suplier.description = body.description;
 
         suplier.save(
             (err, newSuppliers) =>

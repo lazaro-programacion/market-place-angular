@@ -9,6 +9,7 @@ const suppliersSchema = mongoose.Schema({
   imagen: String,
   active: Boolean,
   email: String,
+  description: String
 });
 
 module.exports = mongoose.model("Suppliers", suppliersSchema);
