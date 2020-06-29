@@ -7,4 +7,5 @@ export class Supplier {
     public imagen: string;
     public active: boolean;
     public email: string;
+    public description: string;
 }
