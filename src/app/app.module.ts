@@ -41,7 +41,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import {SplitButtonModule} from 'primeng/splitbutton';
 
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SupplierviewComponent } from './components/supplierview/supplierview.component';
@@ -103,7 +103,8 @@ import { ActiveUser1Pipe } from './pipes/active-user1.pipe';
     SidebarModule,
     PanelMenuModule,
     AngularFileUploaderModule,
-    SplitButtonModule
+    SplitButtonModule,
+    ScrollingModule
 
   ],
   providers: [UsersService, EmailSupplierService],

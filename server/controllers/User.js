@@ -257,7 +257,11 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
   }
   })
 
- },
+  
+
+
+  
+ }, 
 
  // metodo descargar archivos
 
