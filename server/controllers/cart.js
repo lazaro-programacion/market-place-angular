@@ -20,6 +20,8 @@ const controller = {
             cart.service = params.service
             cart.supplier = params.supplier
             cart.quantity = params.quantity
+            cart.unit_price = params.unit_price
+            cart.totalCart =params.totalCart
             let today = new Date();
             cart.date = today
            

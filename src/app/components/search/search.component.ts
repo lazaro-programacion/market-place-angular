@@ -53,6 +53,7 @@ export class SearchComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.code = this.route.snapshot.paramMap.get('search');
+    console.log(this.code)
     this.serviceService.getServices().subscribe(
       serv => {
         this.services = serv;
@@ -63,19 +64,30 @@ export class SearchComponent implements OnInit, DoCheck {
           });
 
         });
-        this.servicesFilter(this.code);
+        if(this.code === ''){
+          return null;
+        }else{
+          this.servicesFilter(this.code);
+          console.log('filtro', this.code, this.servicesFilter);
+        }
       }
     );
   }
 
   ngDoCheck(): void {
     this.code = this.route.snapshot.paramMap.get('search');
-    this.servicesFilter(this.code);
+    if (this.code === ''){
+      return null;
+    }else{
+      this.servicesFilter(this.code);
+      console.log('filtro', this.code, this.servicesFilter);
+    }
   }
 
   servicesFilter(search: string) {
     this.servFiltrados = this.services.filter(
-      e => (e.nombre.toUpperCase().includes(search.toUpperCase())));
+
+      e => ( e.nombre ? e.nombre.toLowerCase().includes(search.toLowerCase()) : null));
   }
 }
 

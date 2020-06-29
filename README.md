@@ -72,5 +72,5 @@ npm i--save bcrypt
 npm install primeicons --save
 npm install @angular/cdk --save
 npm i nodemailer
-
+ver web ethereal.email - para pruebas con email
 ```
