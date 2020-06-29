@@ -11,7 +11,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ShowSuppliersComponent implements OnInit {
   @Input() suppliers: Supplier[];
 
-  @Output() public selectSupplier: EventEmitter<Supplier> = new EventEmitter<Supplier>();
 
   constructor(private activeModal: NgbActiveModal) { }
 
@@ -19,9 +18,9 @@ export class ShowSuppliersComponent implements OnInit {
     console.log('suppliers', this.suppliers);
   }
 
-  // selectSupplier = (supplier: Supplier) => {
-  //   console.log('supplier selected', supplier);
-  //   this.activeModal.close();
-  // }
+  selectSupplier = (supplier: Supplier) => {
+    console.log('supplier selected', supplier);
+    this.activeModal.close();
+  }
 
 }

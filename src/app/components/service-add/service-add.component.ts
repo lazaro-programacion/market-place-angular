@@ -3,8 +3,8 @@ import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
-import {ShowSuppliersComponent} from '../show-suppliers/show-suppliers.component';
-import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { ShowSuppliersComponent } from '../show-suppliers/show-suppliers.component';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -27,12 +27,11 @@ export class ServiceAddComponent implements OnInit {
   public createMode = false;
   public editMode = false;
 
-
   constructor(
     private serviceService: ServicesService,
     private supplierService: SupplierService,
     private modalService: NgbModal
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -61,6 +60,7 @@ export class ServiceAddComponent implements OnInit {
 
   editServicio(id: string) {
     this.editMode = true;
+    this.createMode = false;
     this.oldService = { ...this.service };
   }
 
@@ -75,6 +75,7 @@ export class ServiceAddComponent implements OnInit {
   nuevoServicio = () => {
     this.service = { _id: '', active: true, nombre: '', descripcion: '', price: 0, imagen: '' };
     this.createMode = true;
+    this.editMode = false;
 
   }
 
@@ -82,6 +83,9 @@ export class ServiceAddComponent implements OnInit {
     this.serviceService.createService(this.service).subscribe(
       serv => console.log('servicio creado', serv)
     );
+    this.createMode = false;
+    this.editMode = false;
+
   }
 
   onChangeNombre = () => {
@@ -118,6 +122,7 @@ export class ServiceAddComponent implements OnInit {
     this.service = this.oldService;
     this.createMode = false;
     this.editMode = false;
+    console.log('cancelar');
   }
 
   supplierSelector = () => {
