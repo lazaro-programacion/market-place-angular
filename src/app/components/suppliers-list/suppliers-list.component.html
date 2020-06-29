@@ -27,6 +27,7 @@
             <div class="product-text">
               <h1>{{supplier.nombre}} {{supplier.apellidos}}</h1>
               <p>{{supplier.email}}</p>
+              <p>{{supplier.description}}</p>
               <p *ngIf="supplier.active">ACTIVO</p>
               <p *ngIf="!supplier.active">NO ACTIVO</p>
             </div>

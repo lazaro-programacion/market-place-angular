@@ -18,6 +18,7 @@ export class SupplierAddComponent implements OnInit {
   public imagen = '';
   public active: boolean;
   public email = '';
+  public description = '';
 
 
   constructor(private supplierService: SupplierService,
@@ -36,6 +37,7 @@ export class SupplierAddComponent implements OnInit {
           this.imagen = e.imagen;
           this.active = e.active;
           this.email = e.email;
+          this.description = e.description;
         }
       );
     }
@@ -50,6 +52,7 @@ export class SupplierAddComponent implements OnInit {
     newSu.imagen = this.imagen;
     newSu.active = this.active;
     newSu.email = this.email;
+    newSu.description = this.description;
     this.supplierService.saveSupplier(newSu, this.id).subscribe(
       () => {
         this.router.navigate(['/supplier']);
