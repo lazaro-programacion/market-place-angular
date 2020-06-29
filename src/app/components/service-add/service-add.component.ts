@@ -5,6 +5,7 @@ import { SupplierService } from 'src/app/services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
 import { ShowSuppliersComponent } from '../show-suppliers/show-suppliers.component';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalSupplierService } from 'src/app/services/modal-supplier.service';
 
 
 
@@ -17,36 +18,47 @@ export class ServiceAddComponent implements OnInit {
 
 
   public service: Service;
-  public suppliers: Supplier[];
-  public id = history.state.id;
-  public user: any;
   public oldService: Service;
+  public suppliers: Supplier[];
+  public selectedSupplier: Supplier;
+  public idService = history.state.id;
+  public user: any;
+  public productCount = 0;
+
   public nombreBgColor = '#ffffff';
   public descripcionBgColor = '#ffffff';
   public priceBgColor = '#ffffff';
+  // flags
   public createMode = false;
   public editMode = false;
 
   constructor(
     private serviceService: ServicesService,
     private supplierService: SupplierService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private modalSupplierService: ModalSupplierService
   ) { }
 
   ngOnInit(): void {
 
-    if (this.id) {
-      localStorage.setItem('savedId', this.id);
+    if (this.idService) {
+      localStorage.setItem('savedId', this.idService);
     } else {
-      this.id = localStorage.getItem('savedId');
+      this.idService = localStorage.getItem('savedId');
     }
-    this.getTheService(this.id);
+    this.getTheService(this.idService);
 
     this.supplierService.getSuppliers().subscribe(
       supp => this.suppliers = supp
     );
 
     this.user = JSON.parse(localStorage.getItem('identity'));
+
+    this.modalSupplierService.selectedSupplier.subscribe(
+      res => {
+        this.selectedSupplier = res;
+      }
+    );
 
   }
 
@@ -127,8 +139,19 @@ export class ServiceAddComponent implements OnInit {
 
   supplierSelector = () => {
     console.log('Seleccionar proveedor');
-    // TODO: método selección de proveedor
     const modalRef = this.modalService.open(ShowSuppliersComponent);
     modalRef.componentInstance.suppliers = this.suppliers;
+  }
+
+  incProductCount = () => {
+    this.productCount++;
+  }
+
+  decProductCount = () => {
+    if (this.productCount > 0) { this.productCount--; }
+  }
+
+  addToKart = () => {
+    console.log('Añadir al carro', this.service, this.selectedSupplier);
   }
 }
