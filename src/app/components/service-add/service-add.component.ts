@@ -73,6 +73,7 @@ export class ServiceAddComponent implements OnInit {
   }
 
   nuevoServicio = () => {
+    this.oldService = { ...this.service };
     this.service = { _id: '', active: true, nombre: '', descripcion: '', price: 0, imagen: '' };
     this.createMode = true;
     this.editMode = false;
@@ -122,7 +123,6 @@ export class ServiceAddComponent implements OnInit {
     this.service = this.oldService;
     this.createMode = false;
     this.editMode = false;
-    console.log('cancelar');
   }
 
   supplierSelector = () => {
