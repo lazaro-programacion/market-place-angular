@@ -64,6 +64,7 @@ export class SearchComponent implements OnInit, DoCheck {
 
         });
         this.servicesFilter(this.code);
+        console.log('filtro', this.code, this.servicesFilter)
       }
     );
   }
