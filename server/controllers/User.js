@@ -23,6 +23,7 @@ const userController = {
     user.email = req.body.email;
     user.rol = req.body.rol;
     user.password = req.body.password;
+    user.active = true;
  // comprobar email unico         // se usa userID para no tener conflicto con user
  User.findOne({email: user.email.toLowerCase()}, ((err, userId) =>{
   if(err){
@@ -206,11 +207,11 @@ User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpd
   const userId = req.params.id
   const update = req.body
 console.log('esto que es ssss',req.user.sub, userId)
-
+/*
 const saltRounds = 10
 const hash = bcryptnew.hashSync(req.body.password, saltRounds);
 update.password = hash
-console.log(update.password)
+console.log(update.password) */
  // console.log('id', userId, 'update', update)
  // comprobar id usuario logeado y el que viene ne los params
 

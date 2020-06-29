@@ -1,3 +1,4 @@
+<div class="container">
 <div class="btn btn-toolbar">
   <div style="margin: auto;">
     <input
@@ -8,8 +9,6 @@
       (keyup.enter)="buscador()"
       placeholder="Buscar... "
     />
-    <hr />
-    <p-splitButton label="Roles"  (onClick)="save()" [model]="items"></p-splitButton>
     <hr />
     <div *ngIf="error ? error : error" class="alert alert-danger" role="alert">
       {{ error }}
@@ -27,24 +26,29 @@
         <th scope="col">Usuario</th>
         <th scope="col">Email</th>
         <th scope="col">Rol</th>
-        <th scope="col">Password</th>
         <th scope="col">Acciones</th>
 
       </tr>
     </thead>
-  <tbody  *ngFor="let item of (users | active:true)">
+  <tbody  *ngFor="let item of (users | active:true);index as i ">
     <tr>
       <th scope="row">{{ item._id }}</th>
       <td><i class="pi pi-check"></i></td>
       <td>{{ item.usuario }}</td>
       <td>{{ item.email }}</td>
       <td>{{ item.rol }}</td>
-      <td>{{ item.password }}</td>
       <td>
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-outline-danger" (click)="active1(item)">OFF</button>
-          <button type="button" class="btn btn-outline-secondary">modificar</button>
-
+          <button type="button" class="btn btn-outline-secondary" (click)="cambioRol(item)">modificar</button>
+          <span class="btn btn-outline-primary">
+          <select class="custom-select-lg"   (change)="capturar($event)">
+            <option value="0">Selecciona una opción</option>
+            <option value="1">admin</option>
+            <option value="2">usuario</option>
+            <option value="3">vendedor</option>
+          </select>
+        </span>
         </div>
       </td>
 
@@ -59,12 +63,11 @@
       <th scope="col">Usuario</th>
       <th scope="col">Email</th>
       <th scope="col">Rol</th>
-      <th scope="col">Password</th>
       <th scope="col">Acciones</th>
 
     </tr>
   </thead>
-  <tbody  *ngFor="let item of users">
+  <tbody  *ngFor="let item of users; index as i">
     <tr>
       <th scope="row">{{ item._id }}</th>
       <td *ngIf="item.active === true"><i class="pi pi-check"></i></td>
@@ -72,13 +75,19 @@
       <td>{{ item.usuario }}</td>
       <td>{{ item.email }}</td>
       <td>{{ item.rol }}</td>
-      <td>{{ item.password }}</td>
       <td>
         <div class="btn-group" role="group" aria-label="Basic example">
           <button *ngIf="item.active === false" type="button" class="btn btn-outline-success" (click)="active1(item)">ON</button>
           <button *ngIf="item.active === true" type="button" class="btn btn-outline-danger" (click)="active1(item)">OFF</button>
-
-          <button type="button" class="btn btn-outline-secondary">modificar</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="cambioRol(item)">modificar</button>
+          <span class="btn btn-outline-primary">
+            <select class="custom-select-lg"   (change)="capturar($event)">
+              <option value="0">Selecciona una opción</option>
+              <option value="1">admin</option>
+              <option value="2">usuario</option>
+              <option value="3">vendedor</option>
+            </select>
+          </span>
         </div>
       </td>
 
@@ -86,3 +95,4 @@
   </tbody>
 </div>
 </table>
+</div>

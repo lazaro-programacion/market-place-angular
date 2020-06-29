@@ -15,7 +15,10 @@ export class UsersListComponent implements OnInit {
   public active = true;
   public show = false;
   public usuario: Users;
-  items: MenuItem[];
+   roles;
+  public opcionSeleccionado = '0';
+  public verSeleccion = '';
+
 
   constructor(private usersService: UsersService) {
     this.users = [];
@@ -25,11 +28,7 @@ export class UsersListComponent implements OnInit {
   ngOnInit(): void {
     this.usersService.getUsers().subscribe((users) => (this.users = users));
     console.log('tenemos active ?', this.users);
-    this.items = [
-      {label: 'Admin' },
-      {label: 'Vendedor' },
-      {label: 'Usuario' }
-  ];
+
   }
 
   buscador(): void {
@@ -69,7 +68,40 @@ export class UsersListComponent implements OnInit {
       }
     );
   }
-  save() {
+  cambioRol(item) {
+    if (this.opcionSeleccionado === '0'){
+      return null;
+    }
+    const usuario = {
+      active: item.active,
+      usuario: item.usuario,
+      email: item.email,
+      rol: this.opcionSeleccionado,
+      password: item.password,
+    };
+    this.usersService.putAdminUsers(usuario, item._id).subscribe(
+      (response) => {
+        this.usuario = response;
+        this.usersService.getUsers().subscribe((users) => (this.users = users));
+        this.opcionSeleccionado = '0';   },
+
+      (error) => {
+        console.log('error', error);
+      }
+    );
 
   }
+  capturar(event) {
+    if (event.target.value === '1'){
+      this.opcionSeleccionado = 'admin';
+    }else if (event.target.value === '2'){
+      this.opcionSeleccionado = 'usuario';
+    // tslint:disable-next-line: align
+    } else {
+      this.opcionSeleccionado = 'vendedor';
+
+    }
+    this.verSeleccion = this.opcionSeleccionado;
+    console.log('que es i', event.target.value);
+}
 }
