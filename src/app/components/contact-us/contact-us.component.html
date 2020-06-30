@@ -1,4 +1,5 @@
 <p>contact-us works!</p>
+<div class="container" #container >
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Dropdown button
@@ -20,3 +21,6 @@
     <li><a href="#">JavaScript</a></li>
   </ul>
 </div>
+</div>
+<!-- Desplazarse hacia arriba --> 
+<button (click)="container.scrollTop = 0">scroll to top</button>

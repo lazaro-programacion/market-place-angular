@@ -1,4 +1,4 @@
-
+<span class="container">
 <header
   class="bg-img landing text-white"
   fxLayout="column"
@@ -206,8 +206,15 @@
   </div>
 </section>
 
+ <!--Scroll to top-->
+ 
+ <button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top btn btn-dark" >
+  <i class="pi pi-angle-double-up"></i>
+</button>
+
 <section class="container my-5">
   <h2 class="text-center mb-3">Join the waitlist</h2>
   <h4 class="text-center">We'll get in touch</h4>
   <app-form-home></app-form-home>
 </section>
+</span>

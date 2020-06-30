@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, HostListener } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
 import { Users } from 'src/app/models/users';
@@ -19,11 +19,43 @@ export class UsersListComponent implements OnInit {
   public opcionSeleccionado = '0';
   public verSeleccion = '';
 
+  loading: boolean ;
+  showScroll: boolean;
+  showScrollHeight = 300;
+  hideScrollHeight = 10;
+
 
   constructor(private usersService: UsersService) {
     this.users = [];
     this.usuario = null;
+    this.loading = false;
   }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll()
+  {
+    if (( window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > this.showScrollHeight)
+    {
+        this.showScroll = true;
+    }
+    // tslint:disable-next-line: max-line-length
+    else if ( this.showScroll && (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < this.hideScrollHeight)
+    {
+      this.showScroll = false;
+    }
+  }
+
+  scrollToTop() {
+      (function smoothscroll() { 
+        const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        if (currentScroll > 0)
+        {
+          window.requestAnimationFrame(smoothscroll);
+          window.scrollTo(0, currentScroll - (currentScroll / 15));
+        }
+      })();
+    }
+
 
   ngOnInit(): void {
     this.usersService.getUsers().subscribe((users) => (this.users = users));
@@ -90,6 +122,11 @@ export class UsersListComponent implements OnInit {
         console.log('error', error);
       }
     );
+
+    this.loading = true;
+
+    setTimeout( () => this.loading = false, 3000   );
+
 
   }
   capturar(event) {

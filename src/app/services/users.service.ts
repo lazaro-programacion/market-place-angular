@@ -32,7 +32,7 @@ export class UsersService {
     const params = JSON.stringify(userRegister);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url + '/user/register', params, {
-      headers,
+      headers
     });
   }
 
@@ -44,13 +44,13 @@ export class UsersService {
     // const params = JSON.stringify(userLogin)
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url + '/user/login', userLogin, {
-      headers: headers,
+      headers,
     });
   }
 
   getIdentity = () => {
     const identity = JSON.parse(localStorage.getItem('identity'));
-    if (identity != 'undefined') {
+    if (identity !== 'undefined') {
       this.identity = identity;
     } else {
       this.identity = null;
@@ -60,7 +60,7 @@ export class UsersService {
 
   getToken = () => {
     const token = localStorage.getItem('token');
-    if (token != 'undefined') {
+    if (token !== 'undefined') {
       this.token = token;
     } else {
       this.token = null;

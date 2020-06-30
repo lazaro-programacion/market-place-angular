@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
   public email = '';
   public password = '';
   public rol = 'usuario';
-  
-  public status:string= ''; 
+
+  public status:string= '';
   public url: string;
   public identity: any;
   public token: any;
@@ -27,15 +27,15 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.url = GLOBAL.url
-    this.user = new Users("","","","usuario","","")
-    
+    this.url = GLOBAL.url;
+    this.user = new Users('', '', '', 'usuario', '', '');
+
   }
 
   ngOnInit(): void {
    // console.log(this.usersService.getIdentity())
-   console.log(this.usersService.getToken())
-    
+   console.log(this.usersService.getToken());
+
   }
 
   onSubmit(form: any) {
@@ -44,53 +44,54 @@ export class LoginComponent implements OnInit {
     // loguear y recibir datos usuario
     this.usersService.signUp(this.user).subscribe(
       response => {
-        this.identity = response.user
+        this.identity = response.user;
          // console.log('usuario logeado', this.identity)
-          if(!this.identity || !this.identity._id){
+        if (!this.identity || !this.identity._id){
            // console.log('el usuario no se ha logeado')
-            this.status = 'error'
-            form.reset()
+            this.status = 'error';
+            form.reset();
           // conseguir el token
           }else{
             // vaciar el password
-           this.identity.password = ''
-            localStorage.setItem('identity', JSON.stringify(this.identity))
-            this.usersService.signUp(this.user, true).subscribe(
+           this.identity.password = '';
+           localStorage.setItem('identity', JSON.stringify(this.identity));
+           this.usersService.signUp(this.user, true).subscribe(
+              // tslint:disable-next-line: no-shadowed-variable
               response => {
-                console.log('token', response.token)
-                this.token = response.token
-                localStorage.setItem('token', this.token)
+                console.log('token', response.token);
+                this.token = response.token;
+                localStorage.setItem('token', this.token);
                 if(this.token.length <= 0){
-                  console.log('el token no se ha generado')
-                  this.status = 'error'
+                  console.log('el token no se ha generado');
+                  this.status = 'error';
                 }else{
-                  this.status = 'success'
-                  console.log(this.token)
-                  this.router.navigate(['/home'])
+                  this.status = 'success';
+                  console.log(this.token);
+                  this.router.navigate(['/home']);
                 }
                 // userForm.reset()
-                
-                },err =>{
+
+                }, err => {
                  // console.log(err)
-                  var errorMessage = <any>err
+                  const errorMessage = err as any;
                   if(errorMessage != null){
                    // let body = JSON.parse(err._body)
-                    this.status = 'error'
+                    this.status = 'error';
                   }
-                } 
-            )} 
-      
+                }
+            ); }
+
         },
-       err =>{
+       err => {
          // console.log(err)
-          var errorMessage = <any>err
-                  if(errorMessage != null){
+          const errorMessage = err as any;
+          if (errorMessage != null){
                    // let body = JSON.parse(err._body)
-                    this.status = 'error'
+                    this.status = 'error';
                   }
         }
-        
-      )
+
+      );
 
 
   }
