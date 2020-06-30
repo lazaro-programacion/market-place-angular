@@ -1,11 +1,8 @@
 <div class="wrapper-admin" *ngIf="user.rol==='admin'">
     <div class="servicio">
-        <div class="cabecera">
-            <h1>Servicio</h1>
-        </div>
         <div class="grid-container">
             <div class="product-img">
-                <img [src]="service ?service.imagen:''" height="420" width="327" alt="Imagen producto">
+                <img [src]="service ? service.imagen: '' " height="420" width="327" alt="Imagen producto">
             </div>
             <div class="product-info" *ngIf="service">
                 <div class="product-text">
@@ -50,14 +47,17 @@
     </div>
 </div>
 <div class="wrapper-user" *ngIf="user.rol!=='admin'">
-    <div class="cabecera">
-        <h3>Servicio</h3>
-    </div>
     <div class="grid-userview">
-        <div class="product-img">
-            <img [src]="service.imagen" height="420" width="327" alt="Imagen producto">
+        <div class="izquierda">
+            <div class="product-img">
+                <img [src]="service ? service.imagen: ''" height="420" width="327" alt="Imagen producto">
+            </div>
+            <div class="supplier">
+                <button class="btn btn-primary btn-lg" (click)='supplierSelector()'>Proveedor</button>
+                <p>{{selectedSupplier?selectedSupplier.nombre+ ' '+selectedSupplier.apellidos:'No tiene proveedor'}}</p>
+            </div>
         </div>
-        <div class="product-info">
+        <div class="product-info" *ngIf="service">
             <div class="product-text">
                 <h1>{{service.nombre}}</h1>
                 <p>{{service.descripcion}}</p>
@@ -65,7 +65,12 @@
             <div class="product-price">
                 <p><span>{{service.price}}</span>€</p>
             </div>
-            <button type="button" (click)='supplierSelector()'>Selecciona proveedor</button>
+            
+            <div class="btn-group-lg">
+                <button class="btn btn-primary" (click)='decProductCount()'><i class="pi pi-minus"></i></button>
+                <button class="btn btn-success" [disabled]='!(selectedSupplier && productCount)' (click)='addToKart()' ><i class="pi pi-shopping-cart"></i> <span> {{productCount}}</span></button>
+                <button class="btn btn-primary" (click)='incProductCount()'><i class="pi pi-plus"></i></button>
+            </div>
         </div>
     </div>
 </div>
