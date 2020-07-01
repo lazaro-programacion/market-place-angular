@@ -25,10 +25,10 @@
               <h1>{{supplier.nombre}} {{supplier.apellidos}}</h1>
               <p>{{supplier.email}}</p>
               <p>{{supplier.description}}</p>
-
+              <span class="active" *ngIf="supplier.active">ACTIVO</span>
+              <span class="active" *ngIf="!supplier.active">NO ACTIVO</span>
             </div>
-            <span class="active" *ngIf="supplier.active">ACTIVO</span>
-            <span class="active" *ngIf="!supplier.active">NO ACTIVO</span>
+            
             <div class="caja-price-btn">
               <p><span></span></p>
               <button type="button" [routerLink]="'/supplier/view/'+supplier._id">Detalles</button>
