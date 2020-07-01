@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const app = express();
 app.use('/static', express.static('./server/uploads'));
+app.use('/', express.static('./server/dist'))
 const SuppliersRoutes = require("./routes/Suppliers");
 
 app.use(cors());
