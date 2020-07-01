@@ -1,40 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { Supplier} from '../../models/supplier';
 import { EmailSupplierService } from '../../services/email-supplier.service';
-import { Router, ActivatedRoute } from '@angular/router';
-
 @Component({
-  selector: 'app-form-vendor',
-  templateUrl: './form-vendor.component.html',
-  styleUrls: ['./form-vendor.component.css'],
+  selector: 'app-contact-inform',
+  templateUrl: './contact-inform.component.html',
+  styleUrls: ['./contact-inform.component.css'],
   providers: [EmailSupplierService]
 })
-export class FormVendorComponent implements OnInit {
-
-  public supplier: Supplier;
-  public extraDates: string;
+export class ContactInformComponent implements OnInit {
+  public nombre: string;
+  public apellidos: string;
+  public email: string;
   public status: string;
-
+  public extraDates: string;
   constructor(
     private emailSupplierService: EmailSupplierService
   ) { }
 
   ngOnInit(): void {
-
-    this.supplier = new Supplier();
-    this.extraDates = '';
+    this.nombre = '';
+    this.apellidos = '';
+    this.email = '';
     this.status = '';
-
+    this.extraDates = '';
   }
 
   formulario(supplierForm){
-    // console.log(this.supplier, this.extraDates)
+
     // tslint:disable-next-line: prefer-const
     let datesSend = {
-      nombre: this.supplier.nombre,
-      cif: this.supplier.nif,
-      iban: this.supplier.iban,
-      email: this.supplier.email,
+      nombre: this.nombre,
+      apellidos: this.apellidos,
+      email: this.email,
       extraDate: this.extraDates
     };
     console.log(datesSend);
@@ -44,13 +40,6 @@ export class FormVendorComponent implements OnInit {
      this.status = 'success';
      supplierForm.reset();
      console.log(this.status);
-        /*
-        this.supplier.nombre ='';
-        this.supplier.nif = '';
-        this.supplier.iban = '';
-        this.supplier.email = '';
-        this.extraDates = '';
-        */
    },
    err => {
     // console.log(err)
@@ -62,6 +51,7 @@ export class FormVendorComponent implements OnInit {
    });
     console.log('status', this.status);
   }
+
 
 
 

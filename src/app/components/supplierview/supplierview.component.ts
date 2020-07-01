@@ -16,7 +16,7 @@ export class SupplierviewComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute,
-    private supplierService: SupplierService) { }
+              private supplierService: SupplierService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(val => {

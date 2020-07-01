@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'service', component: ServicesListComponent },
   { path: 'supplier', component: SuppliersListComponent },
   { path: 'service/add', component: ServiceAddComponent },
+  { path: 'service/add/:id', component: ServiceAddComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegisterComponent },
   { path: 'recuperar', component: PasswordForgotComponent },

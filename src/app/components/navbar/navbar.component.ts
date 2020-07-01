@@ -60,12 +60,12 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.itemsSupplier = [];
         this.serviceService.getServices().subscribe(
             serv => {
-                this.services = serv;
+                this.services = serv.filter(item => item.active === true);
                 this.services.forEach(element => {
                     this.itemsService.push({
                         label: element.nombre,
                         icon: 'pi pi-android',
-                        routerLink: 'service/' + element._id
+                        routerLink: 'service/add/' + element._id
                     });
                 });
             }
@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
         this.supplierService.getSuppliers().subscribe(
             response => {
-               this.supplierServices = response;
+               this.supplierServices = response.filter(item => item.active === true);
                this.supplierServices.forEach(element => {
                    this.itemsSupplier.push({
                     label: element.nombre,
@@ -170,7 +170,6 @@ export class NavbarComponent implements OnInit, DoCheck {
             icon: 'pi pi-briefcase',
             routerLink: 'supplier/view/' + element._id
            }));
-      
     }
 
     buscador() {

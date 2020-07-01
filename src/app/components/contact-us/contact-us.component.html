@@ -1,27 +1,180 @@
-<p>contact-us works!</p>
-<div class="container" #container >
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
+<div class="row">
+  <div class="col-11 mx-auto">
+    <div class="jumbotron jumbotron-fluid customJumboBg">
+      <div id="demotext">Bienvenido al area de contacto</div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary btn-lg btn-block"
+      (click)="contacto()"
+    >
+      Contactar con nosotros
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary btn-lg btn-block"
+      (click)="informe()"
+    >
+      Informar de una incidencia
+    </button>
   </div>
 </div>
 
 
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">HTML</a></li>
-    <li><a href="#">CSS</a></li>
-    <li><a href="#">JavaScript</a></li>
-  </ul>
+<div class="row mt-5" *ngIf="informar">
+  
+  <div class="col-6 mx-auto">
+    <div class="progress" style="height: 1px;">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        [style.width.%]="progress"
+        
+        aria-valuemin="0"
+        aria-valuemax="100"
+      ></div>
+    </div>
+    <div class="progress" style="height: 20px;">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        [style.width.%]="progress"
+       
+       
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        {{progress}} %
+      </div>
+    </div>
+  </div>
+   
 </div>
+
+<div *ngIf="contactar">
+<app-contact-inform ></app-contact-inform>
 </div>
-<!-- Desplazarse hacia arriba -->
-<button (click)="container.scrollTop = 0">scroll to top</button>
+
+<div class="row mt-5" *ngIf="informar">
+  <div class="col-1 px-5">
+  <button type="button" class="btn btn-dark" *ngIf="!steps" (click)= 'mostrar()'>Start</button>
+  <button type="button" class="btn btn-dark" *ngIf="steps" (click)= 'anular()'>Anular</button>
+  </div>
+  <div class="container" >
+    <div *ngIf="show" >
+        <div class="row" >
+          <div class="col-2 mx-auto">
+            <div class='steps'>Paso 1</div>
+          </div>
+        </div>
+        
+            <form #userForm='ngForm' >
+                <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+                ngControl="Email" #Email='ngModel'  [(ngModel)]="email" [ngModelOptions]="{standalone: true}"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                </div>
+                <small *ngIf="!Email.valid && Email.touched" style='margin-right: 5px;'>
+                    El email no es valido      
+                  </small>
+                <button type="submit" class="btn btn-primary float-left" (click)="onSubmit()"   [disabled]= "!Email.valid" >Siguiente</button>
+              
+             </form>
+        </div>
+       <div *ngIf="showOrden" >
+            <div class="row" *ngIf="showOrden">
+                <div class="col-2 mx-auto">
+                    <div class='steps'>Paso 2</div>
+                </div>
+            </div>
+                  <form #userForm='ngForm' *ngIf="showOrden">
+                    <div class="form-group">
+                    <label for="exampleInputOrden">El Numero de orden del Pedido</label>
+                    <input type="text" class="form-control" id="exampleInputOrden" aria-describedby="ordenHelp" placeholder="Enter numero de orden del pedido"
+                    ngControl="Orden" #Orden='ngModel'  [(ngModel)]="orden" [ngModelOptions]="{standalone: true}"  required>
+                    </div>
+                    <small *ngIf="!Orden.valid && Orden.touched" style='margin-right: 5px;'>
+                        El numero de orden no es valido      
+                      </small>
+                    <button type="submit" class="btn btn-primary float-left" (click)="onOrder()"   [disabled]= "!Orden.valid" >Siguiente</button>
+                   
+                 </form>
+     </div>
+
+   <div *ngIf="showDetail" >     
+      <div class="row">
+        <div class="col-2 mx-auto">
+           <div class='steps'>Paso 3</div>
+        </div>
+      </div>
+     
+
+            <form #userForm='ngForm'>
+              <div class="form-row">
+              <div class="col">
+                      <label for="exampleInputDetail">Servicio y Proveedor contratado</label>
+                      <input type="text" class="form-control" id="exampleInputDetail" aria-describedby="detailHelp" placeholder="Enter servicio"
+                      ngControl="Detail" #Detail='ngModel'  [(ngModel)]="detail.servicio" [ngModelOptions]="{standalone: true}"  required>
+              </div>
+              <div class="col">
+                <label for="exampleInputDetail">Servicio y Proveedor contratado</label>
+                <input type="text" class="form-control" id="exampleInputDetail" aria-describedby="detailHelp" placeholder="Enter servicio"
+                ngControl="Detail" #Detail='ngModel'  [(ngModel)]="detail.proveedor" [ngModelOptions]="{standalone: true}"  required>
+              </div>
+              </div>    
+              <small *ngIf="!Detail.valid && Detail.touched" style='margin-right: 5px;'>
+                  El servicio o proveedor no es valido      
+                </small>
+              <button type="submit" class="btn btn-primary float-left" (click)="onDetail()"   [disabled]= "!Detail.valid" >Siguiente</button>
+     
+           </form>
+   </div>    
+
+   <div *ngIf="showConfirmar" > 
+       <div class="row">
+          <div class="col-2 mx-auto">
+              <div class='steps'>Paso 4</div>
+          </div>
+      </div>
+      <form #userForm='ngForm'>
+        <div class="form-group">
+        <label >Describe la incidencia</label>
+        <textarea class="form-control" rows="5" placeholder="Describe la incidencia"  required minlength="140"
+        ngControl="Description" #Description='ngModel'  [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>
+        </div> 
+        <small *ngIf="!Description.valid && Description.touched" style='margin-right: 5px;'>
+            La descripcion debe ser como minimo 140 caracteres  
+          </small>
+        <button type="submit" class="btn btn-primary float-left" (click)="confirmar()"   [disabled]= "!Description.valid" >Siguiente</button>
+       
+     </form>
+              
+    </div> 
+    <div class="alert alert-success" role="alert" *ngIf="confirm">
+      <h4 class="alert-heading">Comprueba los datos que vas a enviar</h4>
+     <hr>
+     <div class="row">
+     <div class="col">
+     <div class="card" style="width: 30rem;">
+      <div class="card-body">
+        <h3 class="card-title">Reclamacion</h3>
+        <h4 class="card-subtitle mb-2 text-muted"><strong> Nombre: {{identity.usuario}} </strong> </h4>
+        <h5 class="card-subtitle mb-2 text-muted"><strong> Numero de orden: {{orden}} </strong></h5>
+        <p class="card-text">Descripcion:{{description}}</p>
+        <a href="#" class="card-link">Servicio: {{detail.servicio}}</a>
+        <a href="#" class="card-link">Proveedor: {{detail.proveedor}}</a>
+      </div>
+    </div>
+  </div>
+    <div class="col">
+      <button type="button" class="btn btn-warning float-left"  (click)='anular()' >Anular</button>
+      <button type="button" class="btn btn-danger float-right"  (click)='exito()' >Enviar</button>
+    </div>
+    </div>
+  </div>
+  <div class="alert alert-primary" role="alert" *ngIf="status === 'success'">
+    Reclamacion enviada con exito. Te contestaremos en breve <a [routerLink]="['/home']" >ir al home</a>. 
+  </div>
+</div>
+
 
