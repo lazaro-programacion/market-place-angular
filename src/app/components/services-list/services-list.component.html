@@ -2,7 +2,6 @@
 <p-dataView class="grid-aqui" #dv [value]="services" [paginator]="true" [rows]="4" paginatorPosition="both"
     filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
-<<<<<<< HEAD
       <div style="position:relative">
         <input
         class="btn btn-outline-dark"
@@ -17,25 +16,6 @@
                   Ver inactivos <input class="form-check-label" type='checkbox' [(ngModel)]='inactiveViewFlag' (change)='inactiveViewToggle()'>
               </div>
           </div>
-=======
-        <div class="ui-helper-clearfix">
-            <div class="p-grid">
-                <div class="p-col-12 p-md-4">
-                </div>
-                <div class="p-col-6 p-md-4 filter-container">
-                    <div style="position:relative">
-                        <input type="search" pInputText placeholder="Búsqueda por nombre"
-                            (input)="dv.filter($event.target.value)">
-                        <div *ngIf="user.rol==='admin'">
-
-                            Ver inactivos <input type='checkbox' [(ngModel)]='inactiveViewFlag'
-                                (change)='inactiveViewToggle()'>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
->>>>>>> 4cc25671b408bcf0cefed88a4960106bf506b973
     </p-header>
     <ng-template let-service pTemplate="listItem">
         <div class="p-col-12 p-md-10">
@@ -49,8 +29,6 @@
                             <h1>{{service.nombre}}</h1>
                             <p>{{service.descripcion}}</p>
                         </div>
-<<<<<<< HEAD
-=======
                         <div class="product-price">
                             <p>{{service.price}} €</p>
                         </div>
@@ -58,7 +36,6 @@
                             <button type="button" routerLink='/service/add'
                                 [state]='{id: service._id}'>Detalles</button>
                         </div>
->>>>>>> 4cc25671b408bcf0cefed88a4960106bf506b973
                     </div>
                     <div class="precio">
                       <span>{{service.price}} €</span>
