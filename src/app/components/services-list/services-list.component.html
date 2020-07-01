@@ -9,11 +9,12 @@
                     <div style="position:relative">
                         <input type="search" pInputText placeholder="Búsqueda por nombre"
                             (input)="dv.filter($event.target.value)">
-                            <div *ngIf="user.rol==='admin'">
+                        <div *ngIf="user.rol==='admin'">
 
-                                Ver inactivos <input type='checkbox' [(ngModel)]='inactiveViewFlag' (change)='inactiveViewToggle()'>
-                            </div>
+                            Ver inactivos <input type='checkbox' [(ngModel)]='inactiveViewFlag'
+                                (change)='inactiveViewToggle()'>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,10 +35,9 @@
                             <p>{{service.price}} €</p>
                         </div>
                         <div class="button">
-                        <button  type="button" routerLink='/service/add' [state]='{id: service._id}' >Detalles</button>
-
+                            <button type="button" routerLink='/service/add'
+                                [state]='{id: service._id}'>Detalles</button>
                         </div>
-
                     </div>
                 </div>
 

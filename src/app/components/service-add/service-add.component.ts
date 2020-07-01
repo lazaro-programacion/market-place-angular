@@ -173,13 +173,12 @@ export class ServiceAddComponent implements OnInit {
     formData.append('file', this.image);
     console.log('imagen seleccionada', formData);
 
-    this.http.post<File>('http://localhost:4000/api/service/upload', formData).subscribe(
+    this.http.post<any>('http://localhost:4000/api/service/upload', formData).subscribe(
       res => {
-        this.service.imagen = 'src/assets/images/services/' + this.image.name;
-        localStorage.setItem('imagepath', this.service.imagen);
+        this.service.imagen = res.url;
       },
       err => console.log(err)
-      );
+    );
   }
 
 
