@@ -65,6 +65,7 @@ import { ShowSuppliersComponent } from './components/show-suppliers/show-supplie
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { ActiveUser1Pipe } from './pipes/active-user1.pipe';
 import { ContactInformComponent } from './components/contact-inform/contact-inform.component';
+import { MisCarritosComponent } from './components/mis-carritos/mis-carritos.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { ContactInformComponent } from './components/contact-inform/contact-info
     ShowSuppliersComponent,
     CarritoComponent,
     ActiveUser1Pipe,
-    ContactInformComponent
+    ContactInformComponent,
+    MisCarritosComponent
    
   ],
   imports: [

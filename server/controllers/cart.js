@@ -8,19 +8,23 @@ const moment = require('moment')
 const controller = {
     saveCart : (req, res) =>  {
     
-        // crear el objeto usuario
+        // crear el objeto
          const cart = new Cart()
-
+       
           // 1.Recoger parametros (body) por post
           var params = req.body;
          console.log('body', req.body)
          
           // Asignar valores al objeto - el nombre lo hacemos obligatorio
-          if(params.quantity){
-            cart.service = params.service
-            cart.supplier = params.supplier
-            cart.quantity = params.quantity
-            cart.unit_price = params.unit_price
+
+       
+
+          if(params.totalCart ){
+            cart.miCart = params.miCart
+           // cart.service = params.service
+           // cart.supplier = params.supplier
+           // cart.quantity = params.quantity
+            // cart.unit_price = params.unit_price
             cart.totalCart =params.totalCart
             let today = new Date();
             cart.date = today
@@ -41,10 +45,13 @@ const controller = {
            })
 
 
+          }else{
+            res.status(500).send({message: 'error en el servidor'})
           }
               
           
 },
+
 
 getCarts: (req, res) =>{
     // con populate ponemos en la propiedad user todas las propiedades del user de la otra coleccion

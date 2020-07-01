@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Cart } from 'src/app/models/cart';
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -12,10 +13,13 @@ export class CarritoComponent implements OnInit {
   public myCart: Cart[] = [];  /// El carrito ya tiene modelo
   public confirmMessage: any;
   public status: string;
+  public totalCart: number;
   constructor(
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cartService: CartService
   ) {
     this.myCart = [];
+    this.totalCart = 100;
   }
 
   ngOnInit(): void {
@@ -33,9 +37,22 @@ export class CarritoComponent implements OnInit {
     this.messageService.clear('c');
     console.log(this.showSuccess());
     // localStorage.clear();
-    this.myCart = [];
 
-    localStorage.setItem('cart', JSON.stringify(this.myCart));
+    const cart = {
+      totalCart : this.totalCart,
+       miCart : this.myCart
+    }
+    this.cartService.saveCart(cart).subscribe(
+      res =>{ console.log('respuesta servidor', res)
+              this.myCart = [];
+
+              localStorage.setItem('cartContent', JSON.stringify(this.myCart));
+    },
+    error => {
+      console.log('error', error);
+    });
+
+
   }
 
   showSuccess() {
@@ -67,6 +84,9 @@ export class CarritoComponent implements OnInit {
     this.messageService.clear();
     this.messageService.add({ key: 'c', sticky: true, severity: 'warn', summary: 'Are you sure?', detail: 'Confirm to proceed' });
     this.status = 'warning';
+    this.myCart = [];
+
+    localStorage.setItem('cartContent', JSON.stringify(this.myCart));
 
   }
 

@@ -2,18 +2,21 @@
 var mongoose = require('mongoose');
 const moment = require('moment')
 // para utilizar los objetos de este tipo
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 // crear propiedades del objeto
-var CartSchema = Schema({
+const CartSchema = Schema({
     date: Date,
     // order: shortuid libreria de id
     // incidencia: boolean (abrierta o cerrada)
-    quantity: Number,
-    unit_price: Number,
+    
     totalCart: Number,
-    service: {type: Schema.ObjectId, ref: 'Service'},
-    supplier: {type: Schema.ObjectId, ref: 'Suppliers'},
+    miCart: [{
+        quantity: Number,
+        // unit_price: Number,
+        service: {type: Schema.ObjectId, ref: 'Service'},
+        supplier: {type: Schema.ObjectId, ref: 'Suppliers'}
+    }],
     user: {type: Schema.ObjectId, ref: 'User'} // referencia a otra coleccion por id
 });
 

@@ -123,11 +123,13 @@ export class NavbarComponent implements OnInit, DoCheck {
                     {
                         label: 'Carrito',
                         icon: 'pi pi-fw pi-calendar',
+                        routerLink: 'carrito'
 
                     },
                     {
-                        label: 'Mis Deseos',
+                        label: 'Mis Carritos',
                         icon: 'pi pi-fw pi-heart',
+                        routerLink: 'mis-carritos'
                     }
                 ]
             }

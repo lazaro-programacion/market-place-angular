@@ -1,0 +1,40 @@
+<p>mis-carritos works!</p>
+<h1>Mis Carritos: </h1>
+<div class="spinner-border text-primary" *ngIf="preload"></div>
+<div class="jumbotron" *ngIf="mensaje">
+    <h1 class="display-4">No tienes ningun carrito!</h1>
+    <p class="lead">Pruebas nuestros servicios son de total garantia</p>
+    <hr class="my-4">
+  
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" [routerLink]="['/service']"  role="button">ver servicios</a>
+    </p>
+</div>
+<div class="card" *ngIf="!preload && !mensaje" >
+
+    <div class="card-body" *ngFor="let item of misCarts.carts">
+      <h5 class="card-title">Id: {{item._id}}  </h5>
+      <h6 class="card-subtitle mb-2 text-muted">Fecha: {{item.date}} </h6>
+      <h6 class="card-subtitle mb-2 text-muted">Total: {{item.totalCart}} </h6>
+      <table class="table">
+        <thead>
+          <tr >
+            <th scope="col">Cantidad</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Proveedor</th>
+            <th scope="col">Incidencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let element of item.miCart">
+            <td>{{element.quantity}}</td>
+            <td>{{element.service}}</td>
+            <td>{{element.supplier}}</td>
+          </tr>
+         
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+
