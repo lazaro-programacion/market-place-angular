@@ -43,6 +43,7 @@ export class CarritoComponent implements OnInit {
       return this.messageService.add({ key: 'tl', severity: 'success', summary: 'Compra realizada con exito', detail: 'Order en curso' });
     }
     else if (this.status === 'warning') {
+      // tslint:disable-next-line: max-line-length
       return this.messageService.add({ key: 'tl', severity: 'info', summary: 'Compra anulada con exito', detail: 'puedes seguir comprando' });
     }
     else {
