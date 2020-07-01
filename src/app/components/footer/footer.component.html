@@ -3,8 +3,13 @@
 
   <div class="footer-copyright text-center py-3">© {{anio}} Copyright:
     <a href="http://localhost:4200/home"> LazSolutions.com</a>
-  </div>
 
+    <div class="boton-footer">
+      <button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top btn boton " >
+        <i class="pi pi-angle-double-up"></i>
+      </button>
+    </div>
+  </div>
 
 </footer>
 

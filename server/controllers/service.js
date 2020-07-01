@@ -54,7 +54,6 @@ const serviceController = {
             return res.status(200).jsonp(service);
         })
     }
-
 }
 
 module.exports = serviceController;

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container entrada-animation">
 <div class="btn btn-toolbar">
   <div style="margin: auto;">
     <input
@@ -15,19 +15,19 @@
     </div>
   </div>
   <br>
- 
-</div>
-     
 
- 
+</div>
+
+
+
   <div *ngIf="loading" class="alert alert-warning text-center mensaje" role="alert" >
-    <h2><strong> Espere un momento por favor! </strong></h2> 
+    <h2><strong> Espere un momento por favor! </strong></h2>
     <i class="pi pi-spin pi-spinner" style="font-size: 3em"></i>
-   
+
   </div>
 
 
- 
+
 
 <table class="table m-2" style="width: 80%; margin: auto !important;">
 
@@ -54,10 +54,10 @@
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-outline-danger" (click)="active1(item)">OFF</button>
           <button type="button" class="btn btn-outline-secondary" (click)="cambioRol(item)"  [disabled]="loading">
-            
+
             <i class='pi pi-save' style="font-size: 1em"></i>
             <span >- Guardar cambios</span>
-           
+
           </button>
           <span class="btn btn-outline-primary">
           <select class="custom-select-lg"   (change)="capturar($event)">
@@ -67,7 +67,7 @@
             <option value="3">vendedor</option>
           </select>
         </span>
-        
+
         </div>
       </td>
 
@@ -87,7 +87,7 @@
     </tr>
   </thead>
   <tbody  *ngFor="let item of users; index as i">
-    
+
     <tr>
       <th scope="row">{{ item._id }}</th>
       <td *ngIf="item.active === true"><i class="pi pi-check"></i></td>
@@ -104,7 +104,7 @@
           <button *ngIf="item.active === true" type="button" class="btn btn-outline-secondary" (click)="cambioRol(item)" data-toggle="modal" data-target="#exampleModal" [disabled]="loading">
             <i  class='pi pi-save' style="font-size: 1em"></i>
             <span >- Guardar cambios</span>
-           
+
           </button>
           <span  *ngIf="item.active === true" class="btn btn-outline-primary">
             <select class="custom-select-lg"   (change)="capturar($event)">
@@ -114,7 +114,7 @@
               <option value="3">vendedor</option>
             </select>
           </span>
-         
+
         </div>
       </td>
 
@@ -125,7 +125,5 @@
 </div>
 
 <!--Scroll to top-->
- 
-<button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top btn btn-dark" >
-  <i class="pi pi-angle-double-up"></i>
-</button>
+
+

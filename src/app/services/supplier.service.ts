@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Supplier } from '../models/supplier';
+import { Users } from '../models/users';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,21 @@ export class SupplierService {
       'Content-Type': 'application/json',
     })
   };
-
+  public url: string;
+  public identity: any;
+  public token: string;
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  getToken = () => {
+    const token = localStorage.getItem('token');
+    if (token !== 'undefined') {
+      this.token = token;
+    } else {
+      this.token = null;
+    }
+    return this.token;
   }
 
   getSuppliers = () => {
@@ -50,6 +63,17 @@ export class SupplierService {
       `http://localhost:4000/api/supplier/${id}`
     );
   }
+  searchSupplier = (search: string) => {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    });
+    return this.httpClient
+      .get<Supplier[]>('http://localhost:4000/api/supplier/search/' + search, {
+        headers: headers,
+      })
+      .toPromise();
+  };
 
 
   private handleError(error: HttpErrorResponse) {

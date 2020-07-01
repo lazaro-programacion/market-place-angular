@@ -7,16 +7,16 @@ import { SelectItem } from 'primeng/api';
   selector: 'app-services-list',
   templateUrl: './services-list.component.html',
   styleUrls: ['./services-list.component.css'],
-  providers: []
+  providers: [],
 })
 export class ServicesListComponent implements OnInit {
-
   public displayDialog: boolean;
   public sortOptions: SelectItem[];
   public sortKey: string;
   public sortField: string;
   public sortOrder: number;
   public selectedService: Service;
+  public search = '';
 
   public services: Service[];
   public allServices: Service[];
@@ -24,26 +24,24 @@ export class ServicesListComponent implements OnInit {
 
   public inactiveViewFlag = false;
 
-  constructor(private serviceService: ServicesService) { }
+  constructor(private serviceService: ServicesService) {}
 
   ngOnInit(): void {
-    this.user = JSON.parse( localStorage.getItem('identity'));
-    this.serviceService.getServices().subscribe(
-      serv => {
-        this.allServices = serv;
-        this.services = this.activeServicesList();
-      }
-    );
+    this.user = JSON.parse(localStorage.getItem('identity'));
+    this.serviceService.getServices().subscribe((serv) => {
+      this.allServices = serv;
+      this.services = this.activeServicesList();
+    });
   }
 
   // TODO: añadir botón para admin que liste servicios desactivados
   activeServicesList = () => {
     if (this.inactiveViewFlag) {
-      return this.allServices.filter(item => item.active === false);
+      return this.allServices.filter((item) => item.active === false);
     } else {
-      return this.allServices.filter(item => item.active === true);
+      return this.allServices.filter((item) => item.active === true);
     }
-  }
+  };
 
   selectService(event: Event, service: Service) {
     this.selectedService = service;
@@ -57,6 +55,18 @@ export class ServicesListComponent implements OnInit {
 
   inactiveViewToggle = () => {
     this.services = this.activeServicesList();
-  }
+  };
 
+  buscar() {
+    this.serviceService.getServices().subscribe((res) => {
+      console.log('res', res, this.search)
+      this.allServices = res.filter(
+        (item) =>
+         (item.nombre && item.descripcion ) ? (item.nombre.includes(this.search) || item.descripcion.includes(this.search)) : null
+
+      );
+      this.services = this.activeServicesList();
+      this.search = '';
+    });
+  }
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container entrada-animation">
   <div class="alert alert-success" *ngIf="status === 'success'" role="alert">
     Te has actualizado correctament!
     <a [routerLink]="['/home']">ir al Home aqui</a>
@@ -19,9 +19,9 @@
           class="card-img-top"
           [alt]="identity.usuario"
         />
-        <div>
-          <div>
-            <label for="exampleInputavatar">Avatar</label>
+        <div class="inp-file">
+          <div  >
+            <hr>
             <angular-file-uploader
             *ngIf="token"
           [config]="afuConfig"
@@ -55,7 +55,7 @@
                   #name="ngModel"
                   [(ngModel)]="identity.usuario"
                   [ngModelOptions]="{ standalone: true }"
-                  class="form-control"
+                  class="form-control inp-name"
                   required
                 />
               </div>
@@ -72,7 +72,7 @@
                   #Email="ngModel"
                   [(ngModel)]="identity.email"
                   [ngModelOptions]="{ standalone: true }"
-                  class="form-control"
+                  class="form-control inp-name"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   required
                 />

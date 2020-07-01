@@ -1,10 +1,10 @@
-<span class="container">
+<span class="container ">
 <header
-  class="bg-img landing text-white"
+  class="bg-img landing text-white fondo-animation"
   fxLayout="column"
   fxLayoutAlign="center center"
 >
-  <div class="titulo-header">
+  <div class="titulo-header letras-animation">
     <h1>
       La mejor solución, los mejores precios
     </h1>
@@ -73,7 +73,7 @@
 
 <section class="servicios">
   <div class="tarjetas-servicios">
-    <div class="card" style="width: 18rem;">
+    <div class="card element-animation" style="width: 18rem;">
       <img
         src="../../../assets/images/antivirus.png"
         class="card-img-top"
@@ -89,7 +89,7 @@
       <a routerLink="/service" class="btn btn-primary">contratar</a>
     </div>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card element-animation" style="width: 18rem;">
       <img
         src="../../../assets/images/repair.jpg"
         class="card-img-top"
@@ -106,7 +106,7 @@
       <a routerLink="/service" class="btn btn-primary">contratar</a>
     </div>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card element-animation" style="width: 18rem;">
       <img
         src="../../../assets/images/malware.jpg"
         class="card-img-top"
@@ -207,7 +207,7 @@
 </section>
 
  <!--Scroll to top-->
- 
+
  <button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top btn btn-dark" >
   <i class="pi pi-angle-double-up"></i>
 </button>
@@ -218,3 +218,4 @@
   <app-form-home></app-form-home>
 </section>
 </span>
+

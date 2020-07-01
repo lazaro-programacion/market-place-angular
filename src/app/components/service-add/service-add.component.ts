@@ -1,13 +1,15 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
 import { ShowSuppliersComponent } from '../show-suppliers/show-suppliers.component';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalSupplierService } from 'src/app/services/modal-supplier.service';
 
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-service-add',
@@ -32,13 +34,18 @@ export class ServiceAddComponent implements OnInit {
   public createMode = false;
   public editMode = false;
 
+  // upload vars
+  public image: File;
+
   constructor(
     private serviceService: ServicesService,
     private supplierService: SupplierService,
     private modalService: NgbModal,
     private modalSupplierService: ModalSupplierService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) {  }
+
 
   ngOnInit(): void {
 
@@ -72,7 +79,6 @@ export class ServiceAddComponent implements OnInit {
         this.selectedSupplier = res;
       }
     );
-
   }
 
   getTheService = (id: string) => {
@@ -151,7 +157,6 @@ export class ServiceAddComponent implements OnInit {
   }
 
   supplierSelector = () => {
-    console.log('Seleccionar proveedor');
     const modalRef = this.modalService.open(ShowSuppliersComponent);
     modalRef.componentInstance.suppliers = this.suppliers;
   }
@@ -165,6 +170,32 @@ export class ServiceAddComponent implements OnInit {
   }
 
   addToKart = () => {
+    // TODO: metodo para enviar al carro
     console.log('Añadir al carro', this.service, this.selectedSupplier);
   }
+
+  // image upload functions
+  selectImage(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.image = file;
+      console.log(this.image.name);
+    }
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', this.image);
+    console.log('imagen seleccionada', formData);
+
+    this.http.post<any>('http://localhost:4000/api/service/upload', formData).subscribe(
+      res => {
+        this.service.imagen = res.url;
+      },
+      err => console.log(err)
+    );
+  }
+
+
 }
