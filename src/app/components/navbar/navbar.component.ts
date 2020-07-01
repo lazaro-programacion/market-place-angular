@@ -155,7 +155,7 @@ export class NavbarComponent implements OnInit, DoCheck {
              } ,
             {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
             {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil'},
-            {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart'},
+            {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart',  routerLink: '/carrito'},
             {label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista'}
 
           ];

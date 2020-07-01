@@ -45,10 +45,10 @@ export class SearchComponent implements OnInit, DoCheck {
       }
     ];
 
-    this.selectedItem = ''
-    this.items = []
-    this.servFiltrados = []
-    this.services = []
+    this.selectedItem = '';
+    this.items = [];
+    this.servFiltrados = [];
+    this.services = [];
   }
 
   ngOnInit(): void {

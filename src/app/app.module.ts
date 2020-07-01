@@ -40,8 +40,17 @@ import { PanelModule } from 'primeng/panel';
 import { SidebarModule } from 'primeng/sidebar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import {SplitButtonModule} from 'primeng/splitbutton';
-
+import {ToastModule} from 'primeng/toast';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+
+// import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+// import {ToastDemo} from './toastdemo';
+// import {ToastDemoRoutingModule} from './toastdemo-routing.module';
+// import {ToastModule} from 'primeng/toast';
+// import {ButtonModule} from 'primeng/button';
+import {TabViewModule} from 'primeng/tabview';
+import {CodeHighlighterModule} from 'primeng/codehighlighter';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SupplierviewComponent } from './components/supplierview/supplierview.component';
@@ -104,7 +113,12 @@ import { ActiveUser1Pipe } from './pipes/active-user1.pipe';
     PanelMenuModule,
     AngularFileUploaderModule,
     SplitButtonModule,
-    ScrollingModule
+    ScrollingModule,
+
+    CommonModule,
+    TabViewModule,
+    CodeHighlighterModule,
+    ToastModule
 
   ],
   providers: [UsersService, EmailSupplierService],

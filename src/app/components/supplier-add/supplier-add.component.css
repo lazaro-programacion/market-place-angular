@@ -1,0 +1,20 @@
+.container-add {
+  display: grid;
+  grid-row: auto;
+  width: auto;
+  justify-content: left;
+  justify-items: left;
+
+}
+
+.form-group {
+  width: auto;
+  justify-self: center;
+}
+
+.boton {
+   display: grid;
+   grid-row: auto;
+   width: auto;
+   justify-self: left;
+ }
