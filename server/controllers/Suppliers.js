@@ -1,6 +1,6 @@
 const Suppliers = require('../models/Suppliers');
 
-const patientController = {
+const supplierController = {
 
 
     getSuppliers: (req, res) => {
@@ -57,4 +57,4 @@ const patientController = {
 
 }
 
-module.exports = patientController
+module.exports = supplierController
