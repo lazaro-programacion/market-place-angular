@@ -27,7 +27,7 @@ router
     .post('/upload', upload.single('file'), (req, res, next) => {
         const file = req.file;
         if (!file) {
-            const error = new Error('No se ha seleccionado un archivo');
+            const error = new Error('Sin archivo');
             error.httpStatusCode = 400;
             return next(error);
         }
