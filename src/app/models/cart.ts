@@ -1,8 +1,10 @@
+import { Service } from './service';
+import { Supplier } from './supplier';
+
 export class Cart {
     constructor(
-        public serviceId: string,
-        public supplierId: string,
-        public cuantity: number,
-        public unitPrice: number,
+        public service: Service,
+        public supplier: Supplier,
+        public cuantity: number
     ){}
 }

@@ -6,7 +6,7 @@ import { Supplier } from 'src/app/models/supplier';
 import { ShowSuppliersComponent } from '../show-suppliers/show-suppliers.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalSupplierService } from 'src/app/services/modal-supplier.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -74,6 +74,7 @@ export class ServiceAddComponent implements OnInit {
     );
 
     this.user = JSON.parse(localStorage.getItem('identity'));
+
     const localCart = localStorage.getItem('cartContent');
     this.cartContent = localCart ? JSON.parse(localCart) : [];
     console.log('carrito', this.cartContent);
@@ -172,10 +173,9 @@ export class ServiceAddComponent implements OnInit {
     // TODO: metodo para enviar al carro
     console.log('Añadir al carro', this.service, this.selectedSupplier);
     const actualCart = new Cart(
-      this.service._id,
-      this.selectedSupplier._id,
-      this.productCount,
-      this.service.price
+      this.service,
+      this.selectedSupplier,
+      this.productCount
     );
     this.cartContent = [...this.cartContent, actualCart];
     console.log('cart-content', this.cartContent);
