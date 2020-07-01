@@ -4,7 +4,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, 'uploads')
+        callback(null, 'src/assets/images/services')
     },
     filename: (req, file, callback) => {
         // console.log('object',file)
@@ -24,10 +24,15 @@ router
     .get('/:id', getServiceById)
     .put('/:id', updateService)
     .delete('/', deleteServiceById)
-    .post('/upload', upload.single('file'), (req, res) => {
+    .post('/upload', upload.single('file'), (req, res, next) => {
         const file = req.file;
-        console.log('mi imagen', file.originalname)
-        res.download('/uploads', file.originalname);
+        if(!file){
+            const error = new Error('No se ha seleccionado un archivo');
+            error.httpStatusCode = 400;
+            return next(error);
+        }
+        res.download('');
+        return res.status(200);
     })
 
 module.exports = router

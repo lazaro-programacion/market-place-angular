@@ -63,7 +63,6 @@ export class ServiceAddComponent implements OnInit {
         this.selectedSupplier = res;
       }
     );
-
   }
 
   getTheService = (id: string) => {
@@ -170,9 +169,9 @@ export class ServiceAddComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.image);
-    // console.log('imagen seleccionada', formData);
+    console.log('imagen seleccionada', formData);
 
-    this.http.post<File>('http://localhost:4000/api/service/uploads', formData).subscribe(
+    this.http.post<File>('http://localhost:4000/api/service/upload', formData).subscribe(
       res => console.log(res),
       err => console.log(err)
     );

@@ -1,5 +1,4 @@
 const Service = require('../models/service');
-const multer = require('multer');
 
 const serviceController = {
     getAllServices: (req, res) => {
@@ -54,35 +53,7 @@ const serviceController = {
             service.remove();
             return res.status(200).jsonp(service);
         })
-    },
-    
-}
-
-  // upload image
-
-  const storage = multer.diskStorage({
-    destination: (req, file, callback) => {
-        callback(null, 'uploads')
-    },
-    filename: (req, file, callback) => {
-        console.log('object',file)
-        callback(null, file.originalname);
     }
-});
-
-// guardar un único fichero
-// app.post('/file', upload.single('file'), (req, res, next) => {
-//   const file =req.file;
-//   console.log('server file', file.originalname);
-//   if(!file){
-//       const error = new Error('No hay fichero');
-//       error.httpStatusCode = 400;
-//       return next(error);
-//   }
-//   res.send(file);
-// })
-
-const upload = multer( {storage});
-
+}
 
 module.exports = serviceController;
