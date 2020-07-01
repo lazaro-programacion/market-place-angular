@@ -45,7 +45,7 @@ showSuccess() {
     return this.messageService.add({key: 'tl', severity: 'info', summary: 'Compra anulada con exito', detail: 'puedes seguir comprando'});
    }
   else {
-    return this.messageService.add({key: 'tl', severity:'warning', summary: 'ha existido un problema', detail:'intentalo otra vez'});
+    return this.messageService.add({key: 'tl', severity: 'warning', summary: 'ha existido un problema', detail:'intentalo otra vez'});
   }
 
 }

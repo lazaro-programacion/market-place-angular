@@ -64,6 +64,7 @@ import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.
 import { ShowSuppliersComponent } from './components/show-suppliers/show-suppliers.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { ActiveUser1Pipe } from './pipes/active-user1.pipe';
+import { ContactInformComponent } from './components/contact-inform/contact-inform.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +90,8 @@ import { ActiveUser1Pipe } from './pipes/active-user1.pipe';
     SupplierEditComponent,
     ShowSuppliersComponent,
     CarritoComponent,
-    ActiveUser1Pipe
+    ActiveUser1Pipe,
+    ContactInformComponent
   ],
   imports: [
     AppRoutingModule,

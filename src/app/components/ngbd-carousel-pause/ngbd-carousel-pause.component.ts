@@ -1,7 +1,7 @@
 import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
-
+import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 
 @Component({
@@ -26,7 +26,11 @@ export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
 
   public arrayCart: any[];
 
-  constructor(private serviceService: ServicesService) {
+  constructor(
+    private serviceService: ServicesService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) {
     this.images = [];
     this.imagesFilter = [];
     this.arrayCart = [];
@@ -75,5 +79,7 @@ export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
       this.arrayCart.push(image);
       console.log(this.arrayCart);
       localStorage.setItem('cart', JSON.stringify(this.arrayCart));
+      this.router.navigate(['service/add/', image._id]);
+
   }
 }
