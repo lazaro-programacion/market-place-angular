@@ -6,9 +6,11 @@ import { Supplier } from 'src/app/models/supplier';
 import { ShowSuppliersComponent } from '../show-suppliers/show-suppliers.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalSupplierService } from 'src/app/services/modal-supplier.service';
+import {Router} from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Cart } from 'src/app/models/cart';
 
 
 @Component({
@@ -26,16 +28,17 @@ export class ServiceAddComponent implements OnInit {
   public idService = history.state.id;
   public user: any;
   public productCount = 0;
-
+  public cartContent: Cart[] = [];
+  // misc vars
   public nombreBgColor = '#ffffff';
   public descripcionBgColor = '#ffffff';
   public priceBgColor = '#ffffff';
   // flags
   public createMode = false;
   public editMode = false;
-
   // upload vars
   public image: File;
+
 
   constructor(
     private serviceService: ServicesService,
@@ -43,22 +46,15 @@ export class ServiceAddComponent implements OnInit {
     private modalService: NgbModal,
     private modalSupplierService: ModalSupplierService,
     private route: ActivatedRoute,
-    private http: HttpClient
-  ) {  }
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
 
   ngOnInit(): void {
 
     this.route.params.subscribe(val => {
-
-      console.log('id',  val.id);
-
-      if(val.id){
-        this.getTheService(val.id);
-      }else{
-        return;
-      }
-
+      if (val.id) { this.getTheService(val.id); } else { return; }
     });
 
     if (this.idService) {
@@ -66,19 +62,22 @@ export class ServiceAddComponent implements OnInit {
     } else {
       this.idService = localStorage.getItem('savedId');
     }
+
     this.getTheService(this.idService);
 
     this.supplierService.getSuppliers().subscribe(
-      supp => this.suppliers = supp
+      res => this.suppliers = res
+    );
+
+    this.modalSupplierService.selectedSupplier.subscribe(
+      res => this.selectedSupplier = res
     );
 
     this.user = JSON.parse(localStorage.getItem('identity'));
+    const localCart = localStorage.getItem('cartContent');
+    this.cartContent = localCart ? JSON.parse(localCart) : [];
+    console.log('carrito', this.cartContent);
 
-    this.modalSupplierService.selectedSupplier.subscribe(
-      res => {
-        this.selectedSupplier = res;
-      }
-    );
   }
 
   getTheService = (id: string) => {
@@ -172,6 +171,17 @@ export class ServiceAddComponent implements OnInit {
   addToKart = () => {
     // TODO: metodo para enviar al carro
     console.log('Añadir al carro', this.service, this.selectedSupplier);
+    const actualCart = new Cart(
+      this.service._id,
+      this.selectedSupplier._id,
+      this.productCount,
+      this.service.price
+    );
+    this.cartContent = [...this.cartContent, actualCart];
+    console.log('cart-content', this.cartContent);
+    localStorage.setItem('cartContent', JSON.stringify(this.cartContent));
+
+    this.router.navigateByUrl('/service');
   }
 
   // image upload functions
@@ -183,7 +193,7 @@ export class ServiceAddComponent implements OnInit {
     }
   }
 
-  onSubmit(event) {
+  onImageSubmit(event) {
     event.preventDefault();
     const formData = new FormData();
     formData.append('file', this.image);
