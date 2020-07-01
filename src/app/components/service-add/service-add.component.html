@@ -3,18 +3,11 @@
         <div class="grid-container">
             <div class="product-img">
                 <img [src]="service ? service.imagen: '' " height="420" width="327" alt="Imagen producto">
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 offset-md-3">
-                            <h3>Choose File</h3>
-                            <div class="form-group">
-                                <input type="file" name="image" accept="image/*" (change)='selectImage($event)' />
-                            </div>
-                            <div>
-                                <button (click)='onSubmit($event)'>Upload</button>
-                            </div>
-                        </div>
+                <hr>
+                <div class="container" *ngIf="createMode||editMode">
+                    <div class="form-group">
+                        <input type="file" name="image" accept="image/*" (change)='selectImage($event)' />
+                        <button (click)='onSubmit($event)'>Upload</button>
                     </div>
                 </div>
             </div>
