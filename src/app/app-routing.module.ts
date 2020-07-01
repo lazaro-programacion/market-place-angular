@@ -22,6 +22,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
+import { ContactInformComponent } from './components/contact-inform/contact-inform.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'supplier/add', component: SupplierAddComponent, canActivate: [AdminGuard]},
   { path: 'supplier/edit/:id', component: SupplierAddComponent, canActivate: [AdminGuard]},
   { path: 'form-vendedor', component: FormVendorComponent},
+  { path: 'contacto', component: ContactInformComponent},
   { path: 'contacta', component: ContactUsComponent},
   { path: 'carrito', component: CarritoComponent},
 

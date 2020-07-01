@@ -65,6 +65,7 @@ import { ShowSuppliersComponent } from './components/show-suppliers/show-supplie
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { ActiveUser1Pipe } from './pipes/active-user1.pipe';
 import { ContactInformComponent } from './components/contact-inform/contact-inform.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +93,7 @@ import { ContactInformComponent } from './components/contact-inform/contact-info
     CarritoComponent,
     ActiveUser1Pipe,
     ContactInformComponent
+   
   ],
   imports: [
     AppRoutingModule,

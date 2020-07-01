@@ -112,7 +112,7 @@ export class NavbarComponent implements OnInit, DoCheck {
                     {
                         label: 'Atencion al cliente',
                         icon: 'pi pi-pi pi-tablet',
-                        routerLink: 'editar-perfil'
+                        routerLink: 'contacta'
                     }
                 ]
             },
@@ -138,7 +138,7 @@ export class NavbarComponent implements OnInit, DoCheck {
             {
                 label: 'Contacta con nosotros',
                 icon: 'pi pi-fw pi-envelope',
-                routerLink: 'contacta'
+                routerLink: 'contacto'
             },
             {
                 label: 'Vende con nosotros',
