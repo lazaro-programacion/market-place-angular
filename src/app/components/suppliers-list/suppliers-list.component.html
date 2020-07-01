@@ -1,40 +1,38 @@
-<p-dataView class="data-view" #dv [value]="suppliers" [paginator]="true" [rows]="5" paginatorPosition="both"
+<div class="entrada-animation">
+<p-dataView class="data-view " #dv [value]="suppliers" [paginator]="true" [rows]="4" paginatorPosition="both"
   filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder">
   <p-header>
-    <div class="ui-helper-clearfix">
-      <div class="p-grid">
-        <div class="p-col-12 p-md-4">
-        </div>
-        <div class="p-col-6 p-md-4 filter-container">
-          <div style="position:relative">
-            <input type="search" pInputText placeholder="Búsqueda por nombre" (input)="dv.filter($event.target.value)">
-          </div>
-          <div>
-            <button *ngIf="isAdmin()" class="btn btn-primary" type="button" routerLink='/supplier/add'>Nuevo proveedor</button>
-          </div>
-        </div>
-      </div>
+    <div class="ui-helper-clearfi " style="display: flex; justify-content: space-evenly;">
+      <input
+      class="btn btn-outline-dark"
+      style="width: 100%;"
+      type="text"
+      [(ngModel)]="search"
+      (keyup.enter)="buscar()"
+      placeholder="Buscar... "
+    />        <button *ngIf="isAdmin()" class="btn btn-primary" type="button" routerLink='/supplier/add'>Nuevo proveedor</button>
     </div>
   </p-header>
   <ng-template let-supplier pTemplate="listItem">
-    <div class="p-col-12">
-      <div class="service-details">
-        <div class="wrapper">
-          <div class="product-img">
+    <div class="p-col-12 entrada-animation" >
+      <div class="service-details entrada-animation">
+        <div class="caja1 entrada-animation">
+          <div class="caja-img entrada-animation">
             <img [src]="supplier.imagen" height="420" width="327">
           </div>
-          <div class="product-info">
-            <div class="product-text">
+          <div class="caja-info entrada-animation">
+            <div class="caja-text entrada-animation">
               <h1>{{supplier.nombre}} {{supplier.apellidos}}</h1>
               <p>{{supplier.email}}</p>
               <p>{{supplier.description}}</p>
-              <p *ngIf="supplier.active">ACTIVO</p>
-              <p *ngIf="!supplier.active">NO ACTIVO</p>
+
             </div>
-            <div class="product-price-btn">
+            <span class="active" *ngIf="supplier.active">ACTIVO</span>
+            <span class="active" *ngIf="!supplier.active">NO ACTIVO</span>
+            <div class="caja-price-btn">
               <p><span></span></p>
               <button type="button" [routerLink]="'/supplier/view/'+supplier._id">Detalles</button>
-              <button *ngIf="isAdmin()" type="button" [routerLink]="'/supplier/edit/'+supplier._id">Editar</button>
+              <button class="button1" *ngIf="isAdmin()" type="button" [routerLink]="'/supplier/edit/'+supplier._id">Editar</button>
             </div>
           </div>
         </div>
@@ -43,3 +41,4 @@
     </div>
   </ng-template>
 </p-dataView>
+</div>

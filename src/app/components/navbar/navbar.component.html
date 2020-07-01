@@ -3,12 +3,12 @@
   style="background-image: url(../assets/images/banner.png); width: 100%;"
 >
   <img #img src="assets/images/LOGO.png" alt="Logo" height="100vh" />
- 
+
   <p-contextMenu [target]="div" [model]="itemsSub"></p-contextMenu>
 </div>
 
 <div
-  class="p-grid"
+  class="p-gri"
   style="
     background: rgb(2, 0, 36);
     background: linear-gradient(
@@ -32,7 +32,7 @@
 
   <div class="p-col-8 p-md-8 p-lg-8 p-offset-0 p-md-offset-0 p-lg-offset-0">
     <div class="ui-inputgroup" >
-      
+
       <button
         class="p-col-0 p-md-col-1 p-lg-col-1"
         pButton
@@ -51,13 +51,13 @@
       />
 
   </div>
-  
+
   </div>
- 
+
   <div class="p-col-2 p-md-col-2 p-lg-col-1 p-lg-offset-1" id="btnLogin">
-   
-    
-  
+
+
+
     <div *ngIf="!identity">
       <button
         type="button"
@@ -96,7 +96,7 @@
       </p-dialog>
     </div>
     <div *ngIf="identity">
-      <div class="p-grid p-dir-col">
+      <div class="p-gri p-dir-col">
         <div class="p-col">
           <span *ngIf="identity" class="myPerfil" >
            <img [src]="url + '/user/get-image/' + identity.imagen" *ngIf="identity.imagen"  [alt]="identity.usuario" class='perfil' >
@@ -118,7 +118,7 @@
 </div>
 
 <div
-  class="p-grid "
+  class="p-gri "
   style="
     background: rgb(2, 0, 36);
     background: linear-gradient(
@@ -158,7 +158,7 @@
   class="sidebar"
   [(visible)]="visibleSidebar"
   styleClass="ui-sidebar-md"
-  
+
   [baseZIndex]="10000"
 >
 <h1 style="font-weight: normal;">JEDI Market</h1>
@@ -167,7 +167,7 @@
   {{identity.usuario | uppercase}}
 </div>
 
-  
+
 <p-panelMenu
   [model]="itemsSide"
   [transitionOptions]="'500ms'"
@@ -180,7 +180,7 @@
      Contacta con Nosotros</a>
 </div>
 
-<div class="enlaces"> 
+<div class="enlaces">
    <a [routerLink]="['/form-vendedor']"  >
     <i class="pi pi-briefcase"></i>
      Quieres ser proveedor?</a>
