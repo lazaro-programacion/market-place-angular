@@ -1,3 +1,4 @@
+<!-- ##################         Vista del administrador     ##################     -->
 <div class="wrapper-admin" *ngIf="user.rol==='admin'">
     <div class="servicio">
         <div class="grid-container">
@@ -7,7 +8,7 @@
                 <div class="container" *ngIf="createMode||editMode">
                     <div class="form-group">
                         <input type="file" name="image" accept="image/*" (change)='selectImage($event)' />
-                        <button (click)='onSubmit($event)'>Upload</button>
+                        <button (click)='onImageSubmit($event)'>Upload</button>
                     </div>
                 </div>
             </div>
@@ -50,9 +51,9 @@
             </div>
 
         </div>
-
     </div>
 </div>
+<!--    #####################   VISTA DEL USUARIO   ######################      -->
 <div class="wrapper-user" *ngIf="user.rol!=='admin'">
     <div class="grid-userview">
         <div class="izquierda">

@@ -43,11 +43,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><img class="image-carro" src="../../../assets/images/antivirus.png" alt=""></td>
-        <td>1</td>
-        <td>Istalacion antivirus</td>
-        <td>99.99 € </td>
+      <tr *ngFor="let item of myCart">
+        <td><img class="image-carro" [src]="item.service.imagen" alt=""></td>
+        <td>{{item.cuantity}}</td>
+        <td>{{item.service.nombre}}</td>
+        <td>{{item.service.price}} € </td>
       </tr>
 
     </tbody>
