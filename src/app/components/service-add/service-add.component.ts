@@ -6,7 +6,7 @@ import { Supplier } from 'src/app/models/supplier';
 import { ShowSuppliersComponent } from '../show-suppliers/show-suppliers.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalSupplierService } from 'src/app/services/modal-supplier.service';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class ServiceAddComponent implements OnInit {
   public editMode = false;
 
   // upload vars
-  image;
+  public image: File;
 
   constructor(
     private serviceService: ServicesService,
@@ -141,7 +141,6 @@ export class ServiceAddComponent implements OnInit {
   }
 
   supplierSelector = () => {
-    console.log('Seleccionar proveedor');
     const modalRef = this.modalService.open(ShowSuppliersComponent);
     modalRef.componentInstance.suppliers = this.suppliers;
   }
@@ -155,6 +154,7 @@ export class ServiceAddComponent implements OnInit {
   }
 
   addToKart = () => {
+    // TODO: metodo para enviar al carro
     console.log('Añadir al carro', this.service, this.selectedSupplier);
   }
 
@@ -163,18 +163,23 @@ export class ServiceAddComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.image = file;
+      console.log(this.image.name);
     }
   }
 
-  onSubmit() {
+  onSubmit(event) {
+    event.preventDefault();
     const formData = new FormData();
     formData.append('file', this.image);
     console.log('imagen seleccionada', formData);
 
     this.http.post<File>('http://localhost:4000/api/service/upload', formData).subscribe(
-      res => console.log(res),
+      res => {
+        this.service.imagen = 'src/assets/images/services/' + this.image.name;
+        localStorage.setItem('imagepath', this.service.imagen);
+      },
       err => console.log(err)
-    );
+      );
   }
 
 

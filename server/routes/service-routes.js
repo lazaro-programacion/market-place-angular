@@ -32,7 +32,7 @@ router
             return next(error);
         }
         res.download('');
-        return res.status(200);
+        return res.sendStatus(200);
     })
 
 module.exports = router
