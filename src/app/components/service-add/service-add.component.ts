@@ -1,12 +1,12 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { Service } from 'src/app/models/service';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
 import { ShowSuppliersComponent } from '../show-suppliers/show-suppliers.component';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalSupplierService } from 'src/app/services/modal-supplier.service';
-
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -32,11 +32,15 @@ export class ServiceAddComponent implements OnInit {
   public createMode = false;
   public editMode = false;
 
+  // upload vars
+  image;
+
   constructor(
     private serviceService: ServicesService,
     private supplierService: SupplierService,
     private modalService: NgbModal,
-    private modalSupplierService: ModalSupplierService
+    private modalSupplierService: ModalSupplierService,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -154,4 +158,25 @@ export class ServiceAddComponent implements OnInit {
   addToKart = () => {
     console.log('Añadir al carro', this.service, this.selectedSupplier);
   }
+
+  // image upload functions
+  selectImage(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.image = file;
+    }
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.image);
+    // console.log('imagen seleccionada', formData);
+
+    this.http.post<File>('http://localhost:4000/api/service/uploads', formData).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+  }
+
+
 }
