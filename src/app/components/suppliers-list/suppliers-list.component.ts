@@ -13,13 +13,13 @@ import { Users } from '../../models/users';
 })
 export class SuppliersListComponent implements OnInit {
 
-  displayDialog: boolean;
-  sortOptions: SelectItem[];
-  sortKey: string;
-  sortField: string;
-  sortOrder: number;
-
-  selectedSupplier: Supplier;
+  public displayDialog: boolean;
+  public sortOptions: SelectItem[];
+  public sortKey: string;
+  public sortField: string;
+  public sortOrder: number;
+  public search = '';
+  public selectedSupplier: Supplier;
   public identity: any;
   public user: Users;
 
@@ -38,7 +38,6 @@ export class SuppliersListComponent implements OnInit {
     this.user = this.identity;
   }
 
-
   isAdmin() {
     if (this.user !== null && this.user.rol === 'admin') {
       return true;
@@ -56,4 +55,13 @@ export class SuppliersListComponent implements OnInit {
     this.selectSupplier = null;
   }
 
+  buscar(){
+  this.serviceSupplier.getSuppliers().subscribe(
+    res => {
+      this.suppliers = res.filter(item => item.nombre.includes( this.search ) || item.apellidos.includes(this.search));
+      this.search = '';
+    }
+  );
+
+  }
 }

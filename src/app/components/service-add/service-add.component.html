@@ -65,7 +65,7 @@
             <div class="product-price">
                 <p><span>{{service.price}}</span>€</p>
             </div>
-            
+
             <div class="btn-group-lg">
                 <button class="btn btn-primary" (click)='decProductCount()'><i class="pi pi-minus"></i></button>
                 <button class="btn btn-success" [disabled]='!(selectedSupplier && productCount)' (click)='addToKart()' ><i class="pi pi-shopping-cart"></i> <span> {{productCount}}</span></button>

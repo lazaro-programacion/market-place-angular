@@ -1,0 +1,20 @@
+.boton-footer{
+  position: absolute;
+  bottom: 7px;
+  left: 95%;
+
+}
+
+.boton{
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  border-radius: 15px;
+}
+
+.boton:hover{
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 15px;
+}
