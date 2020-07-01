@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Users } from "../../models/users";
-import { UsersService } from "../../services/users.service"
+import { Users } from '../../models/users';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-password-forgot',
@@ -8,12 +8,13 @@ import { UsersService } from "../../services/users.service"
   styleUrls: ['./password-forgot.component.css']
 })
 export class PasswordForgotComponent implements OnInit {
- public email : string;
+ public email: string;
 
- //public users: Users[] = [];
+ // public users: Users[] = [];
  public user: Users;
  public newUser: Users;
- public status:string= '';
+ // tslint:disable-next-line: no-inferrable-types
+ public status: string = '';
  public newPassword: string;
  public confirmPassword: string;
  public show: boolean;
@@ -24,50 +25,52 @@ export class PasswordForgotComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = '';
- 
+
    // this.usersService.getUsers().subscribe((users) => (this.users = users));
     this.show = true;
 
 
   }
-  onSubmit(email:string){
-    //console.log(email)
-   this.email = email.toLowerCase()
+  onSubmit(email: string){
+    // console.log(email)
+   this.email = email.toLowerCase();
   //  let userFilter = []
-    if(this.email === ''){ 
-      this.status = ''
+   if (this.email === ''){
+      this.status = '';
     }else{
 
    this.usersService.getEmail(this.email).subscribe(
      response => {
-       console.log(response)
-      this.user = response;
+       console.log(response);
+       this.user = response;
 
-       if(this.user){
-         this.status = 'success'
-         this.show = false
+       if (this.user){
+         this.status = 'success';
+
+         this.show = false;
        }else{
-         this.status ='error'
+         this.status = 'error';
        }
 
      },
-     error => { 
-      var errorMessage = <any>error
-     if(errorMessage != null){
-   
-       this.status = 'error'
+     error => {
+
+      const errorMessage = error as any;
+      if (errorMessage != null){
+
+       this.status = 'error';
      }
-   })
-   
-  
+   });
+
+
 /*
-if(this.email === ''){ 
+if(this.email === ''){
     this.status = ''
   }else{
     userFilter = this.users.filter(element =>(element.email === email))
     if (userFilter.length === 1 ){
       this.status = 'success'
-    
+
       this.newUser = userFilter[0]
       this.show = false
     }else{
@@ -75,24 +78,24 @@ if(this.email === ''){
     }
 */
 
-     
-  }   
+
+  }
 
   }
 
   onPassword(){
 
-    this.newUser = this.user[0]
-    this.newUser.password = this.newPassword
-    console.log('datos a enviar', this.newUser._id,  this.newUser, this.newUser.password )
-    
-     this.usersService.putPassword(this.newUser, this.newUser._id).subscribe(
+    this.newUser = this.user[0];
+    this.newUser.password = this.newPassword;
+    console.log('datos a enviar', this.newUser._id,  this.newUser, this.newUser.password );
+
+    this.usersService.putPassword(this.newUser, this.newUser._id).subscribe(
       () => {
-          this.status = 'correcto'
+          this.status = 'correcto';
       });
 
-    
-    
+
+
   }
 
 }

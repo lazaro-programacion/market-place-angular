@@ -6,6 +6,8 @@ import { Supplier } from 'src/app/models/supplier';
 import { ShowSuppliersComponent } from '../show-suppliers/show-suppliers.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalSupplierService } from 'src/app/services/modal-supplier.service';
+
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -40,10 +42,24 @@ export class ServiceAddComponent implements OnInit {
     private supplierService: SupplierService,
     private modalService: NgbModal,
     private modalSupplierService: ModalSupplierService,
+    private route: ActivatedRoute,
     private http: HttpClient
-  ) { }
+  ) {  }
+
 
   ngOnInit(): void {
+
+    this.route.params.subscribe(val => {
+
+      console.log('id',  val.id);
+
+      if(val.id){
+        this.getTheService(val.id);
+      }else{
+        return;
+      }
+
+    });
 
     if (this.idService) {
       localStorage.setItem('savedId', this.idService);
