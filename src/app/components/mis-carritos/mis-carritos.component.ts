@@ -33,7 +33,7 @@ public mensaje: boolean;
             this.preload = false;
             this.mensaje = false;
           }
-            console.log(this.mensaje);
+          console.log(this.mensaje);
         },
         error => {
           console.log('error', error);

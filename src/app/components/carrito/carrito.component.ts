@@ -19,12 +19,16 @@ export class CarritoComponent implements OnInit {
     private cartService: CartService
   ) {
     this.myCart = [];
-    this.totalCart = 100;
+    this.totalCart = 100; // solo para que la vea el cliente no se guarda en base de datos
   }
 
   ngOnInit(): void {
     this.myCart = JSON.parse(localStorage.getItem('cartContent'));
     console.log('mi carrito', this.myCart);
+    this.cartService.getCarts().subscribe(
+      res => { console.log(res)},
+      error => {console.log(error)}
+    )
   }
 
   showConfirm() {
@@ -37,22 +41,30 @@ export class CarritoComponent implements OnInit {
     this.messageService.clear('c');
     console.log(this.showSuccess());
     // localStorage.clear();
-
+/*
     const cart = {
-      totalCart : this.totalCart,
+       totalCart : this.totalCart,
        miCart : this.myCart
     }
-    this.cartService.saveCart(cart).subscribe(
-      res =>{ console.log('respuesta servidor', res)
-              this.myCart = [];
+ */
+    const cart = this.myCart;
+    cart.forEach(element => {
+    this.cartService.saveCarts(element).subscribe(
+      res => { console.log('respuesta servidor', res);
 
-              localStorage.setItem('cartContent', JSON.stringify(this.myCart));
     },
     error => {
       console.log('error', error);
     });
 
 
+   },
+
+   );
+
+    this.myCart = [];
+
+    localStorage.setItem('cartContent', JSON.stringify(this.myCart));
   }
 
   showSuccess() {

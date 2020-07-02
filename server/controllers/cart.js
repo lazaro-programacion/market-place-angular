@@ -12,8 +12,8 @@ const controller = {
          const cart = new Cart()
        
           // 1.Recoger parametros (body) por post
-          var params = req.body;
-         console.log('body', req.body)
+          const params = req.body;
+        // console.log('body', req.body)
          
           // Asignar valores al objeto - el nombre lo hacemos obligatorio
 
@@ -21,10 +21,6 @@ const controller = {
 
           if(params.totalCart ){
             cart.miCart = params.miCart
-           // cart.service = params.service
-           // cart.supplier = params.supplier
-           // cart.quantity = params.quantity
-            // cart.unit_price = params.unit_price
             cart.totalCart =params.totalCart
             let today = new Date();
             cart.date = today
@@ -52,10 +48,58 @@ const controller = {
           
 },
 
+saveCarts : (req, res) =>  {
+    
+    // crear el objeto
+    let cart = new Cart()
+    let usuario = req.user.sub
+    //console.log('header', req.user)
+    //console.log('usuario', usuario)
+      // 1.Recoger parametros (body) por post
+      const params = req.body;
+    // console.log('body', req.body)
+    if(params.quantity){
+      // Asignar valores al objeto - el nombre lo hacemos obligatorio
+      cart.service = params.service
+      cart.supplier = params.supplier
+      cart.quantity = params.quantity
+      // cart.unit_price = params.unit_price
+     // cart.totalCart =params.totalCart
+      let today = new Date();
+      cart.date = today 
+      cart.user = usuario
+      console.log('cart', cart)
+      cart.save((err, cartStored) =>{
+          if(err){
+              res.status(500).send({message: 'error en los headers'})
+          }else{
+              if(!cartStored){
+               res.status(404).send({message: 'no se ha guardado el carrito'})
+              }else{
+               res.status(200).send({cart: cartStored})
+              }
+          }
+      })
+   
+
+}else{
+    res.status(500).send({message: 'error en el servidor'})
+
+}  
+
+
+
+},
+
 
 getCarts: (req, res) =>{
     // con populate ponemos en la propiedad user todas las propiedades del user de la otra coleccion
-    Cart.find({}).populate({path: 'user'} ).populate({path: 'service'}).populate({path: 'supplier'}).exec((err, carts) =>{
+    Cart.find({}).populate({path: 'user'} )
+                 .populate({
+                     path: 'miCart',
+                     populate: [ { path: 'service'}, {path: 'supplier'}]        
+                    })
+                 .exec((err, carts) =>{
 
       if(err){
           res.status(500).send({message:'error en la peticion'})
@@ -76,7 +120,7 @@ getCarts: (req, res) =>{
  getCartsUser : (req , res) =>{
 
 
-    const cart = new Cart()
+          const cart = new Cart()
 
         //1. Recoger el id del usuario
        

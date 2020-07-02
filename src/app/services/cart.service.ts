@@ -50,6 +50,22 @@ export class CartService {
       .post<any>(this.url + '/cart/', cart, {headers});
   }
 
+
+  saveCarts = (carts: any): Observable<any> => {
+    console.log('saving', carts);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.getToken()
+    });
+    return this.httpClient
+      .post<any>(this.url + '/cart/orders/', carts, {headers});
+  }
+
+
+
+
+
+
   misCarts = (): Observable<any> => {
     console.log('mis carts');
     const headers = new HttpHeaders({
@@ -67,7 +83,7 @@ getCarts = (): Observable<any> => {
     Authorization: this.getToken(),
   });
   return this.httpClient
-    .get<any>(this.url + '/carts/', {headers});
+    .get<any>(this.url + '/cart/carts/', {headers});
 }
 
 getCartsFilterDates= (start: Date, end: Date): Observable<any> => {
@@ -77,7 +93,7 @@ getCartsFilterDates= (start: Date, end: Date): Observable<any> => {
     Authorization: this.getToken(),
   });
   return this.httpClient
-    .get<any>(this.url + '/cart-filter/' + start + end, {headers});
+    .get<any>(this.url + '/cart/cart-filter/' + start + '&' + end, {headers});
 }
 
 }
