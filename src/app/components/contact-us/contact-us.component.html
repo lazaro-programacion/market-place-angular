@@ -20,40 +20,59 @@
   </div>
 </div>
 
+<div *ngIf="contactar">
+  <app-contact-inform ></app-contact-inform>
+  </div>
 
-<div class="row mt-5" *ngIf="informar">
-  
-  <div class="col-6 mx-auto">
-    <div class="progress" style="height: 1px;">
-      <div
-        class="progress-bar"
-        role="progressbar"
-        [style.width.%]="progress"
-        
-        aria-valuemin="0"
-        aria-valuemax="100"
-      ></div>
+<div class="container-fluid" *ngIf="informar">
+  <div class="row mt-2">
+    <div class="col-6 mx-auto">
+    <i class="pi pi-arrow-right" style="font-size: 1em"></i>
+    <span class="ml-5">step 1
+     <i *ngIf="check.step1" class="pi pi-check-circle"></i> 
+    </span>
+    <span style='margin-left: 20%;' >step 2
+      <i *ngIf="check.step2" class="pi pi-check-circle"></i> 
+     </span>
+     <span style='margin-left: 21%;' >step 3
+      <i *ngIf="check.step3" class="pi pi-check-circle"></i> 
+     </span>
+     <span style='margin-left: 22%;' >step 4
+      <i *ngIf="check.step4" class="pi pi-check-circle"></i> 
+     </span>
     </div>
-    <div class="progress" style="height: 20px;">
-      <div
-        class="progress-bar"
-        role="progressbar"
-        [style.width.%]="progress"
-       
-       
-        aria-valuemin="0"
-        aria-valuemax="100"
-      >
-        {{progress}} %
+    
+  </div>
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="progress" style="height: 1px;">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          [style.width.%]="progress"
+          
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+      <div class="progress" style="height: 20px;">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          [style.width.%]="progress"
+        
+        
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          {{progress}} %
+        </div>
       </div>
     </div>
-  </div>
-   
+ </div>
 </div>
 
-<div *ngIf="contactar">
-<app-contact-inform ></app-contact-inform>
-</div>
+
 
 <div class="row mt-5" *ngIf="informar">
   <div class="col-1 px-5">
@@ -69,6 +88,9 @@
         </div>
         
             <form #userForm='ngForm' >
+              <div *ngIf="status === 'error'" class="alert alert-danger" role="alert">
+               Problemas con la identificacion del usuario, email no coincide <a [routerLink]="['/home']"  class="alert-link">ir al home</a>,o preiona en anular.
+              </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
@@ -167,7 +189,7 @@
     </div>
   </div>
     <div class="col">
-      <button type="button" class="btn btn-warning float-left"  (click)='anular()' >Anular</button>
+     <h2>SI HAY ALGUN ERROR POR FAVOR PRESIONA EN ANULAR Y EMPIEZA EL PROCESO DE NUEVO</h2>
       <button type="button" class="btn btn-danger float-right"  (click)='exito()' >Enviar</button>
     </div>
     </div>

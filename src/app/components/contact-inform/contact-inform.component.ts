@@ -39,7 +39,7 @@ export class ContactInformComponent implements OnInit {
      console.log(response);
      this.status = 'success';
      supplierForm.reset();
-     console.log(this.status);
+     console.log(this.status)
    },
    err => {
     // console.log(err)

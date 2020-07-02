@@ -1,0 +1,42 @@
+<p>mis-carritos works!</p>
+<h1>Mis Carritos:  </h1>
+<div class="spinner-border text-primary" *ngIf="preload"></div>
+<div class="jumbotron" *ngIf="mensaje">
+    <h1 class="display-4">No tienes ningun carrito!</h1>
+    <p class="lead">Pruebas nuestros servicios son de total garantia</p>
+    <hr class="my-4">
+  
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" [routerLink]="['/service']"  role="button">ver servicios</a>
+    </p>
+</div>
+<div class="container-fluid d-flex flex-wrap" *ngIf="!preload && !mensaje">
+ 
+
+<div class="card card text-white border-primary  bg-secondary m-4" style="width: 28rem;"  *ngFor="let item of misCarts.carts"  >
+ 
+    <div class="card-body" >
+      <h5 class="card-title">Id: {{item._id}}  </h5>
+      <h6 class="card-subtitle mb-2">Fecha: {{item.date}} </h6>
+      
+      <div class="list-group">
+        <h3 class="list-group-item list-group-item-action active">
+          Servicio id: {{item.service._id}} -> {{item.service.nombre}}
+        </h3>
+        <h4  class="list-group-item list-group-item-action">{{item.service.nombre}}</h4>
+        <h4  class="list-group-item list-group-item-action">{{item.service.price}} €/ud</h4>
+        <h4  class="list-group-item list-group-item-action">{{item.quantity}}ud</h4>
+      </div>
+     
+      <div class="list-group">
+        <h3 class="list-group-item list-group-item-action active">
+          Vendedor- id: {{item.supplier._id}} -> {{item.supplier.nombre}} - {{item.supplier.apellidos}}
+        </h3>
+        <h4  class="list-group-item list-group-item-action">{{item.supplier.email}}</h4>
+      </div>
+    </div>
+    <hr>
+    <hr>
+  </div>
+  </div>
+

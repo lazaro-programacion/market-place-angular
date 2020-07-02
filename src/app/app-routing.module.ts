@@ -22,6 +22,8 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { SupplierAddComponent } from './components/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier-edit/supplier-edit.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
+import { ContactInformComponent } from './components/contact-inform/contact-inform.component';
+import { MisCarritosComponent } from './components/mis-carritos/mis-carritos.component';
 
 
 const routes: Routes = [
@@ -37,14 +39,15 @@ const routes: Routes = [
   { path: 'recuperar', component: PasswordForgotComponent },
   { path: 'buscador/:search', component: SearchComponent },
   { path: 'buscador/', component: SearchComponent },
-  { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [UsuarioGuard], },
+  { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [UsuarioGuard] },
   { path: 'supplier/view/:id', component: SupplierviewComponent},
   { path: 'supplier/add', component: SupplierAddComponent, canActivate: [AdminGuard]},
   { path: 'supplier/edit/:id', component: SupplierAddComponent, canActivate: [AdminGuard]},
   { path: 'form-vendedor', component: FormVendorComponent},
+  { path: 'contacto', component: ContactInformComponent},
   { path: 'contacta', component: ContactUsComponent},
-  { path: 'carrito', component: CarritoComponent},
-
+  { path: 'carrito', component: CarritoComponent, canActivate: [UsuarioGuard]},
+  { path: 'mis-carritos', component: MisCarritosComponent, canActivate: [UsuarioGuard]},
 
   { path: ':page', component: NotFoundComponentComponent },
   { path: '**', component: NotFoundComponentComponent }

@@ -41,7 +41,7 @@ export class PasswordForgotComponent implements OnInit {
 
    this.usersService.getEmail(this.email).subscribe(
      response => {
-       console.log(response);
+       // console.log(response);
        this.user = response;
 
        if (this.user){
@@ -87,7 +87,7 @@ if(this.email === ''){
 
     this.newUser = this.user[0];
     this.newUser.password = this.newPassword;
-    console.log('datos a enviar', this.newUser._id,  this.newUser, this.newUser.password );
+   // console.log('datos a enviar', this.newUser._id,  this.newUser, this.newUser.password );
 
     this.usersService.putPassword(this.newUser, this.newUser._id).subscribe(
       () => {

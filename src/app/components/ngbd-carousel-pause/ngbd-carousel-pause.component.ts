@@ -75,9 +75,9 @@ export class NgbdCarouselPauseComponent implements OnInit, DoCheck {
   }
 
   addCart(image){
-      console.log((image));
+     // console.log((image));
       this.arrayCart.push(image);
-      console.log(this.arrayCart);
+      // console.log(this.arrayCart);
       localStorage.setItem('cart', JSON.stringify(this.arrayCart));
       this.router.navigate(['service/add/', image._id]);
 
