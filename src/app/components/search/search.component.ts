@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit, DoCheck {
   public items: SelectItem[];
   public selectedItem: string;
   public responsiveOptions: any[];
-
+  public mensaje: boolean;
   constructor(
     private serviceService: ServicesService,
     private route: ActivatedRoute
@@ -52,8 +52,10 @@ export class SearchComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
+
     this.code = this.route.snapshot.paramMap.get('search');
-    console.log(this.code)
+   // console.log(this.code)
+
     this.serviceService.getServices().subscribe(
       serv => {
         this.services = serv;
@@ -65,10 +67,11 @@ export class SearchComponent implements OnInit, DoCheck {
 
         });
         if(this.code === ''){
-          return null;
+          return this.mensaje = false;
         }else{
           this.servicesFilter(this.code);
-          console.log('filtro', this.code, this.servicesFilter);
+         // console.log('filtro', this.code, this.servicesFilter);
+          this.mensaje = true;
         }
       }
     );
@@ -77,10 +80,11 @@ export class SearchComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     this.code = this.route.snapshot.paramMap.get('search');
     if (this.code === ''){
-      return null;
+      this.mensaje = false;
     }else{
       this.servicesFilter(this.code);
-      console.log('filtro', this.code, this.servicesFilter);
+      this.mensaje = true;
+     // console.log('filtro', this.code, this.servicesFilter);
     }
   }
 

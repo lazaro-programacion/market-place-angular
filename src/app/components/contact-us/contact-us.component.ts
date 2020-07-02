@@ -30,7 +30,12 @@ export class ContactUsComponent implements OnInit {
     servicio : '',
     proveedor: ''
   };
-
+  public check = {
+    step1 : false,
+    step2 : false,
+    step3 : false,
+    step4 : false
+  }
   public description: string;
   public confirm = false;
   constructor(
@@ -49,7 +54,6 @@ export class ContactUsComponent implements OnInit {
     this.user = this.identity;
     console.log(this.identity.usuario);
   }
-
   ngOnInit(): void {
   }
 
@@ -73,7 +77,7 @@ anular(){
   this.email = '';
   this.orden = '';
   this.description = '';
-
+  this.confirm = false;
   this.showOrden = false;
   this.showDetail = false;
   this.showConfirmar = false;
@@ -83,6 +87,12 @@ anular(){
   this.show = false;
   this.steps = false;
   this.status = '';
+  this.check ={
+    step1 : false,
+    step2 : false,
+    step3 : false,
+    step4 : false
+  };
   this.detail = {
     servicio : '',
     proveedor: ''
@@ -106,7 +116,7 @@ this.usersService.getEmail(this.email).subscribe(
     // this.status = 'success';
      this.showOrden = true;
      this.progress = this.progress + 25;
-
+     this.check.step1 = true;
      this.show = false;
      // console.log(this.showOrden);
 
@@ -142,6 +152,7 @@ if (this.orden.length === (undefined || 0)){
   this.showDetail = true;
   this.progress = this.progress + 25;
   this.showOrden = false;
+  this.check.step2 = true;
   console.log(this.progress, this.showOrden, this.showDetail);
 }
 }
@@ -155,6 +166,7 @@ onDetail(){
     this.showConfirmar = true;
     this.progress = this.progress + 25;
     this.showDetail = false;
+    this.check.step3 = true;
     // this.status = 'success';
  }
 
@@ -166,6 +178,7 @@ onDetail(){
     this.progress = this.progress + 25;
     this.confirm = true;
     this.showConfirmar = false;
+    this.check.step4 = true;
   }
 
 
