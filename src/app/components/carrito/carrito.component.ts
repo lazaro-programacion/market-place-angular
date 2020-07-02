@@ -26,9 +26,9 @@ export class CarritoComponent implements OnInit {
     this.myCart = JSON.parse(localStorage.getItem('cartContent'));
     console.log('mi carrito', this.myCart);
     this.cartService.getCarts().subscribe(
-      res => { console.log(res)},
-      error => {console.log(error)}
-    )
+      res => { console.log(res); },
+      error => { console.log(error); }
+    );
   }
 
   showConfirm() {
@@ -41,26 +41,27 @@ export class CarritoComponent implements OnInit {
     this.messageService.clear('c');
     console.log(this.showSuccess());
     // localStorage.clear();
-/*
-    const cart = {
-       totalCart : this.totalCart,
-       miCart : this.myCart
-    }
- */
+    /*
+        const cart = {
+           totalCart : this.totalCart,
+           miCart : this.myCart
+        }
+     */
     const cart = this.myCart;
     cart.forEach(element => {
-    this.cartService.saveCarts(element).subscribe(
-      res => { console.log('respuesta servidor', res);
+      this.cartService.saveCarts(element).subscribe(
+        res => {
+          console.log('respuesta servidor', res);
+
+        },
+        error => {
+          console.log('error', error);
+        });
+
 
     },
-    error => {
-      console.log('error', error);
-    });
 
-
-   },
-
-   );
+    );
 
     this.myCart = [];
 

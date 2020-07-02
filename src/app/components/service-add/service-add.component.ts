@@ -77,7 +77,7 @@ export class ServiceAddComponent implements OnInit {
 
     const localCart = localStorage.getItem('cartContent');
     this.cartContent = localCart ? JSON.parse(localCart) : [];
-    console.log('carrito', this.cartContent);
+    // console.log('carrito', this.cartContent);
 
   }
 

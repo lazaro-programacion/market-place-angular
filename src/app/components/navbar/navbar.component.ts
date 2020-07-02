@@ -8,12 +8,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
 import { GLOBAL } from '../../../config/global';
+import { Cart } from 'src/app/models/cart';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
-  providers: [ServicesService, SupplierService],
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
+    providers: [ServicesService, SupplierService],
 })
 export class NavbarComponent implements OnInit, DoCheck {
 
@@ -38,6 +39,9 @@ export class NavbarComponent implements OnInit, DoCheck {
     public search: string;
     public services: Service[] = [];
     public supplierServices: Supplier[] = [];
+
+
+    public carrito: Cart[] = [];
 
 
     constructor(
@@ -74,14 +78,14 @@ export class NavbarComponent implements OnInit, DoCheck {
 
         this.supplierService.getSuppliers().subscribe(
             response => {
-               this.supplierServices = response.filter(item => item.active === true);
-               this.supplierServices.forEach(element => {
-                   this.itemsSupplier.push({
-                    label: element.nombre,
-                    icon: 'pi pi-briefcase',
-                   routerLink: '/supplier/view/' + element._id
-                   });
-               });
+                this.supplierServices = response.filter(item => item.active === true);
+                this.supplierServices.forEach(element => {
+                    this.itemsSupplier.push({
+                        label: element.nombre,
+                        icon: 'pi pi-briefcase',
+                        routerLink: '/supplier/view/' + element._id
+                    });
+                });
             }
         );
 
@@ -126,6 +130,7 @@ export class NavbarComponent implements OnInit, DoCheck {
                         routerLink: 'carrito'
 
                     },
+
                     {
                         label: 'Mis Carritos',
                         icon: 'pi pi-fw pi-heart',
@@ -149,29 +154,34 @@ export class NavbarComponent implements OnInit, DoCheck {
             }
         ];
 
-        this.itemsMenu = [
-            {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
-            {label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service'},
-            {label: 'Proveedores', icon: 'pi pi-user-minus', routerLink: '/supplier',
-            // command: (event) => {console.log('menu event', event.item.label, event.originalEvent);}
-             } ,
-            {label: 'Buscar', icon: 'pi pi-fw pi-search-minus'},
-            {label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil'},
-            {label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart',  routerLink: '/carrito'},
-            {label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista'}
 
-          ];
+        this.carrito = JSON.parse(localStorage.getItem('cartContent'));
+        // console.log(this.carrito.length);
+
+        this.itemsMenu = [
+            { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
+            { label: 'Nuestros servicios', icon: 'pi pi-fw pi-microsoft', routerLink: '/service' },
+            {
+                label: 'Proveedores', icon: 'pi pi-user-minus', routerLink: '/supplier',
+                // command: (event) => {console.log('menu event', event.item.label, event.originalEvent);}
+            },
+            { label: 'Buscar', icon: 'pi pi-fw pi-search-minus' },
+            { label: 'Usuarios', icon: 'pi pi-fw pi-user', routerLink: '/editar-perfil' },
+            { label: `Carrito  ${this.carrito ? this.carrito.length : ''}`, icon: 'pi pi-fw pi-shopping-cart', routerLink: '/carrito' },
+            { label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista' }
+
+        ];
 
         this.activeItem = this.itemsMenu[0];
 
-        }
+    }
 
-    ngDoCheck(){
-        this.itemsSupplier.forEach( element => ({
+    ngDoCheck() {
+        this.itemsSupplier.forEach(element => ({
             label: element.nombre,
             icon: 'pi pi-briefcase',
             routerLink: 'supplier/view/' + element._id
-           }));
+        }));
     }
 
     buscador() {
@@ -196,11 +206,11 @@ export class NavbarComponent implements OnInit, DoCheck {
     }
 
 
-    logout(){
-    localStorage.clear();
-    this.identity = null;
-    this.token = null;
-    this.router.navigate(['/home']);
+    logout() {
+        localStorage.clear();
+        this.identity = null;
+        this.token = null;
+        this.router.navigate(['/home']);
     }
 
     showBasicDialog() {
