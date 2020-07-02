@@ -14,8 +14,10 @@
   </div>
 
   <div class="form-group">
-    <label>Foto del proveedor URL:</label>
-    <input type="text" class="form-control" [(ngModel)]="imagen">
+    <img [src]="this.imagen ? this.imagen: '' " height="420" width="327" alt="Imagen producto">
+    <hr>
+    <input type="file" name="image" accept="image/*" (change)='selectImage($event)' />
+    <button (click)='onImageSubmit($event)'>Upload</button>
   </div>
 
 

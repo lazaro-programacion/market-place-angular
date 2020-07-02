@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Supplier } from 'src/app/models/supplier';
 import { SupplierService } from 'src/app/services/supplier.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-supplier-add',
@@ -19,11 +20,13 @@ export class SupplierAddComponent implements OnInit {
   public active: boolean;
   public email = '';
   public description = '';
-
+  public image: File;
+  public supplier: Supplier;
 
   constructor(private supplierService: SupplierService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -60,6 +63,28 @@ export class SupplierAddComponent implements OnInit {
     );
   }
 
+  // image upload functions
+  selectImage(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.image = file;
+      console.log(this.image.name);
+    }
+  }
+
+  onImageSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', this.image);
+    console.log('imagen seleccionada', formData);
+
+    this.http.post<any>('http://localhost:4000/api/supplier/upload', formData).subscribe(
+      res => {
+        this.imagen = res.url;
+      },
+      err => console.log(err)
+    );
+  }
 
 
 
