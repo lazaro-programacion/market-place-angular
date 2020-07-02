@@ -53,8 +53,7 @@ saveCarts : (req, res) =>  {
     // crear el objeto
     let cart = new Cart()
     let usuario = req.user.sub
-    //console.log('header', req.user)
-    //console.log('usuario', usuario)
+    
       // 1.Recoger parametros (body) por post
       const params = req.body;
     // console.log('body', req.body)
@@ -95,10 +94,8 @@ saveCarts : (req, res) =>  {
 getCarts: (req, res) =>{
     // con populate ponemos en la propiedad user todas las propiedades del user de la otra coleccion
     Cart.find({}).populate({path: 'user'} )
-                 .populate({
-                     path: 'miCart',
-                     populate: [ { path: 'service'}, {path: 'supplier'}]        
-                    })
+                 .populate({path: 'service'})
+                 .populate({path: 'supplier'})
                  .exec((err, carts) =>{
 
       if(err){
