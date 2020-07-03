@@ -191,7 +191,7 @@ span {
 
 
 /**/
-.service-details{
+.service-detail{
   animation: suppliers ease 5s;
   animation-iteration-count: 1;
   transform-origin: 100% 100%;

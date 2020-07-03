@@ -59,7 +59,6 @@ export class ServicesListComponent implements OnInit {
 
   buscar() {
     this.serviceService.getServices().subscribe((res) => {
-      console.log('res', res, this.search)
       this.allServices = res.filter(
         (item) =>
          (item.nombre && item.descripcion ) ? (item.nombre.includes(this.search) || item.descripcion.includes(this.search)) : null

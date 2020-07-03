@@ -2,66 +2,70 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Cart } from 'src/app/models/cart';
 import { CartService } from '../../services/cart.service';
+import { element } from 'protractor';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class CarritoComponent implements OnInit {
-
-  public myCart: Cart[] = [];  /// El carrito ya tiene modelo
+  public myCart: Cart[] = []; /// El carrito ya tiene modelo
   public confirmMessage: any;
   public status: string;
-  public totalCart: number;
+  public precioTotal = 0;
+
   constructor(
     private messageService: MessageService,
     private cartService: CartService
   ) {
     this.myCart = [];
-    this.totalCart = 100; // solo para que la vea el cliente no se guarda en base de datos
   }
 
   ngOnInit(): void {
     this.myCart = JSON.parse(localStorage.getItem('cartContent'));
-    console.log('mi carrito', this.myCart);
-    this.cartService.getCarts().subscribe(
-      res => { console.log(res)},
-      error => {console.log(error)}
-    )
+    if (this.myCart === null) {
+      return null;
+    } else {
+      const importe = this.myCart.reduce(
+        (acc, actual) => acc + actual.service.price * actual.quantity,
+        0
+      );
+
+      // tslint:disable-next-line: max-line-length
+      this.precioTotal = Math.round(importe * 100) / 100;
+    }
   }
 
   showConfirm() {
     this.messageService.clear();
-    this.messageService.add({ key: 'c', sticky: true, severity: 'info', summary: ' Are you sure?', detail: 'Confirm to proceed' });
+    this.messageService.add({
+      key: 'c',
+      sticky: true,
+      severity: 'info',
+      summary: ' Are you sure?',
+      detail: 'Confirm to proceed',
+    });
     this.status = 'success';
   }
 
   onConfirm() {
     this.messageService.clear('c');
-    console.log(this.showSuccess());
     // localStorage.clear();
-/*
+    /*
     const cart = {
        totalCart : this.totalCart,
        miCart : this.myCart
     }
  */
     const cart = this.myCart;
-    cart.forEach(element => {
-    this.cartService.saveCarts(element).subscribe(
-      res => { console.log('respuesta servidor', res);
-
-    },
-    error => {
-      console.log('error', error);
+    cart.forEach((element) => {
+      this.cartService.saveCarts(element).subscribe(
+        (res) => {},
+        (error) => {}
+      );
     });
-
-
-   },
-
-   );
-
+    this.precioTotal = 0;
     this.myCart = [];
 
     localStorage.setItem('cartContent', JSON.stringify(this.myCart));
@@ -69,16 +73,28 @@ export class CarritoComponent implements OnInit {
 
   showSuccess() {
     if (this.status === 'success') {
-      return this.messageService.add({ key: 'tl', severity: 'success', summary: 'Compra realizada con exito', detail: 'Order en curso' });
-    }
-    else if (this.status === 'warning') {
+      return this.messageService.add({
+        key: 'tl',
+        severity: 'success',
+        summary: 'Compra realizada con exito',
+        detail: 'Order en curso',
+      });
+    } else if (this.status === 'warning') {
       // tslint:disable-next-line: max-line-length
-      return this.messageService.add({ key: 'tl', severity: 'info', summary: 'Compra anulada con exito', detail: 'puedes seguir comprando' });
+      return this.messageService.add({
+        key: 'tl',
+        severity: 'info',
+        summary: 'Compra anulada con exito',
+        detail: 'puedes seguir comprando',
+      });
+    } else {
+      return this.messageService.add({
+        key: 'tl',
+        severity: 'warning',
+        summary: 'ha existido un problema',
+        detail: 'intentalo otra vez',
+      });
     }
-    else {
-      return this.messageService.add({ key: 'tl', severity: 'warning', summary: 'ha existido un problema', detail: 'intentalo otra vez' });
-    }
-
   }
 
   onReject() {
@@ -89,17 +105,43 @@ export class CarritoComponent implements OnInit {
     this.messageService.clear();
   }
 
-
-
   deleteCart() {
-
     this.messageService.clear();
-    this.messageService.add({ key: 'c', sticky: true, severity: 'warn', summary: 'Are you sure?', detail: 'Confirm to proceed' });
+    this.messageService.add({
+      key: 'c',
+      sticky: true,
+      severity: 'warn',
+      summary: 'Are you sure?',
+      detail: 'Confirm to proceed',
+    });
     this.status = 'warning';
-    this.myCart = [];
+  }
+  borraProducto(idServici, idSupli) {
+    const arrayfilter = this.myCart;
+    // tslint:disable-next-line: no-shadowed-variable
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < arrayfilter.length; i++) {
+      if (arrayfilter[i].service._id === idServici && arrayfilter[i].supplier._id === idSupli) {
+
+        arrayfilter.splice(i, 1);
+      }
+    }
+    this.myCart = arrayfilter;
 
     localStorage.setItem('cartContent', JSON.stringify(this.myCart));
+    if (this.myCart === null) {
+      return null;
+    } else {
+      const importe = this.myCart.reduce(
+        (acc, actual) => acc + actual.service.price * actual.quantity,
+        0
+      );
 
+      // tslint:disable-next-line: max-line-length
+      this.precioTotal = Math.round(importe * 100) / 100;
+    }
   }
-
+  redondeo1(item) {
+   return Math.round((item.quantity * item.service.price) * 100) / 100;
+  }
 }

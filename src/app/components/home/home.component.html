@@ -26,18 +26,18 @@
       flex-direction: row;
       box-sizing: border-box;
       display: flex;
-      place-content: stretch center;
-      align-items: stretch;
       bottom: 0;
+      text-align: center;
+
     "
   >
     <button
       _ngcontent-txk-c133=""
       mat-raised-button=""
       color="primary"
-      class="btn btn-primary"
-      style="margin-right: 8px;"
-    >
+      class="boto1 btn btn-primary letras-animation"
+      style="margin: auto;  width: 50%;"
+      [routerLink]="['/service']"    >
       <a href="#servicios-1" style="color: white;">Servicios</a>
     </button>
 
@@ -46,17 +46,20 @@
       _ngcontent-txk-c133=""
       mat-raised-button=""
       color="primary"
-      class="btn btn-primary"
-      style="margin-right: 8px;"
+      class="boto1 btn btn-primary letras-animation"
+      style="margin: auto;  width: 50%;"
+      [routerLink]="['/contacto']"
     >
-    <a href="#sobre-nosotros" style="color: white;">Sobre nosotros</a>
+    <a href="#sobre-nosotros" style="color: white;">Contacta con nosotros</a>
     </button>
 
     <button
       _ngcontent-txk-c133=""
       mat-raised-button=""
       color="primary"
-      class="btn btn-primary"
+      class=" boto1 btn btn-primary letras-animation"
+      style="margin: auto;  width: 50%;"
+      [routerLink]="['/form-vendedor']"
     >
       <a [routerLink]="['/form-vendedor']"  style="color: white;">Quieres ser proveedor?</a>
       <div matripple="" class="mat-ripple mat-button-ripple"></div>

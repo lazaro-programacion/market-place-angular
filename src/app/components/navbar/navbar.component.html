@@ -138,15 +138,18 @@
 
     <p-tabMenu [model]="itemsMenu" [activeItem]="activeItem">
       <ng-template pTemplate="item" let-item let-i="index" >
-        <div style="position: relative; text-align: center;" (click)='buscador()'>
+        <div style="position: relative; text-align: center; " (click)='buscador()'>
           <div
             class="ui-menuitem-icon"
-            [ngClass]="item.icon"
+            [ngClass]="item.icon "
             *ngIf="item.icon"
             style="font-size: 2em;"
+          >
+             {{ item.label === 'Carrito'? carro1:null}}
+        </div>
 
-          ></div>
-          <div class="ui-menuitem-text">
+          <div class="ui-menuitem-text" >
+
             {{ item.label }}
           </div>
         </div>
