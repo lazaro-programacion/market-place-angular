@@ -13,8 +13,8 @@
     <input type="text" class="form-control" [(ngModel)]="nif">
   </div>
 
-  <div class="form-group">
-    <img [src]="this.imagen ? this.imagen: '' " height="420" width="327" alt="Imagen producto">
+  <div class="form-group1">
+    <img class="form-group1" [src]="this.imagen ? this.imagen: '' " height="420" width="327" alt="Imagen producto">
     <hr>
     <input type="file" name="image" accept="image/*" (change)='selectImage($event)' />
     <button class="btn btn-primary" (click)='onImageSubmit($event)'>Upload</button>

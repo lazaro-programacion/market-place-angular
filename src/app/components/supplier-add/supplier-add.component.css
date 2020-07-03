@@ -18,3 +18,9 @@
    width: auto;
    justify-self: left;
  }
+
+.form-group1 {
+  justify-self: center;
+  justify-content: center;
+  justify-items: center;
+}
