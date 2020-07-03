@@ -17,7 +17,7 @@
     <img [src]="this.imagen ? this.imagen: '' " height="420" width="327" alt="Imagen producto">
     <hr>
     <input type="file" name="image" accept="image/*" (change)='selectImage($event)' />
-    <button (click)='onImageSubmit($event)'>Upload</button>
+    <button class="btn btn-primary" (click)='onImageSubmit($event)'>Upload</button>
   </div>
 
 
