@@ -11,10 +11,10 @@ import { GLOBAL } from '../../../config/global';
 import { Cart } from 'src/app/models/cart';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
-  providers: [ServicesService, SupplierService],
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
+    providers: [ServicesService, SupplierService],
 })
 export class NavbarComponent implements OnInit, DoCheck {
   @Input() identity: Users;

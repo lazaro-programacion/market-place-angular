@@ -59,6 +59,7 @@ export class CarritoComponent implements OnInit {
     }
  */
     const cart = this.myCart;
+    // tslint:disable-next-line: no-shadowed-variable
     cart.forEach((element) => {
       this.cartService.saveCarts(element).subscribe(
         (res) => {},
