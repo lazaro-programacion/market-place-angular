@@ -29,6 +29,9 @@ export class NavbarComponent implements OnInit, DoCheck {
   itemsMenu: MenuItem[];
   itemsSide: MenuItem[];
   activeItem: MenuItem;
+  public mostrar = true;
+  itemsMenu1: MenuItem[];
+  public activar = true;
 
   displayBasic: boolean;
   displayPosition: boolean;
@@ -139,7 +142,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     ];
 
     this.carrito = JSON.parse(localStorage.getItem('cartContent'));
-
+    this.itemsMenu1 = [{ label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista' }];
     this.itemsMenu = [
       { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
       {
@@ -164,7 +167,6 @@ export class NavbarComponent implements OnInit, DoCheck {
         icon: 'pi pi-fw pi-shopping-cart',
         routerLink: '/carrito',
       },
-      { label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista' },
     ];
 
     if (localStorage.getItem('cartContent') === null) {
@@ -233,5 +235,11 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   showBasicDialog() {
     this.displayBasic = true;
+  }
+  cambiazoOff(){
+    this.activar = false;
+  }
+  cambiazoOn(){
+    this.activar = true;
   }
 }

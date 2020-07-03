@@ -133,10 +133,10 @@
 >
 
   <div
-    style="margin: 5px;"
+    style="margin: 5px; display: flex;"
   >
 
-    <p-tabMenu [model]="itemsMenu" [activeItem]="activeItem">
+    <p-tabMenu [model]="itemsMenu" [activeItem]="activeItem" (click)="cambiazoOff()">
       <ng-template pTemplate="item" let-item let-i="index" >
         <div style="position: relative; text-align: center; " (click)='buscador()'>
           <div
@@ -155,6 +155,25 @@
         </div>
       </ng-template>
     </p-tabMenu>
+<div [ngClass]="!activar?{'siosi': true}:{'noono': true}" (click)="cambiazoOn()" routerLink='/lista' routerLinkActive="active" >
+  <div class="boton-admin" *ngIf=" token && identity.rol === 'admin'" >
+    <div  >
+      <div style="position: relative; text-align: center; margin-top: 6px;" (click)='buscador()'>
+        <div
+          class="iconoss"
+          [ngClass]="itemsMenu1[0].icon"
+          *ngIf="itemsMenu1[0].icon"
+          style="font-size: 2em;"
+        >
+      </div>
+        <div [ngClass]="!activar?{'textoo': true}:{'textooo': true}">
+          {{ itemsMenu1[0].label }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   </div>
 </div>
 <hr />

@@ -257,11 +257,11 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
   }
   })
 
-  
 
 
-  
- }, 
+
+
+ },
 
  // metodo descargar archivos
 
@@ -273,7 +273,7 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
   }
   const file_path = req.files.file0.path;
   const file_split = file_path.split("\\");
-  const file_name = file_split[4];
+  const file_name = file_split[3];
   const extension_split = file_name.split(".");
   const file_ext = extension_split[1];
   console.log("filenamee", file_name);
@@ -335,7 +335,7 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
 getImagen: (req, res) =>{
   const file = req.params.image;
  console.log('nombre imagen', req.params)
-  const path_file = 'src/assets/images/upload_user/'+file;
+  const path_file = 'server/uploads/userImg/'+file;
 //  console.log('mi directorio', path_file)
 
 fs.exists(path_file, (exists) => {

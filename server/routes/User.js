@@ -3,7 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/User');
 const multipart = require('connect-multiparty');
 
-const mp_upload = multipart({uploadDir:'src/assets/images/upload_user'})
+const mp_upload = multipart({uploadDir:'server/uploads/userImg'})
 
 // cargar middleware - aplicar a las rutas protegida spor token
 const md_auth = require('../middlewares/authenticated')
