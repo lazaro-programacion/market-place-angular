@@ -13,7 +13,7 @@ const userController = {
 
     // registrar usuario
   createUser: (req, res) => {
-    console.log("la req ", req.body);
+   // console.log("la req ", req.body);
     const user = new User();
 
 
@@ -35,7 +35,7 @@ const userController = {
               const saltRounds = 10
               const hash = bcryptnew.hashSync(req.body.password, saltRounds);
               user.password = hash
-              console.log(user.password)
+            //  console.log(user.password)
                 // guardar usuario
                 user.save((err, userStored) => {
                     if(err){
@@ -49,30 +49,7 @@ const userController = {
                         }
 
                   })
-            /***
-             *
-             *  bcrypt.hash(req.body.password, null, null, function (err, hash) {
-              user.password = hash
-
-              user.save((err, userStored) => {
-                  if(err){
-                      res.status(500).send({message: 'error al guardar el usuario'});
-                  }else{
-                      if(!userStored){
-                          res.status(404).send({message: 'No se ha registrado el usuario'});
-                      }else{
-                          res.status(200).send({user: userStored, message: 'usuario guardado correctamente'});
-                          }
-                      }
-
-                })
-
-               })
-             *
-             *
-             *
-             *
-             */
+           
 
           }else{
               res.status(500).send({message: 'el email del usuario ya existe'});
@@ -97,7 +74,7 @@ login: (req, res) => {
                   res.status(500).send({message: 'error al comprobar el usuario'});
               }else{
                   if(user){
-                    console.log(password, user.password)
+                   // console.log(password, user.password)
                       // comprobar password enviado con el existente
                      const compare =  bcryptnew.compareSync(password, user.password);
                       if(compare === true){
@@ -112,36 +89,6 @@ login: (req, res) => {
                       }else{
                         res.status(404).send({ message: 'el password no es correcto'});
                     }
-
-
-                    /***
-                     *
-                     *  bcrypt.compare(password , user.password, (err, resp) => {
-
-                              console.log('response', resp )
-                              if(resp){
-                                // comprobar y generar token
-                            if(params.gettoken){
-                                // devolver token
-                                res.status(200).send({
-                                    token: jwt.createToken(user)
-                                });
-                            }else{
-                                res.status(200).send({user: user});
-                            }
-
-                        }else{
-                            res.status(404).send({ message: 'el password no es correcto'});
-                        }
-
-                        })
-                     *
-                     *
-                     *
-                     *
-                     */
-
-
 
 
                   }else{
@@ -206,7 +153,7 @@ User.findByIdAndUpdate({ _id: req.params.id }, update, {new:true}, (err, userUpd
   // recoger parametros
   const userId = req.params.id
   const update = req.body
-console.log('esto que es ssss',req.user.sub, userId)
+
 /*
 const saltRounds = 10
 const hash = bcryptnew.hashSync(req.body.password, saltRounds);
@@ -242,7 +189,7 @@ const update = req.body
 const saltRounds = 10
 const hash = bcryptnew.hashSync(req.body.password, saltRounds);
 update.password = hash
-console.log(update.password)
+// console.log(update.password)
 
 User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) => {
   if(err){
@@ -267,7 +214,7 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
 
  upload: (req, res) => {
   const user = new User();
-  console.log("esto es req", req.files);
+  // console.log("esto es req", req.files);
   if (!req.files) {
     return res.status(404).send("No se a subido ninguna imagen");
   }
@@ -276,14 +223,14 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
   const file_name = file_split[4];
   const extension_split = file_name.split(".");
   const file_ext = extension_split[1];
-  console.log("filenamee", file_name);
+ // console.log("filenamee", file_name);
   if (file_ext != "jpg" && file_ext != "png") {
     fs.unlink(file_path, (err) => {
       return res.status(200).send("Solo se permite jpg y png");
     });
   } else {
     const imagenId = req.params.id;
-    console.log("imgid  file name", imagenId, file_name);
+   // console.log("imgid  file name", imagenId, file_name);
     if (imagenId) {
       User.findByIdAndUpdate(
         { _id: imagenId },
@@ -309,7 +256,7 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
 // metodo buscador
   getSearch: (req, res) => {
     const busqueda = req.params.search;
-    console.log(busqueda);
+  //  console.log(busqueda);
     User.find({
       $or: [
         { usuario: { $regex: busqueda, $options: "i" } },
@@ -334,13 +281,13 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
 // metodo para recuperar una imagen
 getImagen: (req, res) =>{
   const file = req.params.image;
- console.log('nombre imagen', req.params)
+// console.log('nombre imagen', req.params)
   const path_file = 'src/assets/images/upload_user/'+file;
 //  console.log('mi directorio', path_file)
 
 fs.exists(path_file, (exists) => {
   // console.log('EXISTS', exists)
-  console.log('EXISTS', path.resolve(path_file))
+ // console.log('EXISTS', path.resolve(path_file))
    // librerira path
   if(exists){
   res.sendFile(path.resolve(path_file));// comprobar si el archivo existe o su ruta
@@ -358,7 +305,7 @@ fs.exists(path_file, (exists) => {
 // metodos comprobar email
 getEmail: (req, res) => {
   const busqueda = req.params.email;
-  console.log(busqueda);
+ 
   User.find(
      { email: busqueda}
      )

@@ -39,7 +39,7 @@ export class CartService {
     }
     return this.identity;
   }
-
+// metodo que envia un array
   saveCart = (cart: any): Observable<any> => {
     console.log('saving', cart);
     const headers = new HttpHeaders({
@@ -50,7 +50,7 @@ export class CartService {
       .post<any>(this.url + '/cart/', cart, {headers});
   }
 
-
+// metodo que solo envia un cart
   saveCarts = (carts: any): Observable<any> => {
     console.log('saving', carts);
     const headers = new HttpHeaders({

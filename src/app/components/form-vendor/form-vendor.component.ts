@@ -60,7 +60,7 @@ export class FormVendorComponent implements OnInit {
                this.status = 'error';
              }
    });
-    console.log('status', this.status);
+  //  console.log('status', this.status);
   }
 
 

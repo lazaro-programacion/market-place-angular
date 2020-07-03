@@ -100,7 +100,7 @@ anular(){
 }
 
 onSubmit(){
-console.log(this.email);
+// console.log(this.email);
 this.email = this.email.toLowerCase();
 
 if (this.email === ''){
@@ -143,7 +143,7 @@ this.usersService.getEmail(this.email).subscribe(
 
 onOrder(){
 
-console.log(this.orden);
+// console.log(this.orden);
 if (this.orden.length === (undefined || 0)){
    //  this.status = 'error';
   return;
@@ -153,7 +153,7 @@ if (this.orden.length === (undefined || 0)){
   this.progress = this.progress + 25;
   this.showOrden = false;
   this.check.step2 = true;
-  console.log(this.progress, this.showOrden, this.showDetail);
+ // console.log(this.progress, this.showOrden, this.showDetail);
 }
 }
 
@@ -195,8 +195,8 @@ onDetail(){
      proveedor: this.detail.proveedor,
      descripcion: this.description
 
-   }
-   console.log('enviar', claimUser);
+   };
+  // console.log('enviar', claimUser);
 
 }
 

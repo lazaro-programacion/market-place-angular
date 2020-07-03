@@ -77,7 +77,6 @@ export class UsersService {
   };
 
   saveUsers = (users: Users): Observable<Users> => {
-    console.log('saving patient', Users);
     return this.httpClient
       .post<Users>('http://localhost:4000/api/user/', users, this.httpOptions)
       .pipe(catchError(this.handleError));
@@ -129,7 +128,7 @@ export class UsersService {
     });
     return this.httpClient
       .get<Users[]>('http://localhost:4000/api/user/search/' + search, {
-        headers: headers,
+        headers,
       })
       .toPromise();
   };

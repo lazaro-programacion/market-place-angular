@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
            this.usersService.signUp(this.user, true).subscribe(
               // tslint:disable-next-line: no-shadowed-variable
               response => {
-                console.log('token', response.token);
+               // console.log('token', response.token);
                 this.token = response.token;
                 localStorage.setItem('token', this.token);
                 if(this.token.length <= 0){

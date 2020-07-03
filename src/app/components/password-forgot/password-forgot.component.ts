@@ -63,21 +63,6 @@ export class PasswordForgotComponent implements OnInit {
    });
 
 
-/*
-if(this.email === ''){
-    this.status = ''
-  }else{
-    userFilter = this.users.filter(element =>(element.email === email))
-    if (userFilter.length === 1 ){
-      this.status = 'success'
-
-      this.newUser = userFilter[0]
-      this.show = false
-    }else{
-      this.status = 'error'
-    }
-*/
-
 
   }
 
