@@ -1,7 +1,7 @@
 
 <div class="alert alert-success" *ngIf="status === 'success'"  role="alert">
   Login correcto!
-  
+
 </div>
 <div class="alert alert-danger" *ngIf="status === 'error'"  role="alert">
   Ha existido un problema en tu login vuelvelo a intentar!
@@ -15,22 +15,22 @@
 <form class="text-center border border-light p-5 container-fluid" #userForm='ngForm' (ngSubmit)="onSubmit(userForm)"  >
   <!-- #userForm='ngForm'  -->
     <p class="h4 mb-4">Sign in</p>
-  
+
     <!-- Email -->
     <input class="form-control" type="email" id="defaultRegisterFormEmail"  ngControl="Email" #Email='ngModel'  [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" class="form-control mb-4"
     placeholder="E-mail" maxlength="30"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" autocomplete="additional-name" required>
-    
+
     <small *ngIf="!Email.valid && Email.touched">
-     El email no es valido      
+     El email no es valido
    </small>
-  
+
 
     <!-- Password -->
-   
-    <input class="form-control" type="password" id="defaultRegisterFormPassword"    ngControl="Password" #Password='ngModel'  [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}"  class="form-control" 
+
+    <input class="form-control" type="password" id="defaultRegisterFormPassword"    ngControl="Password" #Password='ngModel'  [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}"  class="form-control"
         placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" minlength="6" autocomplete="additional-name"  required>
         <small *ngIf="!Password.valid && Password.touched">
-          El password no es valido 
+          El password no es valido
         </small>
         <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
           At least 6 characters or digit
@@ -38,33 +38,33 @@
 
     <div class="d-flex justify-content-around">
       <div>
-        
+
     </div>
       <div>
         <!-- Forgot password -->
         <a [routerLink]="['/recuperar']"  >Forgot password?</a>
       </div>
     </div>
-    
+
     <!-- Sign in button -->
     <div class="col-12">
-        <button type='submit' class='btn btn-primary btn-block' [disabled]=' !Email.valid || !Password.valid' >Login</button>   
+        <button type='submit' class='btn btn-primary btn-block' [disabled]=' !Email.valid || !Password.valid' >Login</button>
     </div>
-  
+
     <!-- Register -->
     <p>Not a member?
       <a [routerLink]="['/registro']" >Register</a>
     </p>
-  
-    Social register 
+
+    Social register
         <p>or sign in with:</p>
-      
+
         <p-button  icon="pi pi-google"></p-button>
- 
+
   </form>
   <!-- Default form login -->
   </div>
- </div> 
+ </div>
 
 
 

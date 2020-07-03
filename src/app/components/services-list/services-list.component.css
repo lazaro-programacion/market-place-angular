@@ -203,7 +203,7 @@
     width: 100%;
   }
 
-  .service-details{
+  .service-detail{
     animation: services ease 5s;
     animation-iteration-count: 1;
     transform-origin: 100% 100%;

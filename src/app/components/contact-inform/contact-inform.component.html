@@ -6,7 +6,7 @@
   No hemos recibido correctamente tu formularios, intentalo mas tarde. <a [routerLink]="['/home']"  class="alert-link"><i class="pi pi-home"></i> Ir al home</a>
 </div>
 
-<div class="container">
+<div class="container entrada-animation">
   <div class="row">
     <div class="col-md-3">
       <div class="contact-info">
@@ -109,7 +109,7 @@
                 !Email.valid ||
                 !Comment.valid ||
                 !Nombre.valid ||
-                !Apellidos.valid 
+                !Apellidos.valid
               "
               (click)='formulario(supplierForm)'
             >
