@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'lista', component: UsersListComponent,  canActivate: [AdminGuard] },
-  { path: 'service', component: ServicesListComponent },
+  { path: 'service', component: ServicesListComponent, canActivate: [UsuarioGuard] },
   { path: 'supplier', component: SuppliersListComponent },
   { path: 'service/add', component: ServiceAddComponent },
   { path: 'service/add/:id', component: ServiceAddComponent },

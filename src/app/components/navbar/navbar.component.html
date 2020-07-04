@@ -138,7 +138,7 @@
 
     <p-tabMenu [model]="itemsMenu" [activeItem]="activeItem" (click)="cambiazoOff()">
       <ng-template pTemplate="item" let-item let-i="index" >
-        <div style="position: relative; text-align: center; " (click)='buscador()'>
+        <div style="position: relative; text-align: center; "  (click)="cambiazoOff()" >
           <div
             class="ui-menuitem-icon"
             [ngClass]="item.icon "

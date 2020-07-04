@@ -51,7 +51,7 @@ export class EditarPerfilComponent implements OnInit {
     console.log(this.identity, this.user);
     this.afuConfig = {
       multiple: false,
-      formatsAllowed: '.jpg, .png., .gift, .jpeg',
+      formatsAllowed: '.jpg, .png., .gif',
       maxSize: '50',
       uploadAPI: {
         url: GLOBAL.url + '/user/upload-image/',

@@ -11,10 +11,10 @@ import { GLOBAL } from '../../../config/global';
 import { Cart } from 'src/app/models/cart';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.css'],
-    providers: [ServicesService, SupplierService],
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
+  providers: [ServicesService, SupplierService],
 })
 export class NavbarComponent implements OnInit, DoCheck {
   @Input() identity: Users;
@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit, DoCheck {
   activeItem: MenuItem;
   public mostrar = true;
   itemsMenu1: MenuItem[];
-  public activar = true;
+  public activar = false;
 
   displayBasic: boolean;
   displayPosition: boolean;
@@ -142,7 +142,9 @@ export class NavbarComponent implements OnInit, DoCheck {
     ];
 
     this.carrito = JSON.parse(localStorage.getItem('cartContent'));
-    this.itemsMenu1 = [{ label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista' }];
+    this.itemsMenu1 = [
+      { label: 'Lista-Usuarios', icon: 'pi pi-users', routerLink: '/lista' },
+    ];
     this.itemsMenu = [
       { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
       {
@@ -156,7 +158,11 @@ export class NavbarComponent implements OnInit, DoCheck {
         routerLink: '/supplier',
         // command: (event) => {console.log('menu event', event.item.label, event.originalEvent);}
       },
-      { label: 'Buscar', icon: 'pi pi-fw pi-search-minus' },
+      {
+        label: 'Buscar',
+        icon: 'pi pi-fw pi-search-minus',
+        routerLink: '/buscador/ ' + '',
+      },
       {
         label: 'Usuarios',
         icon: 'pi pi-fw pi-user',
@@ -184,7 +190,6 @@ export class NavbarComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-
     if (localStorage.getItem('cartContent') === null) {
       return null;
     } else {
@@ -201,7 +206,14 @@ export class NavbarComponent implements OnInit, DoCheck {
           this.carro1 = this.carrito.length.toString();
         }
       }
+
     }
+    console.log('carriito', this.carrito.length.toString());
+    console.log(
+      'json',
+      JSON.parse(localStorage.getItem('cartContent')).length.toString()
+    );
+    console.log('carro1', this.carro1);
   }
 
   buscador() {
@@ -236,10 +248,10 @@ export class NavbarComponent implements OnInit, DoCheck {
   showBasicDialog() {
     this.displayBasic = true;
   }
-  cambiazoOff(){
+  cambiazoOff() {
     this.activar = false;
   }
-  cambiazoOn(){
+  cambiazoOn() {
     this.activar = true;
   }
 }

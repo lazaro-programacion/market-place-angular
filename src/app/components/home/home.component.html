@@ -76,55 +76,26 @@
 
 <section class="servicios">
   <div class="tarjetas-servicios">
-    <div class="card element-animation" style="width: 18rem;">
+    <div *ngFor="let item of services" class="card element-animation" style="width: 18rem;">
       <img
-        src="../../../assets/images/antivirus.png"
-        class="card-img-top"
+       class="card-img-top"
         alt="antivirus"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Antivirus</h5>
+     [src]="item.imagen" height="220" width="327">
+
+
+      <div  class="card-body">
+
+        <h1 class="card-title">{{item.nombre}}</h1>
         <p class="card-text">
-          Seguridad completa de su dispositivo más una VPN para la privacidad
-          online, un gestor de contraseñas y mucho más. Ahorre hasta un 61 %*.
+        {{item.descripcion}}
         </p>
+        <div class="precio" tyle="text-align: center;">
+          <span style="text-align: center;">{{item.price}} €</span>
+      </div>
       </div>
       <a routerLink="/service" class="btn btn-primary">contratar</a>
     </div>
 
-    <div class="card element-animation" style="width: 18rem;">
-      <img
-        src="../../../assets/images/repair.jpg"
-        class="card-img-top"
-        alt="reparaciones"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Reparacion de Software</h5>
-        <p class="card-text">
-          para servicios de asistencia técnica que permite gestionar la empresa
-          de una forma rápida y sencilla. El Equipo de Soporte JEDI está
-          disponible en todo momento para ayudarte.
-        </p>
-      </div>
-      <a routerLink="/service" class="btn btn-primary">contratar</a>
-    </div>
-
-    <div class="card element-animation" style="width: 18rem;">
-      <img
-        src="../../../assets/images/malware.jpg"
-        class="card-img-top"
-        alt="malware"
-      />
-      <div class="card-body">
-        <h5 class="card-title">anti-malware</h5>
-        <p class="card-text">
-          ¿Su ordenador va lento? ¿Le aparecen mensajes extraños? ¿Se ha
-          modificado la página inicial del navegador sin su permiso? Es probable
-          que el responsable de todo esto sea el adware.
-        </p>
-      </div>
-      <a routerLink="/service" class="btn btn-primary">contratar</a>
-    </div>
   </div>
 </section>
 <section class="groupss">
@@ -218,7 +189,7 @@
 <section class="container my-5">
   <h2 class="text-center mb-3">Join the waitlist</h2>
   <h4 class="text-center">We'll get in touch</h4>
- 
+
 </section>
 </span>
 

@@ -11,7 +11,7 @@
         (keyup.enter)="buscar()"
         placeholder="Buscar... "
       />
-              <div *ngIf="user.rol==='admin'">
+              <div *ngIf=" user && user.rol==='admin'">
 
                   Ver inactivos <input class="form-check-label" type='checkbox' [(ngModel)]='inactiveViewFlag' (change)='inactiveViewToggle()'>
               </div>

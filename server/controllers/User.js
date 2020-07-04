@@ -49,7 +49,7 @@ const userController = {
                         }
 
                   })
-           
+
 
           }else{
               res.status(500).send({message: 'el email del usuario ya existe'});
@@ -224,7 +224,7 @@ User.findByIdAndUpdate({ _id: userId }, update, {new:true}, (err, userUpdated) =
   const extension_split = file_name.split(".");
   const file_ext = extension_split[1];
  // console.log("filenamee", file_name);
-  if (file_ext != "jpg" && file_ext != "png") {
+  if (file_ext != "jpg" && file_ext != "png" && file_ext != "gif")  {
     fs.unlink(file_path, (err) => {
       return res.status(200).send("Solo se permite jpg y png");
     });
@@ -305,7 +305,7 @@ fs.exists(path_file, (exists) => {
 // metodos comprobar email
 getEmail: (req, res) => {
   const busqueda = req.params.email;
- 
+
   User.find(
      { email: busqueda}
      )

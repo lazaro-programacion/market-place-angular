@@ -410,3 +410,14 @@ button .scroll-to-top  {
   background: linear-gradient(360deg,transparent,#03e9f4);
 }
 
+.precio{
+  text-align: center;
+    font-size: 25px;
+    background-color: green;
+    color: white;
+    border-radius: 15px;
+    width: 38%;
+    margin: auto;
+    padding-top: 4px;
+    margin-top: 17px;
+}
