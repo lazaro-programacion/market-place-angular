@@ -54,7 +54,9 @@ export class ServiceAddComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(val => {
+      console.log('valid',val.id)
       if (val.id) { this.getTheService(val.id); } else { return; }
+
     });
 
     if (this.idService) {
@@ -64,7 +66,7 @@ export class ServiceAddComponent implements OnInit {
     }
 
     this.getTheService(this.idService);
-
+    localStorage.removeItem('savedId' );
     this.supplierService.getSuppliers().subscribe(
       res => this.suppliers = res
     );

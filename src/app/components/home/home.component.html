@@ -93,7 +93,7 @@
           <span style="text-align: center;">{{item.price}} €</span>
       </div>
       </div>
-      <a routerLink="/service" class="btn btn-primary">contratar</a>
+      <a [routerLink]='["/service/add/", item._id]' class="btn btn-primary">contratar</a>
     </div>
 
   </div>
