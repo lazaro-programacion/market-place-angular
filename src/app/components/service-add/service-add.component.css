@@ -22,16 +22,16 @@
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 10px;
   }
-  
+
   .wrapper-admin .product-img {
     height: 400px;
   }
-  
+
   .wrapper-admin .product-img img {
     border-radius: 7px 0 0 7px;
     max-height: 300px;
   }
-  
+
   .product-info {
     height: 400px;
     background-color: #ffffff;
@@ -41,12 +41,12 @@
     padding: 1em;
     margin: 0.5em 0;
   }
-  
+
   .product-text h1 {
     font-size: 34px;
     color: #474747;
   }
-  
+
   .product-text p, .supplier p {
     font-family: 'Playfair Display', serif;
     color: #8d8d8d;
@@ -59,7 +59,7 @@
   .supplier p {
     font-size: 20px;
   }
-  
+
   .product-price  {
     margin: 0.5em 0;
     font-family: 'Trocchi', serif;
@@ -67,26 +67,26 @@
     font-weight: lighter;
     color: #474747;
   }
-  
+
   .editor{
     text-align: left;
   }
   .editor label{
     font-weight: bold;
   }
-  
+
   .product-info button{
     border-radius: 8px;
     margin: 0 5px;
   }
-  
+
   .editor-group{
     display: grid;
     grid-template: 1fr 1fr / 2fr 1fr;
     column-gap: 1em;
   }
-  
-  
+
+
   .wrapper-user {
     width: 654px;
     height: 428px;
@@ -95,25 +95,25 @@
     box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
     text-align: center;
   }
-  
+
   .grid-userview{
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .grid-userview .product-img{
     border-radius: 7px 0 0 7px;
     max-height: 300px;
     margin-top: -2em;
   }
-  
+
   .izquierda{
     display: grid;
     grid-template-rows: 300px 1fr;
   }
 
 
- 
-        
-        
-        
+
+
+
+

@@ -7,8 +7,8 @@
                 <hr>
                 <div class="container" *ngIf="createMode||editMode">
                     <div class="form-group">
-                        <input type="file" name="image" accept="image/*" (change)='selectImage($event)' />
-                        <button (click)='onImageSubmit($event)'>Upload</button>
+                        <input class="btn btn-outline-dark" type="file" name="image" accept="image/*" (change)='selectImage($event)' />
+                        <button  class="btn btn-outline-dark" (click)='onImageSubmit($event)'>Upload</button>
                     </div>
                 </div>
             </div>
@@ -36,16 +36,16 @@
                 <div class='editor-group'>
                     <label>Nombre</label>
                     <label>Activo</label>
-                    <input [style.background-color]="nombreBgColor" type='text' [(ngModel)]='service.nombre'
+                    <input class="btn btn-outline-dark" [style.background-color]="nombreBgColor" type='text' [(ngModel)]='service.nombre'
                         (keyup)='onChangeNombre()'>
                     <input type="checkbox" [(ngModel)]='service.active'>
                 </div>
                 <label>Descripción</label><br>
-                <textarea [style.background-color]="descripcionBgColor" cols="38" rows="7"
+                <textarea class="btn btn-outline-dark" [style.background-color]="descripcionBgColor" cols="38" rows="7"
                     [(ngModel)]='service.descripcion' (keyup)='onChangeDescripcion()'></textarea>
                 <br />
                 <label>Precio</label><br>
-                <input [style.background-color]="priceBgColor" type='text' [(ngModel)]='service.price'
+                <input class="btn btn-outline-dark" [style.background-color]="priceBgColor" type='text' [(ngModel)]='service.price'
                     (keyup)='onChangePrice()'>
 
             </div>
